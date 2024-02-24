@@ -88,6 +88,43 @@ $$ \left( \begin{array}{cccccccc}
 \draw (6) -- (8);
 }\\
 Бинарное отношение не является транзитивным, т.к., например, между вершинами 96 и 97 есть путь длины 2, но нет пути длины 1.
+\ \
+Отношение $F_1$:
+\begin{itemize}
+    \item Арефлексивное
+    \item Симметричное
+    \item Не транзитивное 
+\end{itemize}
+\ \
+Для построения транзитивного замыкания применим алгоритм Уоршелла:
+$$ \left( \begin{array}{cccccccc}
+		   0 &0 &1 &1 &1 &1 &1 &1 
+        \\0 &0 &0 &1 &1 &1 &1 &1
+        \\1 &0 &0 &0 &1 &1 &1 &1
+        \\1 &1 &0 &0 &0 &1 &1 &1
+        \\1 &1 &1 &0 &0 &0 &1 &1
+        \\1 &1 &1 &1 &0 &0 &0 &1
+        \\1 &1 &1 &1 &1 &0 &0 &0
+        \\1 &1 &1 &1 &1 &1 &0 &0 \end{array} \right) \Rightarrow
+    \left( \begin{array}{cccccccc}
+		   0 &0 &1 &1 &1 &1 &1 &1 
+        \\0 &0 &0 &1 &1 &1 &1 &1
+        \\1 &0 &\textcolor{red}{1} &\textcolor{red}{1} &1 &1 &1 &1
+        \\1 &1 &\textcolor{red}{1} &\textcolor{red}{1} &\textcolor{red}{1} &1 &1 &1
+        \\1 &1 &1 &\textcolor{red}{1} &\textcolor{red}{1} &\textcolor{red}{1} &1 &1
+        \\1 &1 &1 &1 &\textcolor{red}{1} &\textcolor{red}{1} &\textcolor{red}{1} &1
+        \\1 &1 &1 &1 &1 &\textcolor{red}{1} &\textcolor{red}{1} &\textcolor{red}{1}
+        \\1 &1 &1 &1 &1 &1 &\textcolor{red}{1} &\textcolor{red}{1} \end{array} \right) \Rightarrow
+    \left( \begin{array}{cccccccc}
+		   \textcolor{red}{1} &\textcolor{red}{1} &1 &1 &1 &1 &1 &1 
+        \\\textcolor{red}{1} &\textcolor{red}{1} &\textcolor{red}{1} &1 &1 &1 &1 &1
+        \\1 &\textcolor{red}{1} &1 &1 &1 &1 &1 &1
+        \\1 &1 &1 &1 &1 &1 &1 &1
+        \\1 &1 &1 &1 &1 &1 &1 &1
+        \\1 &1 &1 &1 &1 &1 &1 &1
+        \\1 &1 &1 &1 &1 &1 &1 &1
+        \\1 &1 &1 &1 &1 &1 &1 &1 \end{array} \right)    
+        $$
 \end{proof}
 
 \pagebreak
