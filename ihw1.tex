@@ -1,0 +1,600 @@
+\problemset{Комбинаторика и теория графов}
+\problemset{Индивидуальное домашнее задание №1}	% поменяйте номер ИДЗ
+
+\renewcommand*{\proofname}{Решение}
+
+Дано множество \( M = \{69, 74, 14, 51, 86, 87, 28, 29\} \). M, отсортированное по возрастанию:  \[M = \{14, 28, 29, 51, 69, 74, 86, 87\}\] 
+
+\begin{problem}
+\[ F(x,y) = 1 \Leftrightarrow \exists z \in M : (x-z)(y-z)<0; \] 
+
+\end{problem}
+\begin{proof}
+\textbf{Построим матрицу смежности для б.о:\\}
+\bordermatrix{ & 14 & 28 & 29 & 51 & 69 & 74 & 86 & 87 \cr
+14 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \cr
+28 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 \cr
+29 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \cr
+51 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 \cr
+69 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 \cr
+74 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 \cr
+86 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \cr
+87 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 } \\
+\\
+Благодаря построению матрицы смежности можно понять, что данное б.о является \textbf{арефлексивным}, т.к. элементы матрицы смежности на главной диагонали равны нулю, и \textbf{симметричным}, т.к. эл-ты матрицы зеркальны относительно главной диагонали. \newline
+
+\textbf{Построим граф для б.о:\\}   
+\tikz {
+\path
+(4.0, 8.0) node[state] (1) {14}
+(6.83, 6.83) node[state] (2) {28}
+(8.0, 4.0) node[state] (3) {29}
+(6.83, 1.17) node[state] (4) {51}
+(4.0, 0.0) node[state] (5) {69}
+(1.17, 1.17) node[state] (6) {74}
+(0.0, 4.0) node[state] (7) {86}
+(1.17, 6.83) node[state] (8) {87};
+\draw (1) -- (3);
+\draw (1) -- (4);
+\draw (1) -- (5);
+\draw (1) -- (6);
+\draw (1) -- (7);
+\draw (1) -- (8);
+\draw (2) -- (4);
+\draw (2) -- (5);
+\draw (2) -- (6);
+\draw (2) -- (7);
+\draw (2) -- (8);
+\draw (3) -- (5);
+\draw (3) -- (6);
+\draw (3) -- (7);
+\draw (3) -- (8);
+\draw (4) -- (6);
+\draw (4) -- (7);
+\draw (4) -- (8);
+\draw (5) -- (7);
+\draw (5) -- (8);
+\draw (6) -- (8);
+	}
+ \\Б.о \textbf{не транзитивно}, т.к между вершинами (например, 14 и 28), есть путь \( 14 \rightarrow 51 \rightarrow 28\), но нет пути \(14 \rightarrow 28\).
+ 
+Полученные свойства (\textbf{арефлексивность}, \textbf{симметричность}, \textbf{нетранзитивность}) - не относятся ни к одному отношению (эквивалентности, частичного порядка, линейного порядка, строгого порядка).
+ \\Используя алгоритм Уоршелла, построим транзитивное замыкание.
+$$ \bordermatrix{& \cr
+& 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \cr
+& 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 \cr
+& 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \cr
+& 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 \cr
+& 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 \cr
+& 1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 \cr
+& 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \cr
+& 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 }  \Rightarrow
+\bordermatrix{& \cr
+& 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \cr
+& 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 \cr
+& 1 & 0 & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & 1 & 1 \cr
+& 1 & 1 & 0 & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & 1 \cr
+& 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 \cr
+& 1 & 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 \cr
+& 1 & 1 & 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} \cr
+& 1 & 1 & 1 & 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} } \Rightarrow
+\bordermatrix{& \cr
+& \textcolor{red}{1} & 0 & 1 & 1 & 1 & 1 & 1 & 1 \cr
+& 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 \cr
+& 1 & 0 & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & 1 & 1 \cr
+& 1 & 1 & 0 & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & 1 \cr
+& 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 \cr
+& 1 & 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 \cr
+& 1 & 1 & 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} \cr
+& 1 & 1 & 1 & 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} } \Rightarrow
+$$
+$$
+ \Rightarrow  
+\bordermatrix{& \cr
+& \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & 1 & 1 & 1 & 1 \cr
+& \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & 1 & 1 & 1 \cr
+& 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & 1 & 1 \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & 1 \cr
+& 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 \cr
+& 1 & 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 \cr
+& 1 & 1 & 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} \cr
+& 1 & 1 & 1 & 1 & 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} }
+$$
+\tikz {
+    \path
+(4.0, 8.0) node[state] (1) {14}
+(6.83, 6.83) node[state] (2) {28}
+(8.0, 4.0) node[state] (3) {29}
+(6.83, 1.17) node[state] (4) {51}
+(4.0, 0.0) node[state] (5) {69}
+(1.17, 1.17) node[state] (6) {74}
+(0.0, 4.0) node[state] (7) {86}
+(1.17, 6.83) node[state] (8) {87};
+\draw (1) -- (3);
+\draw (1) -- (4);
+\draw (1) -- (5);
+\draw (1) -- (6);
+\draw (1) -- (7);
+\draw (1) -- (8);
+\draw (2) -- (4);
+\draw (2) -- (5);
+\draw (2) -- (6);
+\draw (2) -- (7);
+\draw (2) -- (8);
+\draw (3) -- (5);
+\draw (3) -- (6);
+\draw (3) -- (7);
+\draw (3) -- (8);
+\draw (4) -- (6);
+\draw (4) -- (7);
+\draw (4) -- (8);
+\draw (5) -- (7);
+\draw (5) -- (8);
+\draw (6) -- (8);
+\draw[densely dotted][->] (1) to [out=45.0,in=90.0,looseness=5] (1);
+\draw[densely dotted][->] (2) to [out=0.0,in=45.0,looseness=5] (2);
+\draw[densely dotted][->] (3) to [out=-45.0,in=0.0,looseness=5] (3);
+\draw[densely dotted][->] (4) to [out=-90.0,in=-45.0,looseness=5] (4);
+\draw[densely dotted][->] (5) to [out=-135.0,in=-90.0,looseness=5] (5);
+\draw[densely dotted][->] (6) to [out=-180.0,in=-135.0,looseness=5] (6);
+\draw[densely dotted][->] (7) to [out=-225.0,in=-180.0,looseness=5] (7);
+\draw[densely dotted][->] (8) to [out=-270.0,in=-225.0,looseness=5] (8);
+
+\draw[densely dotted] (1) -- (2);
+\draw[densely dotted] (2) -- (3);
+\draw[densely dotted] (3) -- (4);
+\draw[densely dotted] (4) -- (5);
+\draw[densely dotted] (5) -- (6);
+\draw[densely dotted] (6) -- (7);
+\draw[densely dotted] (7) -- (8);
+}
+\end{proof}
+
+\begin{problem}
+\[ F(x,y) = 1 \Leftrightarrow x \geqslant	 y \emph{ поразрядно}; \]
+\end{problem}
+\begin{proof}
+\textbf{Построим матрицу смежности для б.о:\\}
+\bordermatrix{ 
+ & 14 & 28 & 29 & 51 & 69 & 74 & 86 & 87 \cr
+14 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \cr
+28 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \cr
+29 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \cr
+51 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \cr
+69 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \cr
+74 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 \cr
+86 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 \cr
+87 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 1 } \\
+\\
+Благодаря построению матрицы смежности можно понять, что данное б.о является \textbf{рефлексивным}, т.к. элементы матрицы смежности на главной диагонали равны единице, и \textbf{антисимметричным}, т.к. выше главное диагонали в матрице находятся только нули. \newline
+\textbf{Транзитивность:}
+\(\sqsupset
+  	\begin{cases}
+    F(x,y) = 1 \Rightarrow x\ge y \\ 
+    F(y,z) = 1 \Rightarrow y \ge z    
+  	\end{cases} \Rightarrow x \ge y \ge z \Rightarrow x \ge z \Leftrightarrow F(x,z) = 1 - \textbf{транзитивность}  \) выполняется.
+\textbf{Построим граф для б.о:\\}  
+\tikz {
+    \path
+(4.0, 8.0) node[state] (1) {14}
+(6.83, 6.83) node[state] (2) {28}
+(8.0, 4.0) node[state] (3) {29}
+(6.83, 1.17) node[state] (4) {51}
+(4.0, 0.0) node[state] (5) {69}
+(1.17, 1.17) node[state] (6) {74}
+(0.0, 4.0) node[state] (7) {86}
+(1.17, 6.83) node[state] (8) {87};
+\draw[->] (1) to [out=45.0,in=90.0,looseness=5] (1);
+\draw[->] (2) -- (1);
+\draw[->] (2) to [out=0.0,in=45.0,looseness=5] (2);
+\draw[->] (3) -- (1);
+\draw[->] (3) -- (2);
+\draw[->] (3) to [out=-45.0,in=0.0,looseness=5] (3);
+\draw[->] (4) to [out=-90.0,in=-45.0,looseness=5] (4);
+\draw[->] (5) -- (1);
+\draw[->] (5) -- (2);
+\draw[->] (5) -- (3);
+\draw[->] (5) -- (4);
+\draw[->] (5) to [out=-135.0,in=-90.0,looseness=5] (5);
+\draw[->] (6) -- (1);
+\draw[->] (6) -- (4);
+\draw[->] (6) to [out=-180.0,in=-135.0,looseness=5] (6);
+\draw[->] (7) -- (1);
+\draw[->] (7) -- (4);
+\draw[->] (7) -- (6);
+\draw[->] (7) to [out=-225.0,in=-180.0,looseness=5] (7);
+\draw[->] (8) -- (1);
+\draw[->] (8) -- (4);
+\draw[->] (8) -- (6);
+\draw[->] (8) -- (7);
+\draw[->] (8) to [out=-270.0,in=-225.0,looseness=5] (8);
+	}
+
+
+ Полученные свойства (\textbf{рефлексивность}, \textbf{антисимметричность}, \textbf{транзитивность}) относятся к одному отношению частичного порядка.
+ 
+ Отношение \textbf{не является отношением линейного порядка}, т.к, к примеру, между вершинами 29 и 74 нет пути длины 1.	
+
+Алгоритм топологической сортировки для получения отношения линейного порядка: \\
+\bordermatrix{ 
+ & 14 & 28 & 29 & 51 & 69 & 74 & 86 & 87 \cr
+14 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \cr
+28 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \cr
+29 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \cr
+51 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \cr
+69 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \cr
+74 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \cr
+86 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \cr
+87 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 }
+\\ 
+\tikz {
+    \path
+(4.0, 8.0) node[state] (1) {$14_8$}
+(6.83, 6.83) node[state] (2) {$28_7$}
+(8.0, 4.0) node[state] (3) {$29_6$}
+(6.83, 1.17) node[state] (4) {$51_5$}
+(4.0, 0.0) node[state] (5) {$69_4$}
+(1.17, 1.17) node[state] (6) {$74_3$}
+(0.0, 4.0) node[state] (7) {$86_2$}
+(1.17, 6.83) node[state] (8) {$87_1$};
+(4.0, 8.0) node[state] (1) {14}
+(6.83, 6.83) node[state] (2) {28}
+(8.0, 4.0) node[state] (3) {29}
+(6.83, 1.17) node[state] (4) {51}
+(4.0, 0.0) node[state] (5) {69}
+(1.17, 1.17) node[state] (6) {74}
+(0.0, 4.0) node[state] (7) {86}
+(1.17, 6.83) node[state] (8) {87};
+\draw[->] (1) to [out=45.0,in=90.0,looseness=5] (1);
+\draw[->] (2) -- (1);
+\draw[->] (2) to [out=0.0,in=45.0,looseness=5] (2);
+\draw[->] (3) -- (1);
+\draw[->] (3) -- (2);
+\draw[->] (3) to [out=-45.0,in=0.0,looseness=5] (3);
+\draw[->][densely dotted] (4) -- (1);
+\draw[->][densely dotted] (4) -- (2);
+\draw[->][densely dotted] (4) -- (3);
+\draw[->] (4) to [out=-90.0,in=-45.0,looseness=5] (4);
+\draw[->] (5) -- (1);
+\draw[->] (5) -- (2);
+\draw[->] (5) -- (3);
+\draw[->] (5) -- (4);
+\draw[->] (5) to [out=-135.0,in=-90.0,looseness=5] (5);
+\draw[->] (6) -- (1);
+\draw[->][densely dotted] (6) -- (2);
+\draw[->][densely dotted] (6) -- (3);
+\draw[->] (6) -- (4);
+\draw[->][densely dotted] (6) -- (5);
+\draw[->] (6) to [out=-180.0,in=-135.0,looseness=5] (6);
+\draw[->] (7) -- (1);
+\draw[->] (7) -- (4);
+\draw[->] (7) -- (6);
+\draw[->][densely dotted] (7) -- (2);
+\draw[->][densely dotted] (7) -- (3);
+\draw[->][densely dotted] (7) -- (5);
+\draw[->] (7) to [out=-225.0,in=-180.0,looseness=5] (7);
+\draw[->] (8) -- (1);
+\draw[->][densely dotted] (8) -- (2);
+\draw[->][densely dotted] (8) -- (3);
+\draw[->] (8) -- (4);
+\draw[->][densely dotted] (8) -- (5);
+\draw[->] (8) -- (6);
+\draw[->] (8) -- (7);
+\draw[->] (8) to [out=-270.0,in=-225.0,looseness=5] (8);
+}	
+\end{proof}
+
+
+\begin{problem}
+\[ F(x,y) = 1 \Leftrightarrow \left[ \frac{x}{4} \right] = \left[ \frac{y}{4} \right]; \]
+\end{problem}
+\begin{proof}
+\textbf{Построим матрицу смежности для б.о:\\}
+\bordermatrix{ 
+   & 14 & 28 & 29 & 51 & 69 & 74 & 86 & 87 \cr
+14 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \cr
+28 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \cr
+29 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \cr
+51 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \cr
+69 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \cr
+74 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \cr
+86 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \cr
+87 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 } \\
+\\
+Благодаря построению матрицы смежности можно понять, что данное б.о является \textbf{рефлексивным}, т.к. элементы матрицы смежности на главной диагонали равны единице, и \textbf{симметричным}, т.к. эл-ты матрицы зеркальны относительно главной диагонали. \\
+\textbf{Транзитивность \\}
+\( \sqsupset
+\begin{cases}
+F(x,y) = 1 \Leftrightarrow \left[ \frac{x}{4} \right] = \left[ \frac{y}{4} \right] \\
+F(y,z) = 1 \Leftrightarrow \left[ \frac{y}{4} \right] = \left[ \frac{z}{4} \right]   
+\end{cases} \Rightarrow \left[ \frac{x}{4} \right] = \left[ \frac{z}{4} \right] \Leftrightarrow F(x,z) = 1 \) - \textbf{транзитивность} выполняется. \\ \\
+\textbf{Построим граф для б.о:\\}  
+\tikz {
+    \path
+(4.0, 8.0) node[state] (1) {14}
+(6.83, 6.83) node[state] (2) {28}
+(8.0, 4.0) node[state] (3) {29}
+(6.83, 1.17) node[state] (4) {51}
+(4.0, 0.0) node[state] (5) {69}
+(1.17, 1.17) node[state] (6) {74}
+(0.0, 4.0) node[state] (7) {86}
+(1.17, 6.83) node[state] (8) {87};
+\draw[->] (1) to [out=45.0,in=90.0,looseness=5] (1);
+\draw[->] (2) to [out=0.0,in=45.0,looseness=5] (2);
+\draw (2) -- (3);
+\draw[->] (3) to [out=-45.0,in=0.0,looseness=5] (3);
+\draw[->] (4) to [out=-90.0,in=-45.0,looseness=5] (4);
+\draw[->] (5) to [out=-135.0,in=-90.0,looseness=5] (5);
+\draw[->] (6) to [out=-180.0,in=-135.0,looseness=5] (6);
+\draw[->] (7) to [out=-225.0,in=-180.0,looseness=5] (7);
+\draw (7) -- (8);
+\draw[->] (8) to [out=-270.0,in=-225.0,looseness=5] (8);
+}
+\\Комбинация полученных свойств (\textbf{рефлексивность}, \textbf{симметричность}, \textbf{транзитивность}) относится к отношению \textbf{эквивалентности}. \\ \\
+Построим классы эквивалентности: \\
+Множество разбивается на классы эквивалентности в зависимости от целой части при делении на 4:
+\begin{itemize}
+    \item \{14\} имеет целую часть 4
+    \item \{28, 29\} имеет целую часть 7
+    \item \{51\}имеет целую часть 13
+    \item \{69\} имеет целую часть 17
+    \item \{74\} имеет целую часть 19
+    \item \{86, 87\} имеет целую часть 22
+\end{itemize}
+\end{proof}
+
+\begin{problem}
+\[ F(x,y) = 1 \Leftrightarrow x^2-y^3	\emph{ нечетно}; \]
+\end{problem}
+	
+\begin{proof} $ $
+	\textbf{Построим матрицу смежности для б.о:\\}
+\bordermatrix{ 
+   & 14 & 28 & 29 & 51 & 69 & 74 & 86 & 87 \cr
+14 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+28 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+29 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \cr
+51 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \cr
+69 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \cr
+74 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+86 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+87 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 } \\
+\\
+Благодаря построению матрицы смежности можно понять, что данное б.о является \textbf{арефлексивным}, т.к. элементы матрицы смежности на главной диагонали равны нулю, и \textbf{симметричным}, т.к. эл-ты матрицы зеркальны относительно главной диагонали. \\
+\textbf{Построим граф для б.о:\\}  
+\tikz {
+    \path
+(4.0, 8.0) node[state] (1) {14}
+(6.83, 6.83) node[state] (2) {28}
+(8.0, 4.0) node[state] (3) {29}
+(6.83, 1.17) node[state] (4) {51}
+(4.0, 0.0) node[state] (5) {69}
+(1.17, 1.17) node[state] (6) {74}
+(0.0, 4.0) node[state] (7) {86}
+(1.17, 6.83) node[state] (8) {87};
+\draw (1) -- (3);
+\draw (1) -- (4);
+\draw (1) -- (5);
+\draw (1) -- (8);
+\draw (2) -- (3);
+\draw (2) -- (4);
+\draw (2) -- (5);
+\draw (2) -- (8);
+\draw (3) -- (1);
+\draw (3) -- (2);
+\draw (3) -- (6);
+\draw (3) -- (7);
+\draw (4) -- (1);
+\draw (4) -- (2);
+\draw (4) -- (6);
+\draw (4) -- (7);
+\draw (5) -- (1);
+\draw (5) -- (2);
+\draw (5) -- (6);
+\draw (5) -- (7);
+\draw (6) -- (3);
+\draw (6) -- (4);
+\draw (6) -- (5);
+\draw (6) -- (8);
+\draw (7) -- (3);
+\draw (7) -- (4);
+\draw (7) -- (5);
+\draw (7) -- (8);
+\draw (8) -- (1);
+\draw (8) -- (2);
+\draw (8) -- (6);
+\draw (8) -- (7);
+}
+ \\Б.о \textbf{не транзитивно}, т.к между вершинами (например, 14 и 28), есть путь \( 14 \rightarrow 69 \rightarrow 28\), но нет пути \(14 \rightarrow 28\).
+\\ 
+Полученные свойства (\textbf{арефлексивность}, \textbf{симметричность}, \textbf{нетранзитивность}) - не относятся ни к одному отношению (эквивалентности, частичного порядка, линейного порядка, строгого порядка). \\ \\
+Используя алгоритм Уоршелла, построим транзитивное замыкание.
+$$ \bordermatrix{ &  \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \cr
+& 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \cr
+& 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 } \Rightarrow
+\bordermatrix{ &  \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr } \Rightarrow
+\bordermatrix{ &  \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr } \Rightarrow
+$$
+$$
+ \Rightarrow  
+\bordermatrix{ &  \cr
+& \textcolor{red}{1}  & \textcolor{red}{1}  & 1 & 1 & 1 & \textcolor{red}{1}  & \textcolor{red}{1}  & 1 \cr
+& \textcolor{red}{1}  & \textcolor{red}{1}  & 1 & 1 & 1 & \textcolor{red}{1}  & \textcolor{red}{1}  & 1 \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr
+& \textcolor{red}{1}  & \textcolor{red}{1}  & 1 & 1 & 1 & \textcolor{red}{1}  & \textcolor{red}{1}  & 1 \cr
+& \textcolor{red}{1}  & \textcolor{red}{1}  & 1 & 1 & 1 & \textcolor{red}{1}  & \textcolor{red}{1}  & 1 \cr
+& 1 & 1 & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{red}{1} & 1 & 1 & \textcolor{red}{1} \cr }
+$$
+\tikz {
+    \path
+(4.0, 8.0) node[state] (1) {14}
+(6.83, 6.83) node[state] (2) {28}
+(8.0, 4.0) node[state] (3) {29}
+(6.83, 1.17) node[state] (4) {51}
+(4.0, 0.0) node[state] (5) {69}
+(1.17, 1.17) node[state] (6) {74}
+(0.0, 4.0) node[state] (7) {86}
+(1.17, 6.83) node[state] (8) {87};
+\draw (1) -- (3);
+\draw (1) -- (4);
+\draw (1) -- (5);
+\draw (1) -- (8);
+\draw (2) -- (3);
+\draw (2) -- (4);
+\draw (2) -- (5);
+\draw (2) -- (8);
+\draw (3) -- (1);
+\draw (3) -- (2);
+\draw (3) -- (6);
+\draw (3) -- (7);
+\draw (4) -- (1);
+\draw (4) -- (2);
+\draw (4) -- (6);
+\draw (4) -- (7);
+\draw (5) -- (1);
+\draw (5) -- (2);
+\draw (5) -- (6);
+\draw (5) -- (7);
+\draw (6) -- (3);
+\draw (6) -- (4);
+\draw (6) -- (5);
+\draw (6) -- (8);
+\draw (7) -- (3);
+\draw (7) -- (4);
+\draw (7) -- (5);
+\draw (7) -- (8);
+\draw (8) -- (1);
+\draw (8) -- (2);
+\draw (8) -- (6);
+\draw (8) -- (7);
+
+\draw[densely dotted][->] (1) to [out=45.0,in=90.0,looseness=5] (1);
+\draw[densely dotted][->] (2) to [out=0.0,in=45.0,looseness=5] (2);
+\draw[densely dotted][->] (3) to [out=-45.0,in=0.0,looseness=5] (3);
+\draw[densely dotted][->] (4) to [out=-90.0,in=-45.0,looseness=5] (4);
+\draw[densely dotted][->] (5) to [out=-135.0,in=-90.0,looseness=5] (5);
+\draw[densely dotted][->] (6) to [out=-180.0,in=-135.0,looseness=5] (6);
+\draw[densely dotted][->] (7) to [out=-225.0,in=-180.0,looseness=5] (7);
+\draw[densely dotted][->] (8) to [out=-270.0,in=-225.0,looseness=5] (8);
+
+\draw[densely dotted] (1) -- (2);
+\draw[densely dotted] (1) -- (6);
+\draw[densely dotted] (1) -- (7);
+\draw[densely dotted] (2) -- (1);
+\draw[densely dotted] (2) -- (6);
+\draw[densely dotted] (2) -- (7);
+\draw[densely dotted] (3) -- (4);
+\draw[densely dotted] (3) -- (5);
+\draw[densely dotted] (3) -- (8);
+\draw[densely dotted] (4) -- (3);
+\draw[densely dotted] (4) -- (5);
+\draw[densely dotted] (4) -- (8);
+\draw[densely dotted] (5) -- (3);
+\draw[densely dotted] (5) -- (4);
+\draw[densely dotted] (5) -- (8);
+\draw[densely dotted] (6) -- (1);
+\draw[densely dotted] (6) -- (2);
+\draw[densely dotted] (6) -- (7);
+\draw[densely dotted] (7) -- (1);
+\draw[densely dotted] (7) -- (2);
+\draw[densely dotted] (7) -- (8);
+\draw[densely dotted] (8) -- (3);
+\draw[densely dotted] (8) -- (4);
+\draw[densely dotted] (8) -- (5);
+}
+\end{proof}
+
+\begin{problem}
+\[ F(x,y) = 1 \Leftrightarrow |x-y|<5. \]
+\end{problem}
+
+\begin{proof} $ $
+   	\textbf{Построим матрицу смежности для б.о:\\}
+\bordermatrix{ 
+   & 14 & 28 & 29 & 51 & 69 & 74 & 86 & 87 \cr
+14 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \cr
+28 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \cr
+29 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \cr
+51 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \cr
+69 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \cr
+74 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \cr
+86 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \cr
+87 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 } \\
+\\
+
+Благодаря построению матрицы смежности можно понять, что данное б.о является \textbf{рефлексивным}, т.к. элементы матрицы смежности на главной диагонали равны единице, и \textbf{симметричным}, т.к.эл-ты матрицы зеркальны относительно главной диагонали. \\
+Возведем матрицу смежности в квадрат:
+\bordermatrix{ 
+   & 14 & 28 & 29 & 51 & 69 & 74 & 86 & 87 \cr
+14 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \cr
+28 & 0 & 2 & 2 & 0 & 0 & 0 & 0 & 0 \cr
+29 & 0 & 2 & 2 & 0 & 0 & 0 & 0 & 0 \cr
+51 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \cr
+69 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \cr
+74 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \cr
+86 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 2 \cr
+87 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 2 } \\
+\\
+Новых единиц не появилось \(\Rightarrow\) отношение \textbf{транзитивно}.\\
+\textbf{Построим граф для б.о:\\}  
+\tikz {
+    \path
+(4.0, 8.0) node[state] (1) {14}
+(6.83, 6.83) node[state] (2) {28}
+(8.0, 4.0) node[state] (3) {29}
+(6.83, 1.17) node[state] (4) {51}
+(4.0, 0.0) node[state] (5) {69}
+(1.17, 1.17) node[state] (6) {74}
+(0.0, 4.0) node[state] (7) {86}
+(1.17, 6.83) node[state] (8) {87};
+\draw[->] (1) to [out=45.0,in=90.0,looseness=5] (1);
+\draw[->] (2) to [out=0.0,in=45.0,looseness=5] (2);
+\draw[->] (3) to [out=-45.0,in=0.0,looseness=5] (3);
+\draw[->] (4) to [out=-90.0,in=-45.0,looseness=5] (4);
+\draw[->] (5) to [out=-135.0,in=-90.0,looseness=5] (5);
+\draw[->] (6) to [out=-180.0,in=-135.0,looseness=5] (6);
+\draw[->] (7) to [out=-225.0,in=-180.0,looseness=5] (7);
+\draw[->] (8) to [out=-270.0,in=-225.0,looseness=5] (8);
+\draw (2) -- (3);
+\draw (7) -- (8);
+}
+\\
+Полученные свойства (\textbf{рефлексивность}, \textbf{симметричность}, \textbf{транзитивность}) - относятся к отношению эквивалентности.
+
+Построим классы эквивалентности: \\
+Множество разбивается на классы эквивалентности в зависимости от разности чисел, меньшей 5:
+
+\begin{itemize}
+    \item \{14\} разность между эл-ми < 5
+    \item \{28, 29\} разность между любыми эл-ми < 5
+    \item \{51\} разность между эл-ми < 5
+    \item \{69\} разность между эл-ми < 5
+    \item \{74\} разность между эл-ми < 5
+    \item \{86, 87\} разность между любыми эл-ми < 5
+\end{itemize}
+
+\end{proof}
