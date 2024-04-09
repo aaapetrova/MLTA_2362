@@ -1,0 +1,117 @@
+\problemset{Комбинаторика и теория графов}
+\problemset{Индивидуальное домашнее задание №2}	% поменяйте номер ИДЗ
+
+\renewcommand*{\proofname}{Решение}
+%%%%%%%%%%%%%% ЗАДАНИЕ №1 %%%%%%%%%%%%%%
+%% Условие задания №1
+\begin{problem}
+	Определить, является ли данный граф эйлеровым, полуэйлеровым, гамильтоновым, полугамильтоновым, двудольным, вершинно-двусвязным, рёберно-двусвянзным. Построить дерево блоков и точек сочленения.
+    \begin{center}
+    \begin{tikzcd}
+		& A  \ar[r, dash]  \ar[d, dash] 
+		& B  
+		\\
+		C   \ar[dr, dash] \ar[d, dash]  
+		& D \ar[dl, dash] \ar[r, dash] \ar[d, dash]   
+		& E \ar[d, dash] \ar[r, dash]  
+		& F \ar[d, dash] 
+		\\
+		G   \ar[ur, dash]   
+		& H \ar[u, dash] 
+		& I \ar[l, dash] \ar[r, dash]
+		& J \ar[ul, dash]
+        \\
+        & K \ar[ur, dash] \ar[r, dash]
+        & L \ar[ul, dash]
+	\end{tikzcd}\\
+    \end{center}
+\end{problem}
+
+%% Решение 1
+\input{ihw2.1.tex}
+
+\begin{problem}
+\end{problem}
+\begin{proof}
+\end{proof}
+
+\begin{problem}
+\end{problem}
+\begin{proof}
+\end{proof}
+
+\vspace{10mm}
+%% Условие задания №4
+\begin{problem} $ $\\
+	\begin{itemize}
+	    \item[a)] построить код Прюфера для данного дерева:
+        \vspace{4mm}
+        \begin{center}
+        \begin{tikzcd}
+        1 \ar[d, dash] \ar[r, dash]
+        &2
+        &3 \ar[dll, dash]
+        &4 \ar[r, dash]
+        &5 \ar[r, dash] \ar[dllll, dash] \ar[dlll, dash]
+        &6 \ar[dl, dash]
+        \\
+        7 
+        &8 \ar[r, dash]
+        &9 \ar[r, dash]
+        &10
+        &11
+        \end{tikzcd}
+        \end{center}
+        \vspace{4mm}
+        \item [б)] Построить дерево по коду Прюфера: 2 11 2 3 3 4 5 9 5
+	\end{itemize}
+\end{problem}
+
+%% Решение задания 4
+\input{ihw2.4.tex}
+
+%% Условие задания №5
+\begin{problem} При помощи плгоритма Kosaraju найти компоненты сильной связности данного графа:\\
+    \begin{center}
+        \begin{tikzcd}
+            A \ar[r, rightarrow]
+            &B \ar[d, rightarrow] \ar[ddl, leftrightarrow]
+            &C \ar[r, leftrightarrow]
+            &D \ar[llldd, rightarrow]
+            \\
+            E 
+            &F \ar[urr, rightarrow]
+            &G \ar[ur, rightarrow] \ar[r, rightarrow] \ar[ddr, leftrightarrow]
+            &H 
+            \\
+            I \ar[r, leftarrow]
+            &J \ar[ld, leftrightarrow]
+            &K \ar[dl,  rightarrow]
+            &L \ar[d, leftrightarrow]
+            \\ 
+            M \ar[u, rightarrow]
+            &N \ar[l, leftrightarrow]
+            &O \ar[u, rightarrow]
+            &P \ar[l, rightarrow]
+        \end{tikzcd}
+    \end{center}
+\end{problem}
+
+%% Решение задания 5
+\input{ihw2.5.tex}
+
+\begin{problem}
+\end{problem}
+\begin{proof}
+\end{proof}
+
+\begin{problem}
+\end{problem}
+\begin{proof}
+\end{proof}
+
+\begin{problem}
+Найдите наибольшее паросочетание в двудольном графе, заданном набором рёбер (a, $\gamma$) (a, $\delta$) (a, $\epsilon$) (b, $\beta$) (b, $\theta$) (c, $\theta$) (d, $\delta$) (d, $\zeta$) (d, $\theta$) (e, $\alpha$) (e, $\beta$) (e, $\eta$) (f, $\zeta$) (g, $\gamma$) (g, $\delta$) (h, $\gamma$)
+\end{problem}
+
+\input{ihw2.8.tex}
