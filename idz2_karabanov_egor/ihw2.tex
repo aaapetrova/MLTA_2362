@@ -30,15 +30,38 @@
 %% Решение 1
 \input{ihw2.1.tex}
 
+%% Условие задания 2
 \begin{problem}
+Найдите хроматический многочлен данного графа:
+\begin{center}
+    \begin{tikzcd}
+		& A  \ar[r, dash]  \ar[d, dash] 
+		& B  \ar[dl, dash]
+		\\
+		C   \ar[r, dash] \ar[dr, dash]  
+		& D \ar[r, dash] \ar[d, dash]   
+		& E \ar[d, dash] \ar[r, dash] \ar[dr, dash]
+		& F
+		\\
+		G   \ar[r, dash]   
+		& H \ar[r, dash] 
+		& I \ar[d, dash]
+		& J \ar[ul, dash]
+        \\
+        & K \ar[r, dash]
+        & L
+	\end{tikzcd}\\
+    \end{center}
 \end{problem}
-\begin{proof}
-\end{proof}
+\input{ihw2.2.tex}
 
+%% Условие задания 3
 \begin{problem}
+Из полного графа на 133 вершинах, удалили рёбра AB,
+BC, EF и DF. Постройте хроматический многочлен получив-
+шегося графа. Упрощать ответ не обязательно.
 \end{problem}
-\begin{proof}
-\end{proof}
+\input{ihw2.3.tex}
 
 \vspace{10mm}
 %% Условие задания №4
@@ -100,18 +123,184 @@
 %% Решение задания 5
 \input{ihw2.5.tex}
 
+%% Условие задания №6
 \begin{problem}
+Найдите максимальный поток через данную плоскую
+сеть:
+\begin{center}
+    \usetikzlibrary{graphs,automata,positioning}
+    \tikz {
+    	\path
+    (2, 0) node (B) {B}
+    (4, 0) node (E) {E}
+    (6, 0) node (H) {H}
+    (8, 0) node (K) {K}
+    (0, -2) node (A) {A}
+    (2, -2) node (C) {C}
+    (4, -2) node (F) {F}
+    (6, -2) node (I) {I}
+    (8, -2) node (L) {L}
+    (10, -2) node (N) {N}
+    (2, -4) node (D) {D}
+    (4, -4) node (G) {G}
+    (6, -4) node (J) {J}
+    (8, -4) node (M) {M};
+    \path[->]
+    (A) edge node[sloped,above] {22} (B)
+    (A) edge node[sloped,above] {9} (C)
+    (A) edge node[sloped,above] {19} (D)
+    (B) edge node[sloped,above] {2} (E)
+    (B) edge node[sloped,above] {3} (F)
+    (C) edge node[sloped,above] {1} (F)
+    (C) edge node[sloped,above] {9} (G)
+    (D) edge node[sloped,above] {8} (G)
+    (E) edge node[sloped,above] {5} (H)
+    (F) edge node[sloped,above] {3} (H)
+    (F) edge node[sloped,above] {10} (I)
+    (F) edge node[sloped,above] {8} (J)
+    (G) edge node[sloped,above] {6} (J)
+    (H) edge node[sloped,above] {9} (K)
+    (H) edge node[sloped,above] {5} (L)
+    (I) edge node[sloped,above] {7} (L)
+    (J) edge node[sloped,above] {4} (M)
+    (J) edge node[sloped,above] {4} (L)
+    (K) edge node[sloped,above] {14} (N)
+    (L) edge node[sloped,above] {12} (N)
+    (M) edge node[sloped,above] {10} (N);
+    }
+\end{center}
 \end{problem}
-\begin{proof}
-\end{proof}
+%% Решение задания 6
+\input{ihw2.6.tex}
 
+%% Условие задания 7
 \begin{problem}
-\end{problem}
-\begin{proof}
-\end{proof}
+Найдите максимальный поток через данную сеть:
+\begin{center}
+    \usetikzlibrary{graphs,automata,positioning}
+    \tikz {
+    	\path
+    (2, 0) node (B) {B}
+    (4, 0) node (E) {E}
+    (6, 0) node (H) {H}
+    (8, 0) node (K) {K}
+    (0, -2) node (A) {A}
+    (2, -2) node (C) {C}
+    (4, -2) node (F) {F}
+    (6, -2) node (I) {I}
+    (8, -2) node (L) {L}
+    (10, -2) node (N) {N}
+    (2, -4) node (D) {D}
+    (4, -4) node (G) {G}
+    (6, -4) node (J) {J}
+    (8, -4) node (M) {M};
+    \path[->]
+    (A) edge node[sloped,above] {10} (B)
+    (A) edge node[sloped,above] {20} (C)
+    (A) edge node[sloped,above] {15} (D)
+    
+    (B) edge node[sloped,above] {3} (E)
+    (B) edge node[sloped,above,pos=0.2] {5} (F)
+    
+    (C) edge node[sloped,above,pos=0.2] {5} (E)
+    (C) edge node[sloped,above,pos=0.2] {9} (G)
 
+    (D) edge node[sloped,above,pos=0.2] {10} (F)
+    (D) edge node[sloped,above] {6} (G)
+    
+    (E) edge node[sloped,above] {5} (H)
+    (E) edge node[sloped,above,pos=0.2] {1} (I)
+    
+    (F) edge node[sloped,above,pos=0.2] {10} (H)
+    (F) edge node[sloped,above,pos=0.2] {4} (J)
+    
+    (G) edge node[sloped,above,pos=0.2] {4} (J)
+    (G) edge node[sloped,above,pos=0.2] {7} (I)
+    
+    (H) edge node[sloped,above] {6} (K)
+    (H) edge node[sloped,above,pos=0.2] {10} (L)
+    
+    (I) edge node[sloped,above,pos=0.2] {8} (K)
+    (I) edge node[sloped,above,pos=0.2] {7} (M)
+    
+    (J) edge node[sloped,above,pos=0.2] {5} (L)
+    (J) edge node[sloped,above] {9} (M)
+    
+    (K) edge node[sloped,above] {21} (N)
+    
+    (L) edge node[sloped,above] {20} (N)
+    
+    (M) edge node[sloped,above] {20} (N);
+    }
+\end{center}
+\end{problem}
+%% Решение задания 7
+\input{ihw2.7.tex}
+%% Условие задания 8
 \begin{problem}
 Найдите наибольшее паросочетание в двудольном графе, заданном набором рёбер (a, $\gamma$) (a, $\delta$) (a, $\epsilon$) (b, $\beta$) (b, $\theta$) (c, $\theta$) (d, $\delta$) (d, $\zeta$) (d, $\theta$) (e, $\alpha$) (e, $\beta$) (e, $\eta$) (f, $\zeta$) (g, $\gamma$) (g, $\delta$) (h, $\gamma$)
 \end{problem}
-
+%% Решение задания 8
 \input{ihw2.8.tex}
+
+%% Условие задания 9
+\begin{problem}
+Найдите радиус, диаметр и центр данного дерева:
+\begin{center}
+\begin{tikzcd}
+            1 \ar[r, dash] \ar[d, dash]
+            &2 \ar[d, dash]
+            &3 \ar[r, dash]
+            &4 \ar[lld, dash]
+            &5 \ar[llld, dash] \ar[lld, dash] \ar[ld, dash] \ar[d, dash]
+            &6 \ar[l, dash]
+            \\
+            7 
+            &8 
+            &9 
+            &10
+            &11
+        \end{tikzcd}
+\end{center}
+\end{problem}
+%% Решение задания 9
+\input{ihw2.9.tex}
+
+%% Условие задания 10
+$ $\\
+\begin{problem}
+Найдите радиус, диаметр и центр данного графа:
+\begin{center}
+\begin{tikzcd}
+            A \ar[r, dash] \ar[d, dash]
+            &B \ar[r, dash]
+            &C \ar[r, dash] \ar[lddd, dash]
+            &D \ar[d, dash] \ar[lddd, dash] \ar[llddd, dash]
+            \\
+            E \ar[d, dash] \ar[rdd, dash]
+            &
+            &
+            &F \ar[d, dash]
+            \\
+            G \ar[d, dash] \ar[rd, dash]
+            &
+            &
+            &H \ar[d, dash]
+            \\
+            I \ar[r, dash]
+            & J \ar[r, dash]
+            & K \ar[r, dash]
+            & L
+        \end{tikzcd}
+\end{center}
+\end{problem}
+%% Решение задания 10
+\input{ihw2.10.tex}
+
+%% Условие задания 11
+\begin{problem}
+Постройте пример графа, для которого хроматическим многочленом является\\
+$t^4(t-1)^8(t-2)^3(t-3)^2$
+\end{problem}
+%% Решение задания 11
+\input{ihw2.11.tex}

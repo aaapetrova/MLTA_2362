@@ -1,0 +1,44 @@
+\newcommand{\ols}[1]{\mskip.5\thinmuskip\overline{\mskip-.5\thinmuskip {#1} \mskip-.5\thinmuskip}\mskip.5\thinmuskip} % overline short
+
+\begin{proof} $ $\\
+    Обозначим исходный граф за G.\\\\
+    Хроматический многочлен графа с объединенными вершинами будем обозначать как $P_{XY}$, где X, Y - вершины, которые были объединены\\\\
+    Хроматический многочлен графа с добавленным ребром между вершинами будем обозначать как $P_{\ols{XY}}$, где X, Y - вершины, вершины, между которыми было проведено ребро.\\\\
+    Изобразим ребра, которые были удалены из графа:
+    \begin{center}
+    \begin{tikzcd}
+    &B \ar[d, dash, dashed]
+    &E \ar[d, dash, dashed]
+    &D \ar[dl, dash, dashed]
+    \\
+    &C
+    &F
+    \end{tikzcd}
+    \end{center}
+    $P_G = P_{BC} + P_{\ols{BC}}$\\
+    \begin{tikzcd}
+    \\
+    &&&D \ar[dd, dash, dashed]
+    \\
+    &BC \ar[r, dash] \ar[urr, dash] \ar[drr, dash]
+    &E \ar[ur, dash] \ar[dr, dash, dashed]
+    \\
+    &&&F
+    \end{tikzcd}
+    \begin{tikzcd}
+    &B \ar[d, dash]
+    &E \ar[d, dash, dashed]
+    &D \ar[dl, dash, dashed]
+    \\
+    &C
+    &F
+    \end{tikzcd}\\
+    $P_{BC} = P_{EF} + P_{\ols{EF}}$\\
+    $P_{EF} = P_{K_{131}}$\\
+    $P_{\ols{EF}} = P_{\ols{FD}} + P_{FD} = P_{K_{132}} + P_{K_{131}} \Rightarrow P_{BC} = 2P_{K_{131}}+P_{K_{132}}$\\\\
+    $P_{\ols{BC}} = P_{FE} + P_{\ols{FE}}$\\
+    $P_{FE} = P_{K_{132}}$\\
+    $P_{\ols{FE}} = P_{DF} + P_{\ols{DF}} = P_{K_{132}} + P_{K_{133}} \Rightarrow 2P_{K_{132}}+P_{K_{133}}$\\\\
+    $P_G = 3P_{K_{132}} + 2P_{K_{131}} + P_{K_{133}}$\\\\
+    \textbf{Ответ:} $3A_t^{132} + 2A_t^{131} + A_t^{133}$
+\end{proof}
