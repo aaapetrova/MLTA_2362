@@ -91,12 +91,12 @@
 \usetikzlibrary{graphs,automata,positioning}
 \tikz {
 	\path
-(0, 0) node[white, circle,fill=black] (CG) {CG}
+(0, 0) node[white, circle,fill=black] (CG) {CDG}
 (2, 0) node[circle,fill=red] (D) {D}
 (10, 0) node[circle,fill=red] (F) {F}
-(4, -2) node[white, circle,fill=black] (ABEHKL) {ABEHKL}
-(8, -2) node[white, circle,fill=black] (IF) {-}
-(10, -2) node[white, circle,fill=black] (J) {J}
+(4, -2) node[white, circle,fill=black] (ABEHKL) {ABDEHIKL}
+(8, -2) node[white, circle,fill=black] (IF) {IF}
+(10, -2) node[white, circle,fill=black] (J) {FJ}
 (6, -4) node[circle,fill=red] (I) {I};
 \draw (CG) -- (D);
 \draw (D) -- (ABEHKL);
@@ -205,13 +205,13 @@ BE, DE и GH. Постройте хроматический многочлен �
 \begin{proof} $ $ \\
 $\sqsupset $ $K_n = P_{K_n}(t)$, $K_n-e=P_{K_n-e}(t)$\\\\
 $(K_{114}-AB)=K_{114}+K_{113}$ \\
-$(K_{114}-AB-BE)=(K_{114}-AB)+(K_{113}-AB)$\\
-$(K_{114}-AB-BE-DE)=(K_{114}-AB-BE)+(K_{113}-AB-BE)$\\
+$(K_{114}-AB-BE)=(K_{114}-AB)+K_{113}$\\
+$(K_{114}-AB-BE-DE)=(K_{114}-AB-BE)+(K_{113}-AB)$\\
 $(K_{114}-AB-BE-DE-GH)=(K_{114}-AB-BE-DE)+(K_{113}-AB-BE-DE)=$\\
-$=(K_{114}-AB-BE)+2(K_{113}-AB-BE)+(K_{112}-AB-BE)=$\\
-$=(K_{114}-AB)+3(K_{113}-AB)+3(K_{112}-AB)+(K_{111}-AB)=$\\
-$=K_{114}+4K_{113}+6K_{112}+4K_{111}+K_{110}=A_t^{114}+4A_t^{113}+6A_t^{112}+4A_t^{111}+A_t^{110}$\\\\
-Ответ: $A_t^{114}+4A_t^{113}+6A_t^{112}+4A_t^{111}+A_t^{110}$
+$=(K_{114}-AB-BE)+(K_{113}-AB)+(K_{113}-AB-BE)+(K_{112}-AB)=$\\
+$=(K_{114}-AB)+2K_{113}+K_{114}+(K_{113}-AB)+2K_{112}+K_{111}=$\\
+$= 2K_{114}+4K_{113}+3K_{112}+K_{111}=2A_t^{144}+4A_t^{113}+3A_t^{112}+A_t^{111}$\\\\
+Ответ: $2A_t^{144}+4A_t^{113}+3A_t^{112}+A_t^{111}$
 \end{proof}
 
 \begin{problem}
@@ -1340,7 +1340,7 @@ $=K_{114}+4K_{113}+6K_{112}+4K_{111}+K_{110}=A_t^{114}+4A_t^{113}+6A_t^{112}+4A_
 (1.5, -3.0) node (D) {D}
 (3.0, -3.0) node (G) {G}
 (4.5, -3.0) node (J) {J}
-(6.0, -3.0) node (M) {M}
+(6.0, -3.0) node (M) {M};
 \path[->]
 (A) edge[ultra thick,bend left=20]
  node[sloped,above,node font=\tiny] {6} (B)
@@ -1409,7 +1409,7 @@ $=K_{114}+4K_{113}+6K_{112}+4K_{111}+K_{110}=A_t^{114}+4A_t^{113}+6A_t^{112}+4A_
 (1.5, -3.0) node (D) {D}
 (3.0, -3.0) node (G) {G}
 (4.5, -3.0) node (J) {J}
-(6.0, -3.0) node (M) {M}
+(6.0, -3.0) node (M) {M};
 \path[->]
 (A) edge[ultra thick,bend left=20]
  node[sloped,above,node font=\tiny] {5} (B)
@@ -1433,8 +1433,8 @@ $=K_{114}+4K_{113}+6K_{112}+4K_{111}+K_{110}=A_t^{114}+4A_t^{113}+6A_t^{112}+4A_
 (E) edge[bend left=20]
  node[sloped,above,node font=\tiny,pos=0.2] {5} (I)
 (I) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (E)
-(F) edge node[sloped,above,node font=\tiny] {3} (D)
-(F) edge node[sloped,above,node font=\tiny] {3} (B)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (D)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (B)
 (H) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (F)
 (F) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (H)
 (G) edge node[sloped,above,node font=\tiny] {3} (D)
@@ -1442,7 +1442,7 @@ $=K_{114}+4K_{113}+6K_{112}+4K_{111}+K_{110}=A_t^{114}+4A_t^{113}+6A_t^{112}+4A_
 (H) edge[bend left=20]
  node[sloped,above,node font=\tiny,pos=0.2] {4} (L)
 (L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {4} (H)
-(I) edge node[sloped,above,node font=\tiny] {3} (G)
+(I) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (G)
 (J) edge[ultra thick,bend left=20]
  node[sloped,above,node font=\tiny,pos=0.2] {7} (L)
 (L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {3} (J)
@@ -1452,7 +1452,7 @@ $=K_{114}+4K_{113}+6K_{112}+4K_{111}+K_{110}=A_t^{114}+4A_t^{113}+6A_t^{112}+4A_
 (K) edge[bend left=20]
  node[sloped,above,node font=\tiny] {4} (N)
 (N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (K)
-(K) edge node[sloped,above,node font=\tiny] {7} (I)
+(K) edge node[sloped,above,node font=\tiny,pos=0.2] {7} (I)
 (L) edge[ultra thick,bend left=20]
  node[sloped,above,node font=\tiny] {3} (N)
 (N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (L)
@@ -1460,7 +1460,7 @@ $=K_{114}+4K_{113}+6K_{112}+4K_{111}+K_{110}=A_t^{114}+4A_t^{113}+6A_t^{112}+4A_
  node[sloped,above,node font=\tiny] {11} (N)
 (N) edge[bend left=20]  node[sloped,above,node font=\tiny] {8} (M)
 (M) edge node[sloped,above,node font=\tiny] {7} (J)
-(M) edge node[sloped,above,node font=\tiny] {1} (I)
+(M) edge node[sloped,above,node font=\tiny,pos=0.2] {1} (I)
 }
 \usetikzlibrary{graphs,automata,positioning}
 \tikz {
@@ -1478,7 +1478,7 @@ $=K_{114}+4K_{113}+6K_{112}+4K_{111}+K_{110}=A_t^{114}+4A_t^{113}+6A_t^{112}+4A_
 (1.5, -3.0) node (D) {D}
 (3.0, -3.0) node (G) {G}
 (4.5, -3.0) node (J) {J}
-(6.0, -3.0) node (M) {M}
+(6.0, -3.0) node (M) {M};
 \path[->]
 (A) edge[ultra thick,bend left=20]
  node[sloped,above,node font=\tiny] {2} (B)
@@ -1499,8 +1499,8 @@ $=K_{114}+4K_{113}+6K_{112}+4K_{111}+K_{110}=A_t^{114}+4A_t^{113}+6A_t^{112}+4A_
 (E) edge[bend left=20]
  node[sloped,above,node font=\tiny,pos=0.2] {5} (I)
 (I) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (E)
-(F) edge node[sloped,above,node font=\tiny] {3} (D)
-(F) edge node[sloped,above,node font=\tiny] {3} (B)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (D)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (B)
 (F) edge node[sloped,above,node font=\tiny,pos=0.2] {1} (H)
 (G) edge node[sloped,above,node font=\tiny] {3} (D)
 (H) edge node[sloped,above,node font=\tiny] {10} (K)
@@ -1509,21 +1509,21 @@ $=K_{114}+4K_{113}+6K_{112}+4K_{111}+K_{110}=A_t^{114}+4A_t^{113}+6A_t^{112}+4A_
 (L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {7} (H)
 (E) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (H)
 (H) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (E)
-(I) edge node[sloped,above,node font=\tiny] {3} (G)
+(I) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (G)
 (J) edge[bend left=20]
  node[sloped,above,node font=\tiny,pos=0.2] {7} (L)
 (L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {3} (J)
-(J) edge node[sloped,above,node font=\tiny] {6} (F)
+(J) edge node[sloped,above,node font=\tiny,pos=0.2] {6} (F)
 (J) edge node[sloped,above,node font=\tiny] {4} (G)
 (K) edge[bend left=20]
  node[sloped,above,node font=\tiny] {4} (N)
 (N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (K)
-(K) edge node[sloped,above,node font=\tiny] {7} (I)
+(K) edge node[sloped,above,node font=\tiny,pos=0.2] {7} (I)
 (M) edge[bend left=20]
  node[sloped,above,node font=\tiny] {11} (N)
 (N) edge[bend left=20]  node[sloped,above,node font=\tiny] {8} (M)
 (M) edge node[sloped,above,node font=\tiny] {7} (J)
-(M) edge node[sloped,above,node font=\tiny] {1} (I)
+(M) edge node[sloped,above,node font=\tiny,pos=0.2] {1} (I)
 (L) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (N)
 (N) edge[bend left=20]  node[sloped,above,node font=\tiny] {10} (L)
 }
