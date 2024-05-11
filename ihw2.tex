@@ -1,0 +1,1734 @@
+\problemset{Комбинаторика и теория графов}
+\problemset{Индивидуальное домашнее задание №2}	% поменяйте номер ИДЗ
+
+\renewcommand*{\proofname}{Решение}
+
+\begin{problem}
+Является ли граф а) эйлеровым, полуэйлеровым?
+б) гамильтоновым, полугамильтоновым? в) двудольным? г)
+вершинно-двусвязным; д) рёберно-двусвязным е) постройте
+дерево блоков и точек сочленения. \\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(2, 0) node (A) {A}
+(4, 0) node (B) {B}
+(0, -2) node (C) {C}
+(2, -2) node (D) {D}
+(4, -2) node (E) {E}
+(6, -2) node (F) {F}
+(0, -4) node (G) {G}
+(2, -4) node (H) {H}
+(4, -4) node (I) {I}
+(6, -4) node (J) {J}
+(2, -6) node (K) {K}
+(4, -6) node (L) {L};
+\draw (A) -- (B);
+\draw (A) -- (E);
+\draw (B) -- (D);
+\draw (C) -- (D);
+\draw (C) -- (G);
+\draw (D) -- (E);
+\draw (D) -- (H);
+\draw (E) -- (I);
+\draw (F) -- (I);
+\draw (F) -- (J);
+\draw (G) -- (D);
+\draw (H) -- (I);
+\draw (I) -- (L);
+\draw (K) -- (H);
+\draw (K) -- (L);
+\draw (L) -- (L);
+}
+\end{problem}
+
+\begin{proof} $ $
+    \begin{enumerate}[label=\asbuk*), ref=\asbuk*]
+        \item \textbf{эйлеровым, полуэйлеровым?\\}
+        Граф не является ни эйлеровым, ни полуэйлеровым, так как в графе есть вершины с нечётными степенями, и их больше двух (D, E, H, J).
+        \item \textbf{гамильтоновым, полугамильтоновым?\\}
+        В графе есть лист J, следовательно, граф не является гамильтоновым. Так как между шарнирами D и I нет простого пути, содержащего вершины A, B, E, H, K, L, то граф не является полугамильтоновым.
+        \item \textbf{двудольным?\\}
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1, 0) node (A) {A$^*$}
+(2, 0) node (B) {B$^\#$}
+(0, -1) node (C) {C$^\#$}
+(1, -1) node (D) {D$^*$}
+(2, -1) node (E) {E$^\#$}
+(3, -1) node (F) {F$^\#$}
+(0, -2) node (G) {G$^\#$}
+(1, -2) node (H) {H$^\#$}
+(2, -2) node (I) {I$^*$}
+(3, -2) node (J) {J$^*$}
+(1, -3) node (K) {K$^*$}
+(2, -3) node (L) {L$^\#$};
+\draw (A) -- (B);
+\draw (A) -- (E);
+\draw (B) -- (D);
+\draw (C) -- (D);
+\draw (C) -- (G);
+\draw (D) -- (E);
+\draw (D) -- (H);
+\draw (E) -- (I);
+\draw (F) -- (I);
+\draw (F) -- (J);
+\draw (G) -- (D);
+\draw (H) -- (I);
+\draw (I) -- (L);
+\draw (K) -- (H);
+\draw (K) -- (L);
+\draw (L) -- (L);
+}\\
+    Так как при раскрашивании смежные вершины C и G оказались одного цвета, граф не является двудольным.
+    \item \textbf{вершинно-двусвязным?\\}
+    Так как в графе присутствуют шарниры (D, F, I), то граф не может быть вершинно-двусвязным. 
+    \item \textbf{рёберно-двусвязным?\\}
+    Так как в графе есть мосты (FI, FJ), то граф не является рёберно-двусвязным.
+    \item \textbf{постройте
+дерево блоков и точек сочленения.\\}
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(0, 0) node[white, circle,fill=black] (CG) {CDG}
+(2, 0) node[circle,fill=red] (D) {D}
+(10, 0) node[circle,fill=red] (F) {F}
+(4, -2) node[white, circle,fill=black] (ABEHKL) {ABDEHIKL}
+(8, -2) node[white, circle,fill=black] (IF) {IF}
+(10, -2) node[white, circle,fill=black] (J) {FJ}
+(6, -4) node[circle,fill=red] (I) {I};
+\draw (CG) -- (D);
+\draw (D) -- (ABEHKL);
+\draw (ABEHKL) -- (I);
+\draw (F) -- (IF);
+\draw (F) -- (J);
+\draw (IF) -- (I);
+}
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+Найдите хроматический многочлен данного графа:\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(2, 0) node (A) {A}
+(4, 0) node (B) {B}
+(0, -2) node (C) {C}
+(2, -2) node (D) {D}
+(4, -2) node (E) {E}
+(6, -2) node (F) {F}
+(0, -4) node (G) {G}
+(2, -4) node (H) {H}
+(4, -4) node (I) {I}
+(6, -4) node (J) {J}
+(2, -6) node (K) {K}
+(4, -6) node (L) {L};
+\draw (A) -- (E);
+\draw (B) -- (D);
+\draw (B) -- (E);
+\draw (C) -- (D);
+\draw (D) -- (E);
+\draw (D) -- (G);
+\draw (D) -- (H);
+\draw (E) -- (F);
+\draw (E) -- (I);
+\draw (E) -- (J);
+\draw (F) -- (I);
+\draw (F) -- (J);
+\draw (H) -- (I);
+\draw (H) -- (L);
+\draw (I) -- (L);
+\draw (K) -- (I);
+\draw (K) -- (L);
+}
+\end{problem}
+
+\begin{proof} $ $ \\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(2, 0) node[circle,draw] (A) {$t-1$}
+(4, 0) node[circle,draw] (B) {$t-2$}
+(0, -2) node[circle,draw] (C) {$t-1$}
+(2, -2) node[circle,draw] (D) {D}
+(4, -2) node[circle,draw] (E) {E}
+(6, -2) node[circle,draw] (F) {$t-2$}
+(0, -4) node[circle,draw] (G) {$t-1$}
+(2, -4) node[circle,draw] (H) {H}
+(4, -4) node[circle,draw] (I) {I}
+(6, -4) node[circle,draw] (J) {$t-2$}
+(2, -6) node[circle,draw] (K) {$t-2$}
+(4, -6) node[circle,draw] (L) {$t-2$};
+\draw (A) -- (E);
+\draw (B) -- (D);
+\draw (B) -- (E);
+\draw (C) -- (D);
+\draw (D) -- (E);
+\draw (D) -- (G);
+\draw (D) -- (H);
+\draw (E) -- (F);
+\draw (E) -- (I);
+\draw (E) -- (J);
+\draw (F) -- (I);
+\draw (F) -- (J);
+\draw (H) -- (I);
+\draw (H) -- (L);
+\draw (I) -- (L);
+\draw (K) -- (I);
+\draw (K) -- (L);
+}\\
+$P(t) = P_{DEHI}(t) (t-1)^3(t-2)^5$ \\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(2, -2) node[circle,draw] (D) {D}
+(4, -2) node[circle,draw] (E) {E}
+(2, -4) node[circle,draw] (H) {H}
+(4, -4) node[circle,draw] (I) {I};
+\draw (D) -- (E);
+\draw (D) -- (H);
+\draw (E) -- (I);
+\draw (H) -- (I);
+}\\
+$P_{DEHI}(t) = t(t-1)(t^2-3t+3)$ \\\\
+Ответ: $P(t) = t(t-1)^4(t-2)^5(t^2-3t+3)$
+\end{proof}
+
+\begin{problem}
+Из полного графа на 114 вершинах, удалили рёбра AB,
+BE, DE и GH. Постройте хроматический многочлен получив-
+шегося графа. Упрощать ответ не обязательно. \\
+\end{problem}
+
+\begin{proof} $ $ \\
+$\sqsupset $ $K_n = P_{K_n}(t)$, $K_n-e=P_{K_n-e}(t)$\\\\
+$(K_{114}-AB)=K_{114}+K_{113}$ \\
+$(K_{114}-AB-BE)=(K_{114}-AB)+K_{113}$\\
+$(K_{114}-AB-BE-DE)=(K_{114}-AB-BE)+(K_{113}-AB)$\\
+$(K_{114}-AB-BE-DE-GH)=(K_{114}-AB-BE-DE)+(K_{113}-AB-BE-DE)=$\\
+$=(K_{114}-AB-BE)+(K_{113}-AB)+(K_{113}-AB-BE)+(K_{112}-AB)=$\\
+$=(K_{114}-AB)+2K_{113}+K_{114}+(K_{113}-AB)+2K_{112}+K_{111}=$\\
+$= 2K_{114}+4K_{113}+3K_{112}+K_{111}=2A_t^{144}+4A_t^{113}+3A_t^{112}+A_t^{111}$\\\\
+Ответ: $2A_t^{144}+4A_t^{113}+3A_t^{112}+A_t^{111}$
+\end{proof}
+
+\begin{problem}
+а) Постройте код Прюфера для данного дерева:\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(0, 0) node (1) {1}
+(2, 0) node (2) {2}
+(4, 0) node (3) {3}
+(6, 0) node (4) {4}
+(8, 0) node (5) {5}
+(10, 0) node (6) {6}
+(0, -2) node (7) {7}
+(2, -2) node (8) {8}
+(4, -2) node (9) {9}
+(6, -2) node (10) {10}
+(8, -2) node (11) {11};
+\draw (1) -- (2);
+\draw (2) -- (3);
+\draw (3) -- (7);
+\draw (4) -- (7);
+\draw (5) -- (7);
+\draw (6) -- (11);
+\draw (8) -- (5);
+\draw (9) -- (10);
+\draw (10) -- (11);
+\draw (11) -- (5);
+} \\
+б) Постройте дерево по коду Прюфера: 3 9 4 9 10 1 1 9 10.
+\end{problem}
+
+\begin{proof} $ $
+    \begin{enumerate}[label=\asbuk*), ref=\asbuk*]
+        \item \textbf{Построим код Прюфера\\}
+        2 3 7 7 11 5 5 11 10 11
+        \item \textbf{Построим дерево по коду\\}
+        Код: 3 9 4 9 10 1 1 9 10 \\
+        Порядок: 2 3 5 4 6 7 8 1 9\\
+        \usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(0, 0) node (2) {2}
+(2, 0) node (3) {3}
+(4, 0) node (9) {9}
+(6, 0) node (10) {10}
+(8, 0) node (6) {6}
+(0, -2) node (5) {5}
+(2, -2) node (4) {4}
+(4, -2) node (7) {7}
+(6, -2) node (1) {1}
+(8, -2) node (8) {8};
+\draw (1) -- (7);
+\draw (1) -- (8);
+\draw (2) -- (3);
+\draw (3) -- (9);
+\draw (4) -- (5);
+\draw (4) -- (9);
+\draw (6) -- (10);
+\draw (9) -- (1);
+\draw (9) -- (10);
+}
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+При помощи агоритма Kosaraju найдите компоненты
+сильной связности данного графа:\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(0, 0) node (A) {A}
+(2, 0) node (B) {B}
+(4, 0) node (C) {C}
+(6, 0) node (D) {D}
+(0, -2) node (E) {E}
+(2, -2) node (F) {F}
+(4, -2) node (G) {G}
+(6, -2) node (H) {H}
+(0, -4) node (I) {I}
+(2, -4) node (J) {J}
+(4, -4) node (K) {K}
+(6, -4) node (L) {L}
+(0, -6) node (M) {M}
+(2, -6) node (N) {N}
+(4, -6) node (O) {O}
+(6, -6) node (P) {P};
+\draw[->] (A) -- (E);
+\draw[->] (A) -- (G);
+\draw[->] (B) -- (A);
+\draw[->] (B) -- (H);
+\draw[->] (C) -- (D);
+\draw[->] (C) -- (H);
+\draw[->] (D) -- (C);
+\draw[->] (E) -- (A);
+\draw[->] (F) -- (G);
+\draw[->] (G) -- (A);
+\draw[->] (G) -- (B);
+\draw[->] (G) -- (K);
+\draw[->] (G) -- (L);
+\draw[->] (H) -- (G);
+\draw[->] (I) -- (J);
+\draw[->] (I) -- (M);
+\draw[->] (J) -- (A);
+\draw[->] (J) -- (E);
+\draw[->] (J) -- (M);
+\draw[->] (L) -- (M);
+\draw[->] (M) -- (I);
+\draw[->] (M) -- (L);
+\draw[->] (O) -- (L);
+}
+\end{problem}
+
+\begin{proof} $ $ \\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(0, 0) node[circle,fill=red!20] (A) {$A_9$}
+(2, 0) node[circle,fill=red!20] (B) {$B_3$}
+(4, 0) node[circle,fill=blue!20] (C) {$C_{11}$}
+(6, 0) node[circle,fill=blue!20] (D) {$D_{10}$}
+(0, -2) node[circle,fill=red!20] (E) {$E_1$}
+(2, -2) node[circle,fill=green!50] (F) {$F_{12}$}
+(4, -2) node[circle,fill=red!20] (G) {$G_8$}
+(6, -2) node[circle,fill=red!20] (H) {$H_2$}
+(0, -4) node[circle,fill=red!20] (I) {$I_6$}
+(2, -4) node[circle,fill=red!20] (J) {$J_5$}
+(4, -4) node[circle,fill=orange!50] (K) {$K_4$}
+(6, -4) node[circle,fill=red!20] (L) {$L_7$}
+(0, -6) node[circle,fill=red!20] (M) {$M_6$}
+(2, -6) node[circle,fill=red!50] (N) {$N_{13}$}
+(4, -6) node[circle,fill=blue!50] (O) {$O_{14}$}
+(6, -6) node[circle,fill=yellow!50] (P) {$P_{15}$};
+\draw[<-] (A) -- (E);
+\draw[<-] (A) -- (G);
+\draw[<-] (B) -- (A);
+\draw[<-] (B) -- (H);
+\draw[<-] (C) -- (D);
+\draw[<-] (C) -- (H);
+\draw[<-] (D) -- (C);
+\draw[<-] (E) -- (A);
+\draw[<-] (F) -- (G);
+\draw[<-] (G) -- (A);
+\draw[<-] (G) -- (B);
+\draw[<-] (G) -- (K);
+\draw[<-] (G) -- (L);
+\draw[<-] (H) -- (G);
+\draw[<-] (I) -- (J);
+\draw[<-] (I) -- (M);
+\draw[<-] (J) -- (A);
+\draw[<-] (J) -- (E);
+\draw[<-] (J) -- (M);
+\draw[<-] (L) -- (M);
+\draw[<-] (M) -- (I);
+\draw[<-] (M) -- (L);
+\draw[<-] (O) -- (L);
+} \\\\
+В графе 7 компонент сильной связности. Каждая из них выделена своим цветом в графе.
+\end{proof}
+
+\begin{problem}
+Найдите максимальный поток через данную плоскую
+сеть:\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(2, 0) node (B) {B}
+(4, 0) node (E) {E}
+(6, 0) node (H) {H}
+(8, 0) node (K) {K}
+(0, -2) node (A) {A}
+(2, -2) node (C) {C}
+(4, -2) node (F) {F}
+(6, -2) node (I) {I}
+(8, -2) node (L) {L}
+(10, -2) node (N) {N}
+(2, -4) node (D) {D}
+(4, -4) node (G) {G}
+(6, -4) node (J) {J}
+(8, -4) node (M) {M};
+\path[->]
+(A) edge node[sloped,above] {13} (B)
+(A) edge node[sloped,above] {19} (C)
+(A) edge node[sloped,above] {10} (D)
+(B) edge node[sloped,above] {4} (E)
+(C) edge node[sloped,above] {8} (E)
+(C) edge node[sloped,above] {10} (F)
+(D) edge node[sloped,above] {7} (F)
+(D) edge node[sloped,above] {5} (G)
+(E) edge node[sloped,above] {9} (H)
+(F) edge node[sloped,above] {4} (H)
+(F) edge node[sloped,above] {7} (I)
+(G) edge node[sloped,above] {10} (I)
+(G) edge node[sloped,above] {10} (J)
+(H) edge node[sloped,above] {6} (K)
+(I) edge node[sloped,above] {9} (K)
+(I) edge node[sloped,above] {7} (L)
+(I) edge node[sloped,above] {3} (M)
+(J) edge node[sloped,above] {7} (M)
+(K) edge node[sloped,above] {11} (N)
+(L) edge node[sloped,above] {20} (N)
+(M) edge node[sloped,above] {14} (N);
+}
+\end{problem}
+
+\begin{proof} $ $ \\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M};
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {13} (B)
+(A) edge node[sloped,above,node font=\tiny] {19} (C)
+(A) edge[ultra thick] node[sloped,above,node font=\tiny] {5} (D)
+(A) edge[<-, bend left =-40] node[sloped,above,node font=\tiny] {5} (D)
+(B) edge node[sloped,above,node font=\tiny] {4} (E)
+(C) edge node[sloped,above,node font=\tiny] {8} (E)
+(C) edge node[sloped,above,node font=\tiny] {10} (F)
+(D) edge node[sloped,above,node font=\tiny] {7} (F)
+(D) edge[ultra thick] node[sloped,above,node font=\tiny] {0} (G)
+(D) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (G)
+(E) edge node[sloped,above,node font=\tiny] {9} (H)
+(F) edge node[sloped,above,node font=\tiny] {4} (H)
+(F) edge node[sloped,above,node font=\tiny] {7} (I)
+(G) edge node[sloped,above,node font=\tiny] {10} (I)
+(G) edge[ultra thick] node[sloped,above,node font=\tiny] {5} (J)
+(G) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (J)
+(H) edge node[sloped,above,node font=\tiny] {6} (K)
+(I) edge node[sloped,above,node font=\tiny] {9} (K)
+(I) edge node[sloped,above,node font=\tiny] {7} (L)
+(I) edge node[sloped,above,node font=\tiny] {3} (M)
+(J) edge[ultra thick] node[sloped,above,node font=\tiny] {2} (M)
+(J) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (M)
+(K) edge node[sloped,above,node font=\tiny] {11} (N)
+(L) edge node[sloped,above,node font=\tiny] {20} (N)
+(M) edge[ultra thick] node[sloped,above,node font=\tiny] {9} (N)
+(M) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (N)
+}
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M};
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {13} (B)
+(A) edge node[sloped,above,node font=\tiny] {19} (C)
+(A) edge[ultra thick] node[sloped,above,node font=\tiny] {2} (D)
+(A) edge[<-, bend left =-40] node[sloped,above,node font=\tiny] {8} (D)
+(B) edge node[sloped,above,node font=\tiny] {4} (E)
+(C) edge node[sloped,above,node font=\tiny] {8} (E)
+(C) edge node[sloped,above,node font=\tiny] {10} (F)
+(D) edge[ultra thick, , bend left =20] node[sloped,above,node font=\tiny] {4} (F)
+(D) edge[<-, bend left =-20] node[sloped,above,node font=\tiny] {3} (F)
+(D) edge[<-] node[sloped,above,node font=\tiny] {5} (G)
+(E) edge node[sloped,above,node font=\tiny] {9} (H)
+(F) edge node[sloped,above,node font=\tiny] {4} (H)
+(F) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {4} (I)
+(F) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {3} (I)
+(G) edge node[sloped,above,node font=\tiny] {10} (I)
+(G) edge node[sloped,above,node font=\tiny] {5} (J)
+(G) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (J)
+(H) edge node[sloped,above,node font=\tiny] {6} (K)
+(I) edge node[sloped,above,node font=\tiny] {9} (K)
+(I) edge node[sloped,above,node font=\tiny] {7} (L)
+(I) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {0} (M)
+(I) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {3} (M)
+(J) edge node[sloped,above,node font=\tiny] {2} (M)
+(J) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (M)
+(K) edge node[sloped,above,node font=\tiny] {11} (N)
+(L) edge node[sloped,above,node font=\tiny] {20} (N)
+(M) edge[ultra thick] node[sloped,above,node font=\tiny] {6} (N)
+(M) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {8} (N)
+}\\\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M};
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {13} (B)
+(A) edge node[sloped,above,node font=\tiny] {19} (C)
+(A) edge[ultra thick] node[sloped,above,node font=\tiny] {0} (D)
+(A) edge[<-, bend left =-40] node[sloped,above,node font=\tiny] {10} (D)
+(B) edge node[sloped,above,node font=\tiny] {4} (E)
+(C) edge node[sloped,above,node font=\tiny] {8} (E)
+(C) edge node[sloped,above,node font=\tiny] {10} (F)
+(D) edge[ultra thick, bend left =20] node[sloped,above,node font=\tiny] {2} (F)
+(D) edge[<-, bend left =-20] node[sloped,above,node font=\tiny] {5} (F)
+(D) edge[<-] node[sloped,above,node font=\tiny] {5} (G)
+(E) edge node[sloped,above,node font=\tiny] {9} (H)
+(F) edge node[sloped,above,node font=\tiny] {4} (H)
+(F) edge[ultra thick, bend left =20] node[sloped,above,node font=\tiny] {2} (I)
+(F) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {5} (I)
+(G) edge node[sloped,above,node font=\tiny] {10} (I)
+(G) edge node[sloped,above,node font=\tiny] {5} (J)
+(G) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (J)
+(H) edge node[sloped,above,node font=\tiny] {6} (K)
+(I) edge node[sloped,above,node font=\tiny] {9} (K)
+(I) edge[ultra thick, bend left =20] node[sloped,above,node font=\tiny] {5} (L)
+(I) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {2} (L)
+(I) edge[<-] node[sloped,above,node font=\tiny] {3} (M)
+(J) edge node[sloped,above,node font=\tiny] {2} (M)
+(J) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (M)
+(K) edge node[sloped,above,node font=\tiny] {11} (N)
+(L) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {18} (N)
+(L) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {2} (N)
+(M) edge node[sloped,above,node font=\tiny] {6} (N)
+(M) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {8} (N)
+}
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M};
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {13} (B)
+(A) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {17} (C)
+(A) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {2} (C)
+(A) edge[<-] node[sloped,above,node font=\tiny] {10} (D)
+(B) edge node[sloped,above,node font=\tiny] {4} (E)
+(C) edge node[sloped,above,node font=\tiny] {8} (E)
+(C) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {8} (F)
+(C) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {2} (F)
+(D) edge[bend left =20] node[sloped,above,node font=\tiny] {2} (F)
+(D) edge[<-, bend left =-20] node[sloped,above,node font=\tiny] {5} (F)
+(D) edge[<-] node[sloped,above,node font=\tiny] {5} (G)
+(E) edge node[sloped,above,node font=\tiny] {9} (H)
+(F) edge node[sloped,above,node font=\tiny] {4} (H)
+(F) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {0} (I)
+(F) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {7} (I)
+(G) edge node[sloped,above,node font=\tiny] {10} (I)
+(G) edge node[sloped,above,node font=\tiny] {5} (J)
+(G) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (J)
+(H) edge node[sloped,above,node font=\tiny] {6} (K)
+(I) edge node[sloped,above,node font=\tiny] {9} (K)
+(I) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {3} (L)
+(I) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {4} (L)
+(I) edge[<-] node[sloped,above,node font=\tiny] {3} (M)
+(J) edge node[sloped,above,node font=\tiny] {2} (M)
+(J) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (M)
+(K) edge node[sloped,above,node font=\tiny] {11} (N)
+(L) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {16} (N)
+(L) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {4} (N)
+(M) edge node[sloped,above,node font=\tiny] {6} (N)
+(M) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {8} (N)
+}\\\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M};
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {13} (B)
+(A) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {13} (C)
+(A) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {6} (C)
+(A) edge[<-] node[sloped,above,node font=\tiny] {10} (D)
+(B) edge node[sloped,above,node font=\tiny] {4} (E)
+(C) edge node[sloped,above,node font=\tiny] {8} (E)
+(C) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {4} (F)
+(C) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {6} (F)
+(D) edge[bend left =20] node[sloped,above,node font=\tiny] {2} (F)
+(D) edge[<-, bend left =-20] node[sloped,above,node font=\tiny] {5} (F)
+(D) edge[<-] node[sloped,above,node font=\tiny] {5} (G)
+(E) edge node[sloped,above,node font=\tiny] {9} (H)
+(F) edge[ultra thick, bend left =20] node[sloped,above,node font=\tiny] {0} (H)
+(F) edge[<-, bend left =-20] node[sloped,above,node font=\tiny] {4} (H)
+(F) edge[<-] node[sloped,above,node font=\tiny] {7} (I)
+(G) edge node[sloped,above,node font=\tiny] {10} (I)
+(G) edge node[sloped,above,node font=\tiny] {5} (J)
+(G) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (J)
+(H) edge[ultra thick, bend left =20] node[sloped,above,node font=\tiny] {2} (K)
+(H) edge[<-, bend left =-20] node[sloped,above,node font=\tiny] {4} (K)
+(I) edge node[sloped,above,node font=\tiny] {9} (K)
+(I) edge[bend left =20] node[sloped,above,node font=\tiny] {3} (L)
+(I) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {4} (L)
+(I) edge[<-] node[sloped,above,node font=\tiny] {3} (M)
+(J) edge node[sloped,above,node font=\tiny] {2} (M)
+(J) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (M)
+(K) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {7} (N)
+(K) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {4} (N)
+(L) edge[bend left =20] node[sloped,above,node font=\tiny] {16} (N)
+(L) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {4} (N)
+(M) edge node[sloped,above,node font=\tiny] {6} (N)
+(M) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {8} (N)
+}
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M};
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {13} (B)
+(A) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {11} (C)
+(A) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {8} (C)
+(A) edge[<-] node[sloped,above,node font=\tiny] {10} (D)
+(B) edge node[sloped,above,node font=\tiny] {4} (E)
+(C) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {6} (E)
+(C) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {2} (E)
+(C) edge[bend left =20] node[sloped,above,node font=\tiny] {4} (F)
+(C) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {6} (F)
+(D) edge[bend left =20] node[sloped,above,node font=\tiny] {2} (F)
+(D) edge[<-, bend left =-20] node[sloped,above,node font=\tiny] {5} (F)
+(D) edge[<-] node[sloped,above,node font=\tiny] {5} (G)
+(E) edge[ultra thick, bend left =20] node[sloped,above,node font=\tiny] {7} (H)
+(E) edge[<-, bend left =-20] node[sloped,above,node font=\tiny] {2} (H)
+(F) edge[bend left =20] node[sloped,above,node font=\tiny] {0} (H)
+(F) edge[<-, bend left =-20] node[sloped,above,node font=\tiny] {4} (H)
+(F) edge[<-] node[sloped,above,node font=\tiny] {7} (I)
+(G) edge node[sloped,above,node font=\tiny] {10} (I)
+(G) edge node[sloped,above,node font=\tiny] {5} (J)
+(G) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (J)
+(H) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {0} (K)
+(H) edge[<-, bend left =-20] node[sloped,above,node font=\tiny] {6} (K)
+(I) edge node[sloped,above,node font=\tiny] {9} (K)
+(I) edge[bend left =20] node[sloped,above,node font=\tiny] {3} (L)
+(I) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {4} (L)
+(I) edge[<-] node[sloped,above,node font=\tiny] {3} (M)
+(J) edge node[sloped,above,node font=\tiny] {2} (M)
+(J) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {5} (M)
+(K) edge[ultra thick,bend left =20] node[sloped,above,node font=\tiny] {5} (N)
+(K) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {6} (N)
+(L) edge[bend left =20] node[sloped,above,node font=\tiny] {16} (N)
+(L) edge[<-,bend left =-20] node[sloped,above,node font=\tiny] {4} (N)
+(M) edge node[sloped,above,node font=\tiny] {6} (N)
+(M) edge[<-,bend left =-40] node[sloped,above,node font=\tiny] {8} (N)
+}\\\\
+Ответ: $18$
+\end{proof}
+
+\begin{problem}
+Найдите максимальный поток через данную сеть:\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(2, 0) node (B) {B}
+(4, 0) node (E) {E}
+(6, 0) node (H) {H}
+(8, 0) node (K) {K}
+(0, -2) node (A) {A}
+(2, -2) node (C) {C}
+(4, -2) node (F) {F}
+(6, -2) node (I) {I}
+(8, -2) node (L) {L}
+(10, -2) node (N) {N}
+(2, -4) node (D) {D}
+(4, -4) node (G) {G}
+(6, -4) node (J) {J}
+(8, -4) node (M) {M};
+\path[->]
+(A) edge node[sloped,above] {11} (B)
+(A) edge node[sloped,above] {10} (C)
+(A) edge node[sloped,above] {10} (D)
+(B) edge node[sloped,above] {9} (E)
+(B) edge node[sloped,above,pos=0.2] {3} (F)
+(C) edge node[sloped,above,pos=0.2] {10} (E)
+(C) edge node[sloped,above,pos=0.2] {6} (G)
+(D) edge node[sloped,above,pos=0.2] {3} (F)
+(D) edge node[sloped,above] {3} (G)
+(E) edge node[sloped,above] {7} (H)
+(E) edge node[sloped,above,pos=0.2] {10} (I)
+(F) edge node[sloped,above,pos=0.2] {1} (H)
+(F) edge node[sloped,above,pos=0.2] {6} (J)
+(G) edge node[sloped,above,pos=0.2] {3} (I)
+(G) edge node[sloped,above] {4} (J)
+(H) edge node[sloped,above] {10} (K)
+(H) edge node[sloped,above,pos=0.2] {8} (L)
+(I) edge node[sloped,above,pos=0.2] {7} (K)
+(I) edge node[sloped,above,pos=0.2] {1} (M)
+(J) edge node[sloped,above,pos=0.2] {10} (L)
+(J) edge node[sloped,above] {7} (M)
+(K) edge node[sloped,above] {11} (N)
+(L) edge node[sloped,above] {10} (N)
+(M) edge node[sloped,above] {19} (N)
+}
+\end{problem}
+
+\begin{proof} $ $ \\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M};
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {11} (B)
+(A) edge node[sloped,above,node font=\tiny] {10} (C)
+(A) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {7} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (A)
+(B) edge node[sloped,above,node font=\tiny] {9} (E)
+(B) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (F)
+(C) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (E)
+(C) edge node[sloped,above,node font=\tiny,pos=0.2] {6} (G)
+(D) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (F)
+(E) edge node[sloped,above,node font=\tiny] {7} (H)
+(E) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (I)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {1} (H)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {6} (J)
+(G) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (I)
+(G) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {1} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (G)
+(D) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (D)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge node[sloped,above,node font=\tiny,pos=0.2] {8} (L)
+(I) edge node[sloped,above,node font=\tiny,pos=0.2] {7} (K)
+(I) edge node[sloped,above,node font=\tiny,pos=0.2] {1} (M)
+(J) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (L)
+(J) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {4} (M)
+(M) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (J)
+(K) edge node[sloped,above,node font=\tiny] {11} (N)
+(L) edge node[sloped,above,node font=\tiny] {10} (N)
+(M) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {16} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (M)
+}
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M}
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {11} (B)
+(A) edge node[sloped,above,node font=\tiny] {10} (C)
+(A) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {6} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (A)
+(B) edge node[sloped,above,node font=\tiny] {9} (E)
+(B) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (F)
+(C) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (E)
+(C) edge node[sloped,above,node font=\tiny,pos=0.2] {6} (G)
+(D) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {2} (F)
+(F) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (D)
+(E) edge node[sloped,above,node font=\tiny] {7} (H)
+(E) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (I)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {1} (H)
+(F) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (F)
+(G) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {2} (I)
+(I) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (G)
+(J) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny] {2} (J)
+(G) edge node[sloped,above,node font=\tiny] {3} (D)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge node[sloped,above,node font=\tiny,pos=0.2] {8} (L)
+(I) edge node[sloped,above,node font=\tiny,pos=0.2] {7} (K)
+(J) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (L)
+(J) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (M)
+(M) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (J)
+(K) edge node[sloped,above,node font=\tiny] {11} (N)
+(L) edge node[sloped,above,node font=\tiny] {10} (N)
+(M) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {15} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (M)
+(I) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {0} (M)
+(M) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (I)
+}\\\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M};
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {11} (B)
+(A) edge node[sloped,above,node font=\tiny] {10} (C)
+(A) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {4} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (A)
+(B) edge node[sloped,above,node font=\tiny] {9} (E)
+(B) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (F)
+(C) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (E)
+(C) edge node[sloped,above,node font=\tiny,pos=0.2] {6} (G)
+(E) edge node[sloped,above,node font=\tiny] {7} (H)
+(E) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (I)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {1} (H)
+(F) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {3} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {3} (F)
+(D) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {0} (F)
+(F) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {3} (D)
+(J) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (J)
+(G) edge node[sloped,above,node font=\tiny] {3} (D)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge node[sloped,above,node font=\tiny,pos=0.2] {8} (L)
+(I) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (K)
+(K) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {2} (I)
+(G) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {0} (I)
+(I) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {3} (G)
+(J) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (L)
+(J) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (M)
+(M) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (J)
+(K) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {9} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {2} (K)
+(L) edge node[sloped,above,node font=\tiny] {10} (N)
+(M) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {15} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (M)
+(M) edge node[sloped,above,node font=\tiny] {1} (I)
+}
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M}
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {11} (B)
+(A) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {9} (C)
+(C) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (A)
+(A) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (A)
+(B) edge node[sloped,above,node font=\tiny] {9} (E)
+(B) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (F)
+(C) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (E)
+(C) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (C)
+(E) edge node[sloped,above,node font=\tiny] {7} (H)
+(E) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (I)
+(J) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (F)
+(F) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (J)
+(F) edge node[sloped,above,node font=\tiny] {3} (D)
+(G) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {3} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (G)
+(G) edge node[sloped,above,node font=\tiny] {3} (D)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {7} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (H)
+(F) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {0} (H)
+(H) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (F)
+(I) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (K)
+(K) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {2} (I)
+(I) edge node[sloped,above,node font=\tiny] {3} (G)
+(J) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (L)
+(J) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (M)
+(M) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (J)
+(K) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {9} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {2} (K)
+(L) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {9} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (L)
+(M) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {15} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (M)
+(M) edge node[sloped,above,node font=\tiny] {1} (I)
+}\\\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M}
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {11} (B)
+(A) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {6} (C)
+(C) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (A)
+(A) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (A)
+(B) edge node[sloped,above,node font=\tiny] {9} (E)
+(B) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (F)
+(C) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (E)
+(C) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {2} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {4} (C)
+(E) edge node[sloped,above,node font=\tiny] {7} (H)
+(E) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (I)
+(F) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {4} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {2} (F)
+(F) edge node[sloped,above,node font=\tiny] {3} (D)
+(G) edge node[sloped,above,node font=\tiny] {3} (D)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {7} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (H)
+(H) edge node[sloped,above,node font=\tiny] {1} (F)
+(I) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (K)
+(K) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {2} (I)
+(I) edge node[sloped,above,node font=\tiny] {3} (G)
+(J) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (L)
+(J) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {1} (M)
+(M) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (J)
+(G) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (G)
+(K) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {9} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {2} (K)
+(L) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {9} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (L)
+(M) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {12} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (M)
+(M) edge node[sloped,above,node font=\tiny] {1} (I)
+}
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M}
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {11} (B)
+(A) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {1} (C)
+(C) edge[bend left=20]  node[sloped,above,node font=\tiny] {9} (A)
+(A) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (A)
+(B) edge node[sloped,above,node font=\tiny] {9} (E)
+(B) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (F)
+(C) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (E)
+(E) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (C)
+(C) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {2} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {4} (C)
+(E) edge node[sloped,above,node font=\tiny] {7} (H)
+(E) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (I)
+(I) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (E)
+(F) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {4} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {2} (F)
+(F) edge node[sloped,above,node font=\tiny] {3} (D)
+(G) edge node[sloped,above,node font=\tiny] {3} (D)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {7} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (H)
+(H) edge node[sloped,above,node font=\tiny] {1} (F)
+(I) edge node[sloped,above,node font=\tiny] {3} (G)
+(J) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (L)
+(J) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {1} (M)
+(M) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (J)
+(J) edge node[sloped,above,node font=\tiny] {4} (G)
+(K) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {4} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (K)
+(I) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {0} (K)
+(K) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {7} (I)
+(L) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {9} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (L)
+(M) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {12} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (M)
+(M) edge node[sloped,above,node font=\tiny] {1} (I)
+}\\\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M}
+\path[->]
+(A) edge node[sloped,above,node font=\tiny] {11} (B)
+(A) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (A)
+(B) edge node[sloped,above,node font=\tiny] {9} (E)
+(B) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (F)
+(C) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {4} (E)
+(E) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {6} (C)
+(C) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {2} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {4} (C)
+(A) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (C)
+(C) edge[bend left=20]  node[sloped,above,node font=\tiny] {10} (A)
+(E) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {6} (H)
+(H) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (E)
+(E) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (I)
+(I) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (E)
+(F) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {3} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {3} (F)
+(F) edge node[sloped,above,node font=\tiny] {3} (D)
+(H) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (F)
+(F) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (H)
+(G) edge node[sloped,above,node font=\tiny] {3} (D)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {7} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (H)
+(I) edge node[sloped,above,node font=\tiny] {3} (G)
+(J) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (L)
+(J) edge node[sloped,above,node font=\tiny] {4} (G)
+(K) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (K)
+(K) edge node[sloped,above,node font=\tiny] {7} (I)
+(L) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {9} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (L)
+(M) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {11} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {8} (M)
+(J) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (M)
+(M) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (J)
+(M) edge node[sloped,above,node font=\tiny] {1} (I)
+}
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M}
+\path[->]
+(A) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {10} (B)
+(B) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (A)
+(A) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (A)
+(B) edge node[sloped,above,node font=\tiny] {9} (E)
+(B) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {2} (F)
+(F) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (B)
+(C) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {4} (E)
+(E) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {6} (C)
+(C) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {2} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {4} (C)
+(C) edge node[sloped,above,node font=\tiny] {10} (A)
+(E) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {6} (H)
+(H) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (E)
+(E) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (I)
+(I) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (E)
+(F) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {3} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {3} (F)
+(F) edge node[sloped,above,node font=\tiny] {3} (D)
+(G) edge node[sloped,above,node font=\tiny] {3} (D)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {6} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {2} (H)
+(F) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {0} (H)
+(H) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {1} (F)
+(I) edge node[sloped,above,node font=\tiny] {3} (G)
+(J) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (L)
+(J) edge node[sloped,above,node font=\tiny] {4} (G)
+(K) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (K)
+(K) edge node[sloped,above,node font=\tiny] {7} (I)
+(L) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {8} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {2} (L)
+(M) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {11} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {8} (M)
+(M) edge node[sloped,above,node font=\tiny] {7} (J)
+(M) edge node[sloped,above,node font=\tiny] {1} (I)
+}\\\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M}
+\path[->]
+(A) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {8} (B)
+(B) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (A)
+(A) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (A)
+(B) edge node[sloped,above,node font=\tiny] {9} (E)
+(C) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {2} (E)
+(E) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {8} (C)
+(G) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (C)
+(C) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (G)
+(C) edge node[sloped,above,node font=\tiny] {10} (A)
+(E) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {4} (H)
+(H) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (E)
+(E) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (I)
+(I) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (E)
+(F) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {1} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (F)
+(F) edge node[sloped,above,node font=\tiny] {3} (D)
+(B) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {0} (F)
+(F) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {3} (B)
+(G) edge node[sloped,above,node font=\tiny] {3} (D)
+(J) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny] {2} (J)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {4} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {4} (H)
+(H) edge node[sloped,above,node font=\tiny] {1} (F)
+(I) edge node[sloped,above,node font=\tiny] {3} (G)
+(J) edge node[sloped,above,node font=\tiny,pos=0.2] {10} (L)
+(K) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (K)
+(K) edge node[sloped,above,node font=\tiny] {7} (I)
+(L) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {6} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (L)
+(M) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {11} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {8} (M)
+(M) edge node[sloped,above,node font=\tiny] {7} (J)
+(M) edge node[sloped,above,node font=\tiny] {1} (I)
+}
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M};
+\path[->]
+(A) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {6} (B)
+(B) edge[bend left=20]  node[sloped,above,node font=\tiny] {5} (A)
+(A) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (A)
+(B) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {7} (E)
+(E) edge[bend left=20]  node[sloped,above,node font=\tiny] {2} (B)
+(E) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (C)
+(C) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (E)
+(C) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {2} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {4} (C)
+(C) edge node[sloped,above,node font=\tiny] {10} (A)
+(E) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (H)
+(H) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (E)
+(E) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (I)
+(I) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (E)
+(F) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {1} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (F)
+(F) edge node[sloped,above,node font=\tiny] {3} (D)
+(F) edge node[sloped,above,node font=\tiny] {3} (B)
+(G) edge node[sloped,above,node font=\tiny] {3} (D)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {4} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {4} (H)
+(H) edge node[sloped,above,node font=\tiny] {1} (F)
+(I) edge node[sloped,above,node font=\tiny] {3} (G)
+(J) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {8} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {2} (J)
+(G) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (G)
+(K) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (K)
+(K) edge node[sloped,above,node font=\tiny] {7} (I)
+(L) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {4} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (L)
+(M) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {11} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {8} (M)
+(M) edge node[sloped,above,node font=\tiny] {7} (J)
+(M) edge node[sloped,above,node font=\tiny] {1} (I)
+}\\\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M};
+\path[->]
+(A) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {5} (B)
+(B) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (A)
+(A) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (A)
+(B) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {6} (E)
+(E) edge[bend left=20]  node[sloped,above,node font=\tiny] {3} (B)
+(C) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {4} (E)
+(E) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {6} (C)
+(C) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {2} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {4} (C)
+(C) edge node[sloped,above,node font=\tiny] {10} (A)
+(E) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {3} (H)
+(H) edge[bend left=20]  node[sloped,above,node font=\tiny] {4} (E)
+(E) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (I)
+(I) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (E)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (D)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (B)
+(H) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (F)
+(F) edge[bend left=20]  node[sloped,above,node font=\tiny] {1} (H)
+(G) edge node[sloped,above,node font=\tiny] {3} (D)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {4} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {4} (H)
+(I) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (G)
+(J) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {7} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {3} (J)
+(F) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {0} (J)
+(J) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {6} (F)
+(J) edge node[sloped,above,node font=\tiny] {4} (G)
+(K) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (K)
+(K) edge node[sloped,above,node font=\tiny,pos=0.2] {7} (I)
+(L) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {3} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (L)
+(M) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {11} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {8} (M)
+(M) edge node[sloped,above,node font=\tiny] {7} (J)
+(M) edge node[sloped,above,node font=\tiny,pos=0.2] {1} (I)
+}
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(1.5, -0.0) node (B) {B}
+(3.0, -0.0) node (E) {E}
+(4.5, -0.0) node (H) {H}
+(6.0, -0.0) node (K) {K}
+(0.0, -1.5) node (A) {A}
+(1.5, -1.5) node (C) {C}
+(3.0, -1.5) node (F) {F}
+(4.5, -1.5) node (I) {I}
+(6.0, -1.5) node (L) {L}
+(7.5, -1.5) node (N) {N}
+(1.5, -3.0) node (D) {D}
+(3.0, -3.0) node (G) {G}
+(4.5, -3.0) node (J) {J}
+(6.0, -3.0) node (M) {M};
+\path[->]
+(A) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {2} (B)
+(B) edge[bend left=20]  node[sloped,above,node font=\tiny] {9} (A)
+(A) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (D)
+(D) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (A)
+(B) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny] {3} (E)
+(E) edge[bend left=20]  node[sloped,above,node font=\tiny] {6} (B)
+(C) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {4} (E)
+(E) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {6} (C)
+(C) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {2} (G)
+(G) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {4} (C)
+(C) edge node[sloped,above,node font=\tiny] {10} (A)
+(E) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {5} (I)
+(I) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {5} (E)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (D)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (B)
+(F) edge node[sloped,above,node font=\tiny,pos=0.2] {1} (H)
+(G) edge node[sloped,above,node font=\tiny] {3} (D)
+(H) edge node[sloped,above,node font=\tiny] {10} (K)
+(H) edge[ultra thick,bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {1} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {7} (H)
+(E) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (H)
+(H) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (E)
+(I) edge node[sloped,above,node font=\tiny,pos=0.2] {3} (G)
+(J) edge[bend left=20]
+ node[sloped,above,node font=\tiny,pos=0.2] {7} (L)
+(L) edge[bend left=20]  node[sloped,above,node font=\tiny,pos=0.2] {3} (J)
+(J) edge node[sloped,above,node font=\tiny,pos=0.2] {6} (F)
+(J) edge node[sloped,above,node font=\tiny] {4} (G)
+(K) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {4} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {7} (K)
+(K) edge node[sloped,above,node font=\tiny,pos=0.2] {7} (I)
+(M) edge[bend left=20]
+ node[sloped,above,node font=\tiny] {11} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {8} (M)
+(M) edge node[sloped,above,node font=\tiny] {7} (J)
+(M) edge node[sloped,above,node font=\tiny,pos=0.2] {1} (I)
+(L) edge[ultra thick, bend left=20]  node[sloped,above,node font=\tiny] {0} (N)
+(N) edge[bend left=20]  node[sloped,above,node font=\tiny] {10} (L)
+}
+\\\\
+Ответ: 25
+\end{proof}
+
+\begin{problem}
+Найдите наибольшее паросочетание в двудольном графе, заданном набором рёбер: (a, $\beta$) (a, $\eta$) (b, $\beta$) (b, $\varepsilon$) (c, $\alpha$)
+(c, $\zeta$) (d, $\varepsilon$) (e, $\zeta$) (e, $\eta$) (e, $\theta$) (f, $\gamma$) (f, $\delta$) (f, $\eta$) (g, $\zeta$) (h, $\beta$) (h, $\gamma$)
+\end{problem}
+
+\begin{proof} $\\$
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(0, -7) node (S) {S}
+(2, 0) node (a) {a}
+(8, 0) node (1) {$\alpha$}
+(2, -2) node (b) {b}
+(8, -2) node (2) {$\beta$}
+(2, -4) node (c) {c}
+(8, -4) node (3) {$\eta$}
+(2, -6) node (d) {d}
+(8, -6) node (4) {$\varepsilon$}
+(2, -8) node (e) {e}
+(8, -8) node (5) {$\zeta$}
+(2, -10) node (f) {f}
+(8, -10) node (6) {$\theta$}
+(2, -12) node (g) {g}
+(8, -12) node (7) {$\gamma$}
+(2, -14) node (h) {h}
+(8, -14) node (8) {$\delta$}
+(10, -7) node (F) {F};
+\draw[->] (a) -- (2);
+\draw[<-][very thick] (a) -- (3);
+\draw[<-][very thick] (b) -- (2);
+\draw[->] (b) -- (4);
+\draw[<-][very thick] (c) -- (1);
+\draw[->] (c) -- (5);
+\draw[<-][very thick] (d) -- (4);
+\draw[->] (e) -- (5);
+\draw[->] (e) -- (3);
+\draw[<-][very thick] (e) -- (6);
+\draw[->] (f) -- (7);
+\draw[<-][very thick] (f) -- (8);
+\draw[->] (f) -- (3);
+\draw[<-][very thick] (g) -- (5);
+\draw[->] (h) -- (2);
+\draw[<-][very thick] (h) -- (7);
+}
+\\ Ответ: (a, $\eta$) (b, $\beta$) (c, $\alpha$)
+(d, $\varepsilon$) (e, $\theta$) (f, $\delta$)  (g, $\zeta$) (h, $\gamma$)
+\end{proof}
+
+\begin{problem}
+Найдите радиус, диаметр и центр данного дерева: \\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(0, 0) node (1) {1}
+(2, 0) node (2) {2}
+(4, 0) node (3) {3}
+(6, 0) node (4) {4}
+(8, 0) node (5) {5}
+(10, 0) node (6) {6}
+(0, -2) node (7) {7}
+(2, -2) node (8) {8}
+(4, -2) node (9) {9}
+(6, -2) node (10) {10}
+(8, -2) node (11) {11};
+\draw (1) -- (2);
+\draw (2) -- (7);
+\draw (3) -- (7);
+\draw (4) -- (7);
+\draw (5) -- (6);
+\draw (5) -- (8);
+\draw (5) -- (9);
+\draw (7) -- (8);
+\draw (9) -- (10);
+\draw (10) -- (11);
+}
+\end{problem}
+
+\begin{proof} $ $ \\
+\bordermatrix{ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & max \cr
+1 & 0 & 1 & 3 & 3 & 4 & 5 & 2 & 3 & 5 & 6 & 7 & 7 \cr
+2 & 1 & 0 & 2 & 2 & 3 & 4 & 1 & 2 & 4 & 5 & 6 & 6 \cr
+3 & 3 & 2 & 0 & 2 & 3 & 4 & 1 & 2 & 4 & 5 & 6 & 6 \cr
+4 & 3 & 2 & 2 & 0 & 3 & 4 & 1 & 2 & 4 & 5 & 6 & 6 \cr
+5 & 4 & 3 & 3 & 3 & 0 & 1 & 2 & 1 & 1 & 2 & 3 & 4 \cr
+6 & 5 & 4 & 4 & 4 & 1 & 0 & 3 & 2 & 2 & 3 & 4 & 5 \cr
+7 & 2 & 1 & 1 & 1 & 2 & 3 & 0 & 1 & 3 & 4 & 5 & 5 \cr
+8 & 3 & 2 & 2 & 2 & 1 & 2 & 1 & 0 & 2 & 3 & 4 & 4 \cr
+9 & 5 & 4 & 4 & 4 & 1 & 2 & 3 & 2 & 0 & 1 & 2 & 5 \cr
+10 & 6 & 5 & 5 & 5 & 2 & 3 & 4 & 3 & 1 & 0 & 1 & 6 \cr
+11 & 7 & 6 & 6 & 6 & 3 & 4 & 5 & 4 & 2 & 1 & 0 & 7 \cr} \\\\
+радиус: 4\\
+диаметр: 7\\
+центры: 5, 8
+\end{proof}
+
+\begin{problem} 
+Найдите радиус, диаметр и центр данного графа: \\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(0, 0) node (A) {A}
+(2, 0) node (B) {B}
+(4, 0) node (C) {C}
+(6, 0) node (D) {D}
+(0, -2) node (E) {E}
+(6, -2) node (F) {F}
+(0, -4) node (G) {G}
+(6, -4) node (H) {H}
+(0, -6) node (I) {I}
+(2, -6) node (J) {J}
+(4, -6) node (K) {K}
+(6, -6) node (L) {L};
+\draw (A) -- (B);
+\draw (A) -- (E);
+\draw (A) -- (F);
+\draw (B) -- (C);
+\draw (C) -- (D);
+\draw (D) -- (F);
+\draw (E) -- (F);
+\draw (E) -- (G);
+\draw (E) -- (K);
+\draw (E) -- (L);
+\draw (F) -- (H);
+\draw (G) -- (I);
+\draw (G) -- (K);
+\draw (H) -- (L);
+\draw (I) -- (J);
+\draw (J) -- (K);
+\draw (K) -- (L);
+}
+\end{problem}
+
+\begin{proof} $ $ \\
+\bordermatrix{ & A & B & C & D & E & F & G & H & I & J & K & L & max \cr
+A & 0 & 1 & 2 & 2 & 1 & 1 & 2 & 2 & 3 & 3 & 2 & 2 & 3 \cr
+B & 1 & 0 & 1 & 2 & 2 & 2 & 3 & 3 & 4 & 4 & 3 & 3 & 4 \cr
+C & 2 & 1 & 0 & 1 & 3 & 2 & 4 & 3 & 5 & 5 & 4 & 4 & 5 \cr
+D & 2 & 2 & 1 & 0 & 2 & 1 & 3 & 2 & 4 & 4 & 3 & 3 & 4 \cr
+E & 1 & 2 & 3 & 2 & 0 & 1 & 1 & 2 & 2 & 2 & 1 & 1 & 3 \cr
+F & 1 & 2 & 2 & 1 & 1 & 0 & 2 & 1 & 3 & 3 & 2 & 2 & 3 \cr
+G & 2 & 3 & 4 & 3 & 1 & 2 & 0 & 3 & 1 & 2 & 1 & 2 & 4 \cr
+H & 2 & 3 & 3 & 2 & 2 & 1 & 3 & 0 & 4 & 3 & 2 & 1 & 4 \cr
+I & 3 & 4 & 5 & 4 & 2 & 3 & 1 & 4 & 0 & 1 & 2 & 3 & 5 \cr
+J & 3 & 4 & 5 & 4 & 2 & 3 & 2 & 3 & 1 & 0 & 1 & 2 & 5 \cr
+K & 2 & 3 & 4 & 3 & 1 & 2 & 1 & 2 & 2 & 1 & 0 & 1 & 4 \cr
+L & 2 & 3 & 4 & 3 & 1 & 2 & 2 & 1 & 3 & 2 & 1 & 0 & 4 \cr} \\\\
+радиус: 3\\
+диаметр: 5\\
+центры: A, E, F
+\end{proof}
+
+\begin{problem}
+Постройте пример графа, для которого хроматическим
+многочленом
+является
+$t^4(t-1)^6(t-2)^3(t-3)^3$
+\end{problem}
+
+\begin{proof} $ $ \\\\
+\usetikzlibrary{graphs,automata,positioning}
+\tikz {
+	\path
+(0, 0) node (A) {$A_t$}
+(2, 0) node (B) {$B_{t-1}$}
+(4, 0) node (E) {$E_{t}$}
+(6, 0) node (F) {$F_{t-1}$}
+(8, 0) node (I) {$I_t$}
+(10, 0) node (J) {$J_{t-1}$}
+(0, -2) node (C) {$C_{t-3}$}
+(2, -2) node (D) {$D_{t-2}$}
+(4, -2) node (G) {$G_{t-3}$}
+(6, -2) node (H) {$H_{t-2}$}
+(8, -2) node (K) {$K_{t-3}$}
+(10, -2) node (L) {$L_{t-2}$}
+(3, -3) node (M) {$M_{t-1}$}
+(5, -5) node (N) {$N_t$}
+(7, -5) node (O) {$O_{t-1}$}
+(3, -7) node (P) {$P_{t-1}$};
+\draw (A) -- (B);
+\draw (A) -- (C);
+\draw (A) -- (D);
+\draw (B) -- (C);
+\draw (B) -- (D);
+\draw (C) -- (D);
+\draw (E) -- (F);
+\draw (E) -- (G);
+\draw (E) -- (H);
+\draw (F) -- (G);
+\draw (F) -- (H);
+\draw (G) -- (H);
+\draw (I) -- (J);
+\draw (I) -- (K);
+\draw (I) -- (L);
+\draw (J) -- (K);
+\draw (J) -- (L);
+\draw (K) -- (L);
+\draw (M) -- (N);
+\draw (N) -- (O);
+\draw (N) -- (P);
+}
+\end{proof}
