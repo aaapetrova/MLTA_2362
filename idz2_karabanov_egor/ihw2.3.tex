@@ -7,6 +7,7 @@
     Изобразим ребра, которые были удалены из графа:
     \begin{center}
     \begin{tikzcd}
+    A \ar[r, dash, dashed]
     &B \ar[d, dash, dashed]
     &E \ar[d, dash, dashed]
     &D \ar[dl, dash, dashed]
@@ -15,30 +16,20 @@
     &F
     \end{tikzcd}
     \end{center}
-    $P_G = P_{BC} + P_{\ols{BC}}$\\
-    \begin{tikzcd}
-    \\
-    &&&D \ar[dd, dash, dashed]
-    \\
-    &BC \ar[r, dash] \ar[urr, dash] \ar[drr, dash]
-    &E \ar[ur, dash] \ar[dr, dash, dashed]
-    \\
-    &&&F
-    \end{tikzcd}
-    \begin{tikzcd}
-    &B \ar[d, dash]
-    &E \ar[d, dash, dashed]
-    &D \ar[dl, dash, dashed]
-    \\
-    &C
-    &F
-    \end{tikzcd}\\
-    $P_{BC} = P_{EF} + P_{\ols{EF}}$\\
+    $P_G = P_{AB} + P_{\ols{AB}}$\\\\
+    $P_{AB} = P_{EF} + P_{\ols{EF}}$\\
     $P_{EF} = P_{K_{131}}$\\
-    $P_{\ols{EF}} = P_{\ols{FD}} + P_{FD} = P_{K_{132}} + P_{K_{131}} \Rightarrow P_{BC} = 2P_{K_{131}}+P_{K_{132}}$\\\\
-    $P_{\ols{BC}} = P_{FE} + P_{\ols{FE}}$\\
-    $P_{FE} = P_{K_{132}}$\\
-    $P_{\ols{FE}} = P_{DF} + P_{\ols{DF}} = P_{K_{132}} + P_{K_{133}} \Rightarrow 2P_{K_{132}}+P_{K_{133}}$\\\\
-    $P_G = 3P_{K_{132}} + 2P_{K_{131}} + P_{K_{133}}$\\\\
-    \textbf{Ответ:} $3A_t^{132} + 2A_t^{131} + A_t^{133}$
+    $P_{\ols{EF}} = P_{FD} + P_{\ols{FD}}$\\
+    $P_{FD} = P_{K_{131}}$\\
+    $P_{\ols{FD}} = P_{K_{132}}$\\
+    $P_{AB} = 2P_{K_{131}} + P_{K_{132}}$\\\\
+    $P_{\ols{AB}} = P_{BC} + P_{\ols{BC}}$\\
+    $P_{BC} = P_{FE} + P_{\ols{FE}}$\\
+    $P_{FE} = P_{K_{131}}$\\
+    $P_{\ols{FE}} = P_{DF} + P_{\ols{DF}} = P_{K_{131}} + P_{K_{132}} \Rightarrow P_{BC} = 2P_{K_{131}} + P_{K_{132}}$\\
+    $P_{\ols{BC}} = P_{EF_1} + P_{\ols{EF_1}} = 2P_{K_{132}} + P_{K_{133}}$\\
+    $P_{\ols{AB}} = 3P_{K_{132}} + 2P_{K_{131}} + P_{K_{133}}$\\\\
+    $P_G = 4P_{K_{131}} + 4P_{K_{132}} + P_{K_{133}}$\\\\
+    
+    \textbf{Ответ:} $4A_t^{131} + 4A_t^{132} + A_t^{133}$
 \end{proof}
