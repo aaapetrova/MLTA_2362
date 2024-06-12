@@ -1,0 +1,70 @@
+\begin{proof} $ $\\
+    Начинаем поиски в глубину с вершин: A, E, L\\
+    Полученный стек: [I, C, D, F, B, A, E, H, G, J, M, N, K, O, P, L\\
+    Транспонированный граф:
+        \begin{center}
+        \begin{tikzcd}
+            A \ar[r, leftarrow]
+            &B \ar[d, leftarrow] \ar[ddl, leftrightarrow]
+            &C \ar[r, leftrightarrow]
+            &D \ar[llldd, leftarrow]
+            \\
+            E 
+            &F \ar[urr, leftarrow]
+            &G \ar[ur, leftarrow] \ar[r, leftarrow] \ar[ddr, leftrightarrow]
+            &H 
+            \\
+            I \ar[r, rightarrow]
+            &J \ar[ld, leftrightarrow]
+            &K \ar[dl,  leftarrow]
+            &L \ar[d, leftrightarrow]
+            \\ 
+            M \ar[u, leftarrow]
+            &N \ar[l, leftrightarrow]
+            &O \ar[u, leftarrow]
+            &P \ar[l, leftarrow]
+        \end{tikzcd}
+        \end{center}
+        \vspace{5mm}
+    Граф после поисков в глубину в порядке доставания вершин из стека и окрашивания вершин в рамках одного поиска:
+        \begin{center}
+        \begin{tikzcd}
+            \textcolor{pink}{A} \ar[r, leftarrow]
+            &\textcolor{blue}{B} \ar[d, leftarrow] \ar[ddl, leftrightarrow]
+            &\textcolor{blue}{C} \ar[r, leftrightarrow]
+            &\textcolor{blue}{D} \ar[llldd, leftarrow]
+            \\
+            \textcolor{orange}{E} 
+            &\textcolor{blue}{F} \ar[urr, leftarrow]
+            &\textcolor{red}{G} \ar[ur, leftarrow] \ar[r, leftarrow] \ar[ddr, leftrightarrow]
+            &\textcolor{brown}{H} 
+            \\
+            \textcolor{blue}{I} \ar[r, rightarrow]
+            &\textcolor{green}{J} \ar[ld, leftrightarrow]
+            &K \ar[dl,  leftarrow]
+            &\textcolor{red}{L} \ar[d, leftrightarrow]
+            \\ 
+            \textcolor{green}{M} \ar[u, leftarrow]
+            &\textcolor{green}{N} \ar[l, leftrightarrow]
+            &\textcolor{yellow}{O} \ar[u, leftarrow]
+            &\textcolor{red}{P} \ar[l, leftarrow]
+        \end{tikzcd}
+        \end{center}
+        Таким образом, граф герца для данного графа:
+        \begin{center}
+        \begin{tikzcd}
+                    E
+        &LPG \ar[dl, rightarrow] \ar[r, rightarrow] \ar[drr, rightarrow]
+        &H
+        &
+        \\
+        O \ar[r, rightarrow]
+        &K \ar[r, rightarrow]
+        &NMJ \ar[r, rightarrow]
+        &BFIDC
+        \\
+        &
+        &A \ar[ur, rightarrow]
+        \end{tikzcd}
+        \end{center}
+\end{proof}

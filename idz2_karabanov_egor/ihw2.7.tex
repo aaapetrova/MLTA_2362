@@ -1,0 +1,531 @@
+\begin{proof} $ $\\
+ACGIMN - 7\\
+Остаточная сеть:\\
+        \usetikzlibrary{graphs,automata,positioning}
+    \tikz {
+    	\path
+    (2, 0) node (B) {B}
+    (4, 0) node (E) {E}
+    (6, 0) node (H) {H}
+    (8, 0) node (K) {K}
+    (0, -2) node (A) {A}
+    (2, -2) node (C) {C}
+    (4, -2) node (F) {F}
+    (6, -2) node (I) {I}
+    (8, -2) node (L) {L}
+    (10, -2) node (N) {N}
+    (2, -4) node (D) {D}
+    (4, -4) node (G) {G}
+    (6, -4) node (J) {J}
+    (8, -4) node (M) {M};
+    \path[->]
+    (A) edge node[sloped,above] {10} (B)
+    (A) edge[ultra thick] node[sloped,above] {13} (C)
+    (A) edge[<-, bend right =-40] node[sloped,above] {7} (C)
+    (A) edge node[sloped,above] {15} (D)
+    
+    (B) edge node[sloped,above] {3} (E)
+    (B) edge node[sloped,above,pos=0.2] {5} (F)
+    
+    (C) edge node[sloped,above,pos=0.2] {5} (E)
+    (C) edge[ultra thick] node[sloped,above,pos=0.2] {2} (G)
+    (C) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {7} (G)
+
+    (D) edge node[sloped,above,pos=0.2] {10} (F)
+    (D) edge node[sloped,above] {6} (G)
+    
+    (E) edge node[sloped,above] {5} (H)
+    (E) edge node[sloped,above,pos=0.2] {1} (I)
+    
+    (F) edge node[sloped,above,pos=0.2] {10} (H)
+    (F) edge node[sloped,above,pos=0.2] {4} (J)
+    
+    (G) edge node[sloped,above,pos=0.2] {4} (J)
+    (G) edge[ultra thick] node[sloped,above,pos=0.2] {0} (I)
+    (G) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {7} (I)
+    
+    (H) edge node[sloped,above] {6} (K)
+    (H) edge node[sloped,above,pos=0.2] {10} (L)
+    
+    (I) edge node[sloped,above,pos=0.2] {8} (K)
+    (I) edge[ultra thick] node[sloped,above,pos=0.2] {0} (M)
+    (I) edge[<-, bend right =-40] node[sloped,above,pos=0.2] {7} (M)
+    
+    (J) edge node[sloped,above,pos=0.2] {5} (L)
+    (J) edge node[sloped,above] {9} (M)
+    
+    (K) edge node[sloped,above] {21} (N)
+    
+    (L) edge node[sloped,above] {20} (N)
+    
+    (M) edge[ultra thick] node[sloped,above] {13} (N)
+    (M) edge[<-, bend left =-40] node[sloped,below] {7} (N);
+    }\\\\
+ADFHLN - 10\\
+    Остаточная сеть:\\
+        \usetikzlibrary{graphs,automata,positioning}
+    \tikz {
+    	\path
+    (2, 0) node (B) {B}
+    (4, 0) node (E) {E}
+    (6, 0) node (H) {H}
+    (8, 0) node (K) {K}
+    (0, -2) node (A) {A}
+    (2, -2) node (C) {C}
+    (4, -2) node (F) {F}
+    (6, -2) node (I) {I}
+    (8, -2) node (L) {L}
+    (10, -2) node (N) {N}
+    (2, -4) node (D) {D}
+    (4, -4) node (G) {G}
+    (6, -4) node (J) {J}
+    (8, -4) node (M) {M};
+    \path[->]
+    (A) edge node[sloped,above] {10} (B)
+    (A) edge node[sloped,above] {13} (C)
+    (A) edge[<-, bend right =-40] node[sloped,above] {7} (C)
+    (A) edge[ultra thick] node[sloped,above] {5} (D)
+    (A) edge[<-, bend left =-40] node[sloped,below] {10} (D)
+    
+    (B) edge node[sloped,above] {3} (E)
+    (B) edge node[sloped,above,pos=0.2] {5} (F)
+    
+    (C) edge node[sloped,above,pos=0.2] {5} (E)
+    (C) edge node[sloped,above,pos=0.2] {2} (G)
+    (C) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {7} (G)
+
+    (D) edge[ultra thick] node[sloped,above,pos=0.2] {0} (F)
+    (D) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {10} (F)
+    (D) edge node[sloped,above] {6} (G)
+    
+    (E) edge node[sloped,above] {5} (H)
+    (E) edge node[sloped,above,pos=0.2] {1} (I)
+    
+    (F) edge[ultra thick] node[sloped,above,pos=0.2] {0} (H)
+    (F) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (H)
+    (F) edge node[sloped,above,pos=0.2] {4} (J)
+    
+    (G) edge node[sloped,above,pos=0.2] {4} (J)
+    (G) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {7} (I)
+    
+    (H) edge node[sloped,above] {6} (K)
+    (H) edge[ultra thick] node[sloped,above,pos=0.2] {0} (L)
+    (H) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {10} (L)
+    
+    (I) edge node[sloped,above,pos=0.2] {8} (K)
+    (I) edge[<-, bend right =-40] node[sloped,above,pos=0.2] {7} (M)
+    
+    (J) edge node[sloped,above,pos=0.2] {5} (L)
+    (J) edge node[sloped,above] {9} (M)
+    
+    (K) edge node[sloped,above] {21} (N)
+    
+    (L) edge[ultra thick] node[sloped,above] {10} (N)
+    (L) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (N)
+    
+    (M) edge node[sloped,above] {13} (N)
+    (M) edge[<-, bend left =-40] node[sloped,below] {7} (N);
+    }\\\\
+ADGJMN - 4\\
+    Остаточная сеть:\\
+        \usetikzlibrary{graphs,automata,positioning}
+    \tikz {
+    	\path
+    (2, 0) node (B) {B}
+    (4, 0) node (E) {E}
+    (6, 0) node (H) {H}
+    (8, 0) node (K) {K}
+    (0, -2) node (A) {A}
+    (2, -2) node (C) {C}
+    (4, -2) node (F) {F}
+    (6, -2) node (I) {I}
+    (8, -2) node (L) {L}
+    (10, -2) node (N) {N}
+    (2, -4) node (D) {D}
+    (4, -4) node (G) {G}
+    (6, -4) node (J) {J}
+    (8, -4) node (M) {M};
+    \path[->]
+    (A) edge node[sloped,above] {10} (B)
+    (A) edge node[sloped,above] {13} (C)
+    (A) edge[<-, bend right =-40] node[sloped,above] {7} (C)
+    (A) edge[ultra thick] node[sloped,above] {1} (D)
+    (A) edge[<-, bend left =-40] node[sloped,below] {14} (D)
+    
+    (B) edge node[sloped,above] {3} (E)
+    (B) edge node[sloped,above,pos=0.2] {5} (F)
+    
+    (C) edge node[sloped,above,pos=0.2] {5} (E)
+    (C) edge node[sloped,above,pos=0.2] {2} (G)
+    (C) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {7} (G)
+
+    (D) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {10} (F)
+    (D) edge[ultra thick] node[sloped,above] {2} (G)
+    (D) edge[<-, bend left =-40] node[sloped,below] {4} (G)
+    
+    (E) edge node[sloped,above] {5} (H)
+    (E) edge node[sloped,above,pos=0.2] {1} (I)
+    
+    (F) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (H)
+    (F) edge node[sloped,above,pos=0.2] {4} (J)
+    
+    (G) edge[ultra thick] node[sloped,above,pos=0.2] {0} (J)
+    (G) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {7} (I)
+    (G) edge[<-, bend left =-40] node[sloped,below] {4} (J)
+    
+    (H) edge node[sloped,above] {6} (K)
+    (H) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {10} (L)
+    
+    (I) edge node[sloped,above,pos=0.2] {8} (K)
+    (I) edge[<-, bend right =-40] node[sloped,above,pos=0.2] {7} (M)
+    
+    (J) edge node[sloped,above,pos=0.2] {5} (L)
+    (J) edge[ultra thick] node[sloped,above] {5} (M)
+    (J) edge[<-, bend left =-40] node[sloped,below] {4} (M)
+    
+    (K) edge node[sloped,above] {21} (N)
+    
+    (L) edge node[sloped,above] {10} (N)
+    (L) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (N)
+    
+    (M) edge[ultra thick] node[sloped,above] {9} (N)
+    (M) edge[<-, bend left =-40] node[sloped,below] {11} (N);
+    }\\\\
+ABEHKN - 3\\
+    Остаточная сеть:\\
+        \usetikzlibrary{graphs,automata,positioning}
+    \tikz {
+    	\path
+    (2, 0) node (B) {B}
+    (4, 0) node (E) {E}
+    (6, 0) node (H) {H}
+    (8, 0) node (K) {K}
+    (0, -2) node (A) {A}
+    (2, -2) node (C) {C}
+    (4, -2) node (F) {F}
+    (6, -2) node (I) {I}
+    (8, -2) node (L) {L}
+    (10, -2) node (N) {N}
+    (2, -4) node (D) {D}
+    (4, -4) node (G) {G}
+    (6, -4) node (J) {J}
+    (8, -4) node (M) {M};
+    \path[->]
+    (A) edge[ultra thick] node[sloped,above] {7} (B)
+    (A) edge[<-, bend right =-40] node[sloped,above] {3} (B)
+    (A) edge node[sloped,above] {13} (C)
+    (A) edge[<-, bend right =-40] node[sloped,above] {7} (C)
+    (A) edge node[sloped,above] {1} (D)
+    (A) edge[<-, bend left =-40] node[sloped,below] {14} (D)
+    
+    (B) edge[ultra thick] node[sloped,above] {0} (E)
+    (B) edge[<-, bend right =-40] node[sloped,above] {3} (E)
+    (B) edge node[sloped,above,pos=0.2] {5} (F)
+    
+    (C) edge node[sloped,above,pos=0.2] {5} (E)
+    (C) edge node[sloped,above,pos=0.2] {2} (G)
+    (C) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {7} (G)
+
+    (D) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {10} (F)
+    (D) edge node[sloped,above] {2} (G)
+    (D) edge[<-, bend left =-40] node[sloped,below] {4} (G)
+    
+    (E) edge[ultra thick] node[sloped,above] {2} (H)
+    (E) edge[<-, bend right =-40] node[sloped,above] {3} (H)
+    (E) edge node[sloped,above,pos=0.2] {1} (I)
+    
+    (F) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (H)
+    (F) edge node[sloped,above,pos=0.2] {4} (J)
+    
+    (G) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {7} (I)
+    (G) edge[<-, bend left =-40] node[sloped,below] {4} (J)
+    
+    (H) edge[ultra thick] node[sloped,above] {3} (K)
+    (H) edge[<-, bend right =-40] node[sloped,above] {3} (K)
+    (H) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {10} (L)
+    
+    (I) edge node[sloped,above,pos=0.2] {8} (K)
+    (I) edge[<-, bend right =-40] node[sloped,above,pos=0.2] {7} (M)
+    
+    (J) edge node[sloped,above,pos=0.2] {5} (L)
+    (J) edge node[sloped,above] {5} (M)
+    (J) edge[<-, bend left =-40] node[sloped,below] {4} (M)
+    
+    (K) edge[ultra thick] node[sloped,above] {18} (N)
+    (K) edge[<-, bend right =-40] node[sloped,above] {3} (N)
+    
+    (L) edge node[sloped,above] {10} (N)
+    (L) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (N)
+    
+    (M) edge node[sloped,above] {9} (N)
+    (M) edge[<-, bend left =-40] node[sloped,below] {11} (N);
+    }\\\\
+ABFJMN - 4\\
+    Остаточная сеть:\\
+        \usetikzlibrary{graphs,automata,positioning}
+    \tikz {
+    	\path
+    (2, 0) node (B) {B}
+    (4, 0) node (E) {E}
+    (6, 0) node (H) {H}
+    (8, 0) node (K) {K}
+    (0, -2) node (A) {A}
+    (2, -2) node (C) {C}
+    (4, -2) node (F) {F}
+    (6, -2) node (I) {I}
+    (8, -2) node (L) {L}
+    (10, -2) node (N) {N}
+    (2, -4) node (D) {D}
+    (4, -4) node (G) {G}
+    (6, -4) node (J) {J}
+    (8, -4) node (M) {M};
+    \path[->]
+    (A) edge[ultra thick] node[sloped,above] {3} (B)
+    (A) edge[<-, bend right =-40] node[sloped,above] {7} (B)
+    (A) edge node[sloped,above] {13} (C)
+    (A) edge[<-, bend right =-40] node[sloped,above] {7} (C)
+    (A) edge node[sloped,above] {1} (D)
+    (A) edge[<-, bend left =-40] node[sloped,below] {14} (D)
+    
+    (B) edge[<-, bend right =-40] node[sloped,above] {3} (E)
+    (B) edge[ultra thick] node[sloped,above,pos=0.2] {1} (F)
+    (B) edge[<-, bend right =-30] node[sloped,above,pos=0.6] {4} (F)
+    
+    (C) edge node[sloped,above,pos=0.2] {5} (E)
+    (C) edge node[sloped,above,pos=0.2] {2} (G)
+    (C) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {7} (G)
+
+    (D) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {10} (F)
+    (D) edge node[sloped,above] {2} (G)
+    (D) edge[<-, bend left =-40] node[sloped,below] {4} (G)
+    
+    (E) edge node[sloped,above] {2} (H)
+    (E) edge[<-, bend right =-40] node[sloped,above] {3} (H)
+    (E) edge node[sloped,above,pos=0.2] {1} (I)
+    
+    (F) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (H)
+    (F) edge[ultra thick] node[sloped,above,pos=0.2] {0} (J)
+    (F) edge[<-, bend right =-30] node[sloped,above,pos=0.6] {4} (J)
+    
+    (G) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {7} (I)
+    (G) edge[<-, bend left =-40] node[sloped,below] {4} (J)
+    
+    (H) edge node[sloped,above] {3} (K)
+    (H) edge[<-, bend right =-40] node[sloped,above] {3} (K)
+    (H) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {10} (L)
+    
+    (I) edge node[sloped,above,pos=0.2] {8} (K)
+    (I) edge[<-, bend right =-40] node[sloped,above,pos=0.2] {7} (M)
+    
+    (J) edge node[sloped,above,pos=0.2] {5} (L)
+    (J) edge[ultra thick] node[sloped,above] {1} (M)
+    (J) edge[<-, bend left =-40] node[sloped,below] {8} (M)
+    
+    (K) edge node[sloped,above] {18} (N)
+    (K) edge[<-, bend right =-40] node[sloped,above] {3} (N)
+    
+    (L) edge node[sloped,above] {10} (N)
+    (L) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (N)
+    
+    (M) edge[ultra thick] node[sloped,above] {5} (N)
+    (M) edge[<-, bend left =-40] node[sloped,below] {15} (N);
+    }\\\\
+ACEHKN - 2\\
+    Остаточная сеть:\\
+        \usetikzlibrary{graphs,automata,positioning}
+    \tikz {
+    	\path
+    (2, 0) node (B) {B}
+    (4, 0) node (E) {E}
+    (6, 0) node (H) {H}
+    (8, 0) node (K) {K}
+    (0, -2) node (A) {A}
+    (2, -2) node (C) {C}
+    (4, -2) node (F) {F}
+    (6, -2) node (I) {I}
+    (8, -2) node (L) {L}
+    (10, -2) node (N) {N}
+    (2, -4) node (D) {D}
+    (4, -4) node (G) {G}
+    (6, -4) node (J) {J}
+    (8, -4) node (M) {M};
+    \path[->]
+    (A) edge node[sloped,above] {3} (B)
+    (A) edge[<-, bend right =-40] node[sloped,above] {7} (B)
+    (A) edge[ultra thick] node[sloped,above] {11} (C)
+    (A) edge[<-, bend right =-40] node[sloped,above] {9} (C)
+    (A) edge node[sloped,above] {1} (D)
+    (A) edge[<-, bend left =-40] node[sloped,below] {14} (D)
+    
+    (B) edge[<-, bend right =-40] node[sloped,above] {3} (E)
+    (B) edge node[sloped,above,pos=0.2] {1} (F)
+    (B) edge[<-, bend right =-30] node[sloped,above,pos=0.6] {4} (F)
+    
+    (C) edge[ultra thick] node[sloped,above,pos=0.2] {3} (E)
+    (C) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {2} (E)
+    (C) edge node[sloped,above,pos=0.2] {2} (G)
+    (C) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {7} (G)
+
+    (D) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {10} (F)
+    (D) edge node[sloped,above] {2} (G)
+    (D) edge[<-, bend left =-40] node[sloped,below] {4} (G)
+    
+    (E) edge[ultra thick] node[sloped,above] {0} (H)
+    (E) edge[<-, bend right =-40] node[sloped,above] {5} (H)
+    (E) edge node[sloped,above,pos=0.2] {1} (I)
+    
+    (F) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (H)
+    (F) edge[<-, bend right =-30] node[sloped,above,pos=0.6] {4} (J)
+    
+    (G) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {7} (I)
+    (G) edge[<-, bend left =-40] node[sloped,below] {4} (J)
+    
+    (H) edge[ultra thick] node[sloped,above] {1} (K)
+    (H) edge[<-, bend right =-40] node[sloped,above] {5} (K)
+    (H) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {10} (L)
+    
+    (I) edge node[sloped,above,pos=0.2] {8} (K)
+    (I) edge[<-, bend right =-40] node[sloped,above,pos=0.2] {7} (M)
+    
+    (J) edge node[sloped,above,pos=0.2] {5} (L)
+    (J) edge node[sloped,above] {1} (M)
+    (J) edge[<-, bend left =-40] node[sloped,below] {8} (M)
+    
+    (K) edge[ultra thick] node[sloped,above] {16} (N)
+    (K) edge[<-, bend right =-40] node[sloped,above] {5} (N)
+    
+    (L) edge node[sloped,above] {10} (N)
+    (L) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (N)
+    
+    (M) edge node[sloped,above] {5} (N)
+    (M) edge[<-, bend left =-40] node[sloped,below] {15} (N);
+    }\\\\
+ACEIKN - 1\\
+    Остаточная сеть:\\
+        \usetikzlibrary{graphs,automata,positioning}
+    \tikz {
+    	\path
+    (2, 0) node (B) {B}
+    (4, 0) node (E) {E}
+    (6, 0) node (H) {H}
+    (8, 0) node (K) {K}
+    (0, -2) node (A) {A}
+    (2, -2) node (C) {C}
+    (4, -2) node (F) {F}
+    (6, -2) node (I) {I}
+    (8, -2) node (L) {L}
+    (10, -2) node (N) {N}
+    (2, -4) node (D) {D}
+    (4, -4) node (G) {G}
+    (6, -4) node (J) {J}
+    (8, -4) node (M) {M};
+    \path[->]
+    (A) edge node[sloped,above] {3} (B)
+    (A) edge[<-, bend right =-40] node[sloped,above] {7} (B)
+    (A) edge[ultra thick] node[sloped,above] {10} (C)
+    (A) edge[<-, bend right =-40] node[sloped,above] {10} (C)
+    (A) edge node[sloped,above] {1} (D)
+    (A) edge[<-, bend left =-40] node[sloped,below] {14} (D)
+    
+    (B) edge[<-, bend right =-40] node[sloped,above] {3} (E)
+    (B) edge node[sloped,above,pos=0.2] {1} (F)
+    (B) edge[<-, bend right =-30] node[sloped,above,pos=0.6] {4} (F)
+    
+    (C) edge[ultra thick] node[sloped,above,pos=0.2] {2} (E)
+    (C) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {3} (E)
+    (C) edge node[sloped,above,pos=0.2] {2} (G)
+    (C) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {7} (G)
+
+    (D) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {10} (F)
+    (D) edge node[sloped,above] {2} (G)
+    (D) edge[<-, bend left =-40] node[sloped,below] {4} (G)
+    
+    (E) edge[<-, bend right =-40] node[sloped,above] {5} (H)
+    (E) edge[ultra thick] node[sloped,above,pos=0.2] {0} (I)
+    (E) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {1} (I)
+    
+    (F) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (H)
+    (F) edge[<-, bend right =-30] node[sloped,above,pos=0.6] {4} (J)
+    
+    (G) edge[<-, bend right =-30] node[sloped,above,pos=0.8] {7} (I)
+    (G) edge[<-, bend left =-40] node[sloped,below] {4} (J)
+    
+    (H) edge node[sloped,above] {1} (K)
+    (H) edge[<-, bend right =-40] node[sloped,above] {5} (K)
+    (H) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {10} (L)
+    
+    (I) edge[ultra thick] node[sloped,above,pos=0.2] {7} (K)
+    (I) edge[<-, bend right =-30] node[sloped,above,pos=0.7] {1} (K)
+    (I) edge[<-, bend right =-40] node[sloped,above,pos=0.2] {8} (M)
+    
+    (J) edge node[sloped,above,pos=0.2] {5} (L)
+    (J) edge node[sloped,above] {1} (M)
+    (J) edge[<-, bend left =-40] node[sloped,below] {8} (M)
+    
+    (K) edge[ultra thick] node[sloped,above] {15} (N)
+    (K) edge[<-, bend right =-40] node[sloped,above] {6} (N)
+    
+    (L) edge node[sloped,above] {10} (N)
+    (L) edge[<-, bend right =-30] node[sloped,above,pos=0.2] {10} (N)
+    
+    (M) edge node[sloped,above] {5} (N)
+    (M) edge[<-, bend left =-40] node[sloped,below] {15} (N);
+    }\\\\
+Максимальный поток в этой сети равен 31. Проверим это с помощью пропускной способности ребер, составляющих минимальный разрез. Минимальный разрез для данного графа = \{EH, EI, FH, FJ, GI, GJ\}, пропускная способность которых также равна 31.\\
+    \usetikzlibrary{graphs,automata,positioning}
+    \tikz {
+    	\path
+    (2, 0) node (B) {B}
+    (4, 0) node (E) {E}
+    (6, 0) node (H) {H}
+    (8, 0) node (K) {K}
+    (0, -2) node (A) {A}
+    (2, -2) node (C) {C}
+    (4, -2) node (F) {F}
+    (6, -2) node (I) {I}
+    (8, -2) node (L) {L}
+    (10, -2) node (N) {N}
+    (2, -4) node (D) {D}
+    (4, -4) node (G) {G}
+    (6, -4) node (J) {J}
+    (8, -4) node (M) {M};
+    \path[->]
+    (A) edge node[sloped,above] {10} (B)
+    (A) edge node[sloped,above] {20} (C)
+    (A) edge node[sloped,above] {15} (D)
+    
+    (B) edge[dashed] node[sloped,above] {3} (E)
+    (B) edge node[sloped,above,pos=0.2] {5} (F)
+    
+    (C) edge node[sloped,above,pos=0.2] {5} (E)
+    (C) edge node[sloped,above,pos=0.2] {9} (G)
+
+    (D) edge node[sloped,above,pos=0.2] {10} (F)
+    (D) edge node[sloped,above] {6} (G)
+    
+    (E) edge[dashed] node[sloped,above] {5} (H)
+    (E) edge[dashed] node[sloped,above,pos=0.2] {1} (I)
+    
+    (F) edge[dashed] node[sloped,above,pos=0.2] {10} (H)
+    (F) edge[dashed] node[sloped,above,pos=0.2] {4} (J)
+    
+    (G) edge[dashed] node[sloped,above,pos=0.2] {4} (J)
+    (G) edge[dashed] node[sloped,above,pos=0.2] {7} (I)
+    
+    (H) edge node[sloped,above] {6} (K)
+    (H) edge node[sloped,above,pos=0.2] {10} (L)
+    
+    (I) edge node[sloped,above,pos=0.2] {8} (K)
+    (I) edge[dashed] node[sloped,above,pos=0.2] {7} (M)
+    
+    (J) edge node[sloped,above,pos=0.2] {5} (L)
+    (J) edge node[sloped,above] {9} (M)
+    
+    (K) edge node[sloped,above] {21} (N)
+    
+    (L) edge node[sloped,above] {20} (N)
+    
+    (M) edge node[sloped,above] {20} (N);
+    }\\
+    \textbf{Ответ:} 31
+\end{proof}

@@ -1,0 +1,47 @@
+%% Решение задания №1
+\pagebreak
+\begin{proof} $ $\\
+    \begin{itemize}
+        \item Не является эейлеровым, т.к. не все вершины имеют четную степень
+        \item Является полуэйлеровым, т.к. ровно 2 вершины имеют нечентную степень: B, J
+        \item Не является гамильтоновым
+        \item Является полугамильтоновым, т.к. существует путь, проходящий по всем вершинам ровно 1 раз: B, A, D, E, F, J, I, K, L, H, G, C
+        \item Не является двудольным, т.к. смежные вершины I, J, F оказываются одного цвета при раскрашивании графа
+        \begin{center}
+        \begin{tikzcd}
+		& \textcolor{red}{A}  \ar[r, dash]  \ar[d, dash] 
+		& \textcolor{green}{B}  
+		\\
+		\textcolor{green}{C}   \ar[dr, dash] \ar[d, dash]  
+		& \textcolor{green}{D} \ar[dl, dash] \ar[r, dash] \ar[d, dash]   
+		& \textcolor{red}{E} \ar[d, dash] \ar[r, dash]  
+		& \textcolor{green}{F} \ar[d, dash] 
+		\\
+		\textcolor{red}{G}   \ar[ur, dash]   
+		& \textcolor{red}{H} \ar[u, dash] 
+		& \textcolor{green}{I} \ar[l, dash] \ar[r, dash]
+		& \textcolor{green}{J} \ar[ul, dash]
+        \\
+        & \textcolor{red}{K} \ar[ur, dash] \ar[r, dash]
+        & \textcolor{green}{L} \ar[ul, dash]
+	    \end{tikzcd}
+        \end{center}
+        \item Не является вершинно двусвязным, т.к. в графе присутствуют шарниры: A, D
+        \item Не является реберно двусвязным, т.к. в графе присутствуют мосты: BA, AD
+        \item Дерево блоков и точек сочленения:\\
+        \tikz {
+        \path
+        (0, 0) node[white, circle,fill=black] (AB) {AB}
+        (2, 0) node[circle,fill=red] (A) {A}
+        (4, 0) node[white, circle,fill=black] (AD) {AD}
+        (6, 0) node[circle,fill=red] (D) {D}
+        (8, 0) node[white, circle, fill=black] (other) {DGCHLKIJFE};
+
+        \draw (AB) -- (A);
+        \draw (A) -- (AD);
+        \draw (AD) -- (D);
+        \draw (D) -- (other);
+        }
+
+    \end{itemize}
+\end{proof}

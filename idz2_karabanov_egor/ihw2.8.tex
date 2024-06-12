@@ -1,0 +1,108 @@
+\begin{proof} $ $\\
+Изначальный граф:
+\begin{center}
+\tikz {
+        \path
+(0, -7) node (S) {S}
+(2, 0) node (a) {a}
+(8, 0) node (1) {$\gamma$}
+(2, -2) node (g) {g}
+(8, -2) node (2) {$\delta$}
+(2, -4) node (h) {h}
+(8, -4) node (3) {$\varepsilon$}
+(2, -6) node (b) {b}
+(8, -6) node (4) {$\beta$}
+(2, -8) node (c) {c}
+(8, -8) node (5) {$\theta$}
+(2, -10) node (d) {d}
+(8, -10) node (6) {$\zeta$}
+(2, -12) node (e) {e}
+(8, -12) node (7) {$\alpha$}
+(2, -14) node (f) {f}
+(8, -14) node (8) {$\eta$}
+(10, -7) node (F) {F};
+\draw[->] (S) -- (a);
+\draw[->] (S) -- (g);
+\draw[->] (S) -- (h);
+\draw[->] (S) -- (b);
+\draw[->] (S) -- (c);
+\draw[->] (S) -- (d);
+\draw[->] (S) -- (e);
+\draw[->] (S) -- (f);
+
+\draw[<-] (F) -- (1);
+\draw[<-] (F) -- (2);
+\draw[<-] (F) -- (3);
+\draw[<-] (F) -- (4);
+\draw[<-] (F) -- (5);
+\draw[<-] (F) -- (6);
+\draw[<-] (F) -- (7);
+\draw[<-] (F) -- (8);
+
+\draw[->] (a) -- (1);
+\draw[->] (a) -- (2);
+\draw[->] (a) -- (3);
+\draw[->] (g) -- (1);
+\draw[->] (g) -- (2);
+\draw[->] (h) -- (1);
+\draw[->] (b) -- (4);
+\draw[->] (b) -- (5);
+\draw[->] (c) -- (5);
+\draw[->] (d) -- (2);
+\draw[->] (d) -- (5);
+\draw[->] (d) -- (6);
+\draw[->] (e) -- (4);
+\draw[->] (e) -- (7);
+\draw[->] (e) -- (8);
+\draw[->] (f) -- (6);
+}
+\end{center} $ $\\
+Пройденные пути:\\
+\{S, a, $\gamma$, F\}, \{S, g, $\delta$, F\}, \{S, h, $\gamma$, a, $\varepsilon$, F\}, \{S, b, $\beta$, F\}, \{S, c, $\theta$, F\}, \{S, d, $\zeta$, F\}, \{S, e, $\alpha$, F\}\\
+Граф после применения алгоритма:
+\begin{center}
+% \usetikzlibrary{graphs,automata,positioning}
+\tikz {
+        \path
+(0, -7) node (S) {S}
+(2, 0) node (a) {a}
+(8, 0) node (1) {$\gamma$}
+(2, -2) node (g) {g}
+(8, -2) node (2) {$\delta$}
+(2, -4) node (h) {h}
+(8, -4) node (3) {$\varepsilon$}
+(2, -6) node (b) {b}
+(8, -6) node (4) {$\beta$}
+(2, -8) node (c) {c}
+(8, -8) node (5) {$\theta$}
+(2, -10) node (d) {d}
+(8, -10) node (6) {$\zeta$}
+(2, -12) node (e) {e}
+(8, -12) node (7) {$\alpha$}
+(2, -14) node (f) {f}
+(8, -14) node (8) {$\eta$}
+(10, -7) node (F) {F};
+
+\draw[<-] (S) -- (f);
+\draw[<-] (F) -- (8);
+
+\draw[->] (a) -- (1);
+\draw[->] (a) -- (2);
+\draw[<-, red] (a) -- (3);
+\draw[->] (g) -- (1);
+\draw[<-, red] (g) -- (2);
+\draw[<-, red] (h) -- (1);
+\draw[<-, red] (b) -- (4);
+\draw[->] (b) -- (5);
+\draw[<-, red] (c) -- (5);
+\draw[->] (d) -- (2);
+\draw[->] (d) -- (5);
+\draw[<-, red] (d) -- (6);
+\draw[->] (e) -- (4);
+\draw[<-, red] (e) -- (7);
+\draw[->] (e) -- (8);
+\draw[->] (f) -- (6);
+}
+\end{center} $ $\\
+\textbf{Ответ:}\ $\tilde{E} = \{a\varepsilon,  g\delta,  h\gamma,  b\beta,  c\theta,  d\zeta,  e\alpha\}$
+\end{proof}
