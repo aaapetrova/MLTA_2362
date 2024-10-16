@@ -1,0 +1,232 @@
+\problemset{Математическая логика и теория алгоритмов}
+\problemset{Индивидуальное домашнее задание №1}	% поменяйте номер ИДЗ
+
+\renewcommand*{\proofname}{Решение}
+
+$ $\\
+Дана функция \(f(x,y,z)=(xyz) \lor ((y \lor x) \oplus (x \oplus z))\)
+$ $\\
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №1 %%%%%%%%%%%%%%
+%% Условие задания №1
+\begin{problem}
+    Постройте таблицу истинности (далее ТИ) для f(x,y,z)
+\end{problem}
+
+%% Решение задания №1
+\begin{proof} $ $\\
+    \begin{tabular}{ccc|c}
+        x & y & z & f \\
+        \hline
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 1 \\
+        0 & 1 & 0 & 1 \\
+        0 & 1 & 1 & 0 \\
+        1 & 0 & 0 & 0 \\
+        1 & 0 & 1 & 1 \\
+        1 & 1 & 0 & 0 \\
+        1 & 1 & 1 & 1 \\
+    \end{tabular}
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №2 %%%%%%%%%%%%%%
+%% Условие задания №2
+\begin{problem}
+    Постройте для композиции f(y, xy, $x \lor y$) ТИ и формулу, сделав подстановку в исходную и упростив её помощью алгебраических преобразований (далее АП) до ДНФ. Убедитесь, что ответы совпадают.
+\end{problem}
+
+%% Решение задания №2
+\begin{proof} $ $\\
+    \begin{tabular}{ccc|c|c}
+        x & y & z & f(y, xy, $x \lor y$) & $y \lor x \bar{y}$\\
+        \hline
+        0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 & 0 \\
+        0 & 1 & 0 & 1 & 1 \\
+        0 & 1 & 1 & 1 & 1 \\
+        1 & 0 & 0 & 1 & 1 \\
+        1 & 0 & 1 & 1 & 1 \\
+        1 & 1 & 0 & 1 & 1 \\
+        1 & 1 & 1 & 1 & 1 \\
+    \end{tabular}\\\\
+    $f(y,xy,x \lor y)=(y(xy)(x \lor y) \lor ((xy \lor y) \oplus (y \oplus (x \lor y))) = xy \lor (y \oplus (y(x \lor y) \lor \bar{x}  \bar{y})) = xy \lor (y \oplus (y \lor \bar{x}  \bar{y}))=xy \lor (y \lor \bar{y} (x \lor y))=xy \lor y \lor x \bar{y} = y \lor x \bar{y}$
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №3 %%%%%%%%%%%%%%
+%% Условие задания №3
+\begin{problem}
+    Постройте СДНФ для f(x, y, z) двумя способами: при помощи ТИ и при помощи АП исходной формулы.
+\end{problem}
+
+%% Решение задания №3
+\begin{proof} $ $\\
+    \begin{tabular}{ccc|c}
+        x & y & z & f \\
+        \hline
+        0 & 0 & 0 & 0 \\
+        \textcolor{red}0 & \textcolor{red}0 & 
+        \textcolor{red}1 & \textcolor{red}1 \\
+        \textcolor{red}0 & \textcolor{red}1 & 
+        \textcolor{red}0 & \textcolor{red}1 \\
+        0 & 1 & 1 & 0 \\
+        1 & 0 & 0 & 0 \\
+        \textcolor{red}1 & \textcolor{red}0 & 
+        \textcolor{red}1 & \textcolor{red}1 \\
+        1 & 1 & 0 & 0 \\
+        \textcolor{red}1 & \textcolor{red}1 & 
+        \textcolor{red}1 & \textcolor{red}1 \\
+    \end{tabular}
+    СДНФ: $f = \bar{x} \bar{y} z \lor \bar{x} y \bar{z} \lor x \bar{y} z \lor xyz$\\\\
+    $f = xyz \lor ((y \lor x) \oplus (x \oplus z)) = xyz \lor ((y \lor x) \oplus (x \bar{z} \lor \bar{x} z)) = xyz \lor ((x \lor y)(x \lor \bar{z})(\bar{x} \lor z) \lor \bar{x} \bar{y} (x \bar{z} \lor \bar{x} z)) = xyz \lor (xz \lor \bar{x} y \bar{z} \lor xyz \lor \bar{x} \bar{y} z) = xz \lor \bar{x} y \bar{z} \lor \bar{x} \bar{y} z = xyz \lor x \bar{y} z \lor \bar{x} y \bar{z} \lor \bar{x} \bar{y} z$
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №4 %%%%%%%%%%%%%%
+%% Условие задания №4
+\begin{problem}
+    Постройте минимальную ДНФ для f(x, y, z) двумя способами, один из которых — методом минимизирующих карт.
+\end{problem}
+
+%% Решение задания №4
+\begin{proof} $ $\\\\
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline$ \alpha_1$ & $\alpha_2$ & $\alpha_3$ & $x^{\alpha_1}$ & $y^{\alpha_2}$ & $z^{\alpha_3}$ & $x^{\alpha_1} y^{\alpha_2}$ & $x^{\alpha_1} z^{\alpha_3}$ & $y^{\alpha_2} z^{\alpha_3}$ & $x^{\alpha_1} y^{\alpha_2} z^{\alpha_3}$ \\
+        \hline \rowcolor{red!50} 0 & 0 & 0 & $\bar{x}$ & $\bar{y}$ & $\bar{z}$ & $\bar{x} \bar{y}$ & $\bar{x} \bar{z}$ & $\bar{y} \bar{z}$ & $\bar{x} \bar{y} \bar{z}$ \\
+        \hline 0 & 0 & 1 & \cellcolor{red!50} $\bar{x}$ & \cellcolor{red!50} $\bar{y}$ & \cellcolor{red!50} $z$ & \cellcolor{red!50} $\bar{x} \bar{y}$ & \cellcolor{red!50} $\bar{x} z$ & $\bar{y} z$ & \cellcolor{green!50} $\bar{x} \bar{y} z$ \\
+        \hline 0 & 1 & 0 & \cellcolor{red!50} $\bar{x}$ & \cellcolor{red!50} $y$ & \cellcolor{red!50} $\bar{z}$ & \cellcolor{red!50} $\bar{x} y$ & \cellcolor{red!50} $\bar{x} \bar{z}$ & \cellcolor{red!50} $y \bar{z}$ & \cellcolor{green!50} $\bar{x} y \bar{z}$ \\
+        \hline \rowcolor{red!50} 0 & 1 & 1 & $\bar{x}$ & $y$ & $z$ & $\bar{x} y$ & $\bar{x} z$ & $y z$ & $\bar{x} y z$ \\
+        \hline \rowcolor{red!50} 1 & 0 & 0 & $x$ & $\bar{y}$ & $\bar{z}$ & $x \bar{y}$ & $x \bar{z}$ & $\bar{y} \bar{z}$ & $x \bar{y} \bar{z}$ \\
+        \hline 1 & 0 & 1 & \cellcolor{red!50} $x$ & \cellcolor{red!50} $\bar{y}$ & \cellcolor{red!50} $z$ & \cellcolor{red!50} $x \bar{y}$ & $x z$ & $\bar{y} z$ & \cellcolor{green!50} $x \bar{y} z$ \\
+        \hline \rowcolor{red!50} 1 & 1 & 0 & $x$ & $y$ & $\bar{z}$ & $x y$ & $x \bar{z}$ & $y \bar{z}$ & $x y \bar{z}$ \\
+        \hline 1 & 1 & 1 & \cellcolor{red!50} $x$ & \cellcolor{red!50} $y$ & \cellcolor{red!50} $z$ & \cellcolor{red!50} $x y$ & $x z$ & \cellcolor{red!50} $y z$ & \cellcolor{green!50} $x y z$ \\
+        \hline
+    \end{tabular}\\\\
+
+    \begin{tabular}{ |c|c|c|c|c| }
+        \hline
+        \diagbox{x}{yz} & 00 & 01 & 11 & 10 \\
+        \hline
+        0 & 0 & \textbf{1} & 0 & 1 \\
+        \hline
+        1 & 0 & \underline{\textbf{1}} & \underline{1} & 0\\
+        \hline
+    \end{tabular}\\\\
+
+    $f = xz \lor \bar{y} z$
+
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №5 %%%%%%%%%%%%%%
+%% Условие задания №5
+\begin{problem}
+     Постройте СКНФ для f(x, y, z) двумя способами: при помощи ТИ и при помощи АП исходной формулы.
+\end{problem}
+
+%% Решение задания №5
+\begin{proof} $ $\\
+    \begin{tabular}{ccc|c}
+        x & y & z & f \\
+        \hline
+        \textcolor{red}0 & \textcolor{red}0 & \textcolor{red}0 & \textcolor{red}0 \\
+        0 & 0 & 1 & 1 \\
+        0 & 1 & 0 & 1 \\
+        \textcolor{red}0 & \textcolor{red}1 & \textcolor{red}1 & \textcolor{red}0 \\
+        \textcolor{red}1 & \textcolor{red}0 & \textcolor{red}0 & \textcolor{red}0 \\
+        1 & 0 & 1 & 1 \\
+        \textcolor{red}1 & \textcolor{red}1 & \textcolor{red}0 & \textcolor{red}0 \\
+        1 & 1 & 1 & 1 \\
+    \end{tabular}
+    СКНФ: $f = (x \lor y \lor z)(x \lor \bar{y} \lor \bar{z})(\bar{x} \lor y \lor z)(\bar{x} \lor \bar{y} \lor z)$\\\\
+    $=xyz \lor ((x \lor y) \oplus (x \oplus z))=(x \lor y) \oplus (x \oplus z \lor xyz) \oplus xyz=(x \lor y) \oplus x \oplus z=xy \oplus x \oplus y \oplus x \oplus z=\bar{x} y \oplus z=(\bar{x} y \lor z)(x \lor \bar{y} \lor \bar{z})=(x \lor y \lor z)(x \lor \bar{y} \lor \bar{z})(\bar{x} \lor y \lor z)(\bar{x} \lor \bar{y} \lor z)$
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №6 %%%%%%%%%%%%%%
+%% Условие задания №6
+\begin{problem}
+     Постройте полином Жегалкина для f(x, y, z) двумя способами: методом неопределенных коэффициентов и при помощи АП исходной формулы.
+\end{problem}
+
+%% Решение задания №6
+\begin{proof} $ $\\\\
+    $\left\{\begin{array}{l}f(0,0,0)=\alpha_0=0 \\ f(0,0,1)=\alpha_0 \oplus \alpha_3=1 \\ f(0,1,0)=\alpha_0 \oplus \alpha_2=1 \\ f(0,1,1)=\alpha_0 \oplus \alpha_2 \oplus \alpha_3 \oplus \alpha_{23}=0 \\ f(1,0,0)=\alpha_0 \oplus \alpha_1=0 \\ f(1,0,1)=\alpha_0 \oplus \alpha_1 \oplus \alpha_3 \oplus \alpha_{13}=1 \\ f(1,1,0)=\alpha_0 \oplus \alpha_1 \oplus \alpha_2 \oplus \alpha_{12}=0 \\ f(1,1,1)=\alpha_0 \oplus \alpha_1 \oplus \alpha_2 \oplus \alpha_3 \oplus \alpha_{12} \oplus \alpha_{13} \oplus \alpha_{23} \oplus \alpha_{123}=1\end{array}\right.$\\\\
+    $\left\{\begin{array}{l}\alpha_0=0 \\ \alpha_1=0 \\ \alpha_2=1 \\ \alpha_3=1 \\ \alpha_{12}=1 \\ \alpha_{13}=0 \\ \alpha_{23}=0 \\ \alpha_{123}=0\end{array}\right.$\\\\\\
+    $f=xyz \lor ((x \lor y) \oplus (x \oplus z))=(x \lor y) \oplus (x \oplus z \lor xyz) \oplus xyz=(x \lor y) \oplus x \oplus z=xy \oplus x \oplus y \oplus x \oplus z=y \oplus z \oplus xy$
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №7 %%%%%%%%%%%%%%
+%% Условие задания №7
+\begin{problem}
+     Постройте ТИ для $f^*(x,y,z)$.
+\end{problem}
+
+%% Решение задания №7
+\begin{proof} $ $\\
+    \begin{tabular}{ccc|c}
+        x & y & z & $f^*$ \\
+        \hline
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 1 \\
+        0 & 1 & 0 & 0 \\
+        0 & 1 & 1 & 1 \\
+        1 & 0 & 0 & 1 \\
+        1 & 0 & 1 & 0 \\
+        1 & 1 & 0 & 0 \\
+        1 & 1 & 1 & 1 \\
+    \end{tabular}\\
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №8 %%%%%%%%%%%%%%
+%% Условие задания №8
+\begin{problem}
+     Постройте полином Жегалкина для $f^*(x,y,z)$ любым способом.
+\end{problem}
+
+%% Решение задания №8
+\begin{proof} $ $ \\\\
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline $\mathbf{x}$ & $\mathbf{y}$ & $\mathbf{z}$ & $f^*$ & полином Жегалкина \\
+        \hline 0 & 0 & 0 & 0 & - \\
+        \hline 0 & 0 & 1 & \cellcolor{green!15} 1 & $(x \oplus 1)(y \oplus 1) z$ \\
+        \hline 0 & 1 & 0 & 0 & - \\
+        \hline 0 & 1 & 1 & \cellcolor{green!15} 1 & $(x \oplus 1)yz$ \\
+        \hline 1 & 0 & 0 & \cellcolor{green!15} 1 & $x(y \oplus 1)(z \oplus 1)$ \\
+        \hline 1 & 0 & 1 & 0 & - \\
+        \hline 1 & 1 & 0 & 0 & - \\
+        \hline 1 & 1 & 1 & \cellcolor{green!15} 1 & $xyz$ \\
+        \hline
+    \end{tabular}\\\\
+    $f=(x \oplus 1)(y \oplus 1)z \oplus (x \oplus 1)yz \oplus x(y \oplus 1)(z \oplus 1) \oplus xyz=x \oplus z \oplus xy$
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №9 %%%%%%%%%%%%%%
+%% Условие задания №9
+\begin{problem}
+     Проверьте полноту системы булевых функций f(x, y, z) и $\bar{f}(x,y,z)$.
+\end{problem}
+
+%% Решение задания №9
+\begin{proof} $ $\\\\
+    \begin{tabular}{l|l|c|c|c|c} 
+        & $T_0$ & $T_1$ & $L$ & $M$ & $S$ \\
+        \hline
+        $f(x, y, z)$ & $\checkmark$ & $\checkmark$ & $\times$ & $\times$ & $\times$ \\
+        
+        $\bar{f}(x, y, z)$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$
+    \end{tabular}
+    $\Rightarrow$ $f$ и $\bar{f}$ образуют полный набор функций согласно теореме Поста
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №10 %%%%%%%%%%%%%%
+%% Условие задания №10
+\begin{problem}
+    Выразите при помощи композиции функций из предыдущего пункта: 1,0, $\bar{x}$, ху.
+\end{problem}
+
+%% Решение задания №10
+\begin{proof} $ $\\
+    \begin{itemize}
+        \item $f \notin S \Leftrightarrow \exists \alpha, \overline{\alpha} \in \mathbb{B}^3: f(\alpha) = f(\overline{\alpha})$\\
+        $f(0, 0, 1) = f(1, 0, 0) = 1 \Rightarrow f(x, x, \overline{x}) = 1;$ $\overline{f}(x, x, \overline{x}) = 0$
+        \item $\overline{x} = \overline{f}(x, x, x)$, т.к. $\overline{f}(0,0,0) = 1$ и $\overline{f}(1, 1, 1) = 0 $
+        \item $f(x, y, z) = y \oplus z \oplus xy \Rightarrow f(x, y, y) = y \oplus y \oplus xy = xy$
+    \end{itemize}
+\end{proof}
