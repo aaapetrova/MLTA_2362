@@ -1,0 +1,398 @@
+\problemset{Математическая логика и теория алгоритмов}
+\problemset{Индивидуальное домашнее задание №1}	% поменяйте номер ИДЗ
+
+\renewcommand*{\proofname}{Решение}
+Дана функция $f(x, y, z) = ((y \oplus z) \vee x)((x \oplus z) \vee xy).$
+\begin{problem}
+Построить таблицу истинности для $f(x, y, z)$
+\end{problem}
+\begin{proof} $ $\\
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \hline
+    x & y & z & $y \oplus z$ & $(y \oplus z) \vee x$ & $x \oplus z$ & $xy$ & $(x \oplus z) \vee xy$ & f \\
+    \hline
+    0 & 0 & 0   & 0 & 0 & 0 & 0 & 0 & 0\\
+    0 & 0 & 1   & 1 & 1 & 1 & 0 & 1 & 1\\
+    0 & 1 & 0   & 1 & 1 & 0 & 0 & 0 & 0\\
+    0 & 1 & 1   & 0 & 0 & 1 & 0 & 1 & 0\\
+    1 & 0 & 0   & 0 & 1 & 1 & 0 & 1 & 1\\
+    1 & 0 & 1   & 1 & 1 & 0 & 0 & 0 & 0\\
+    1 & 1 & 0   & 1 & 1 & 1 & 1 & 1 & 1\\
+    1 & 1 & 1   & 0 & 1 & 0 & 1 & 1 & 1\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table} 
+\end{proof}
+
+\begin{problem}
+Построить таблицу истинности для $f(x, xy, x \vee y)$ и формулу, упростив ее до ДНФ
+\end{problem}
+\begin{proof} $ $\\
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \hline
+    x & y & z & $xy \oplus (x \vee y)$ & $(xy \oplus (x \vee y)) \vee x$ & $x \oplus (x \vee y)$ & $xy$ & $(x \oplus (x \vee y)) \vee xy$ & f \\
+    \hline
+    0 & 0 & 0   & 0 & 0 & 0 & 0 & 0 & 0\\
+    0 & 0 & 1   & 0 & 0 & 0 & 0 & 0 & 0\\
+    0 & 1 & 0   & 1 & 1 & 1 & 0 & 1 & 1\\
+    0 & 1 & 1   & 1 & 1 & 1 & 0 & 1 & 1\\
+    1 & 0 & 0   & 1 & 1 & 0 & 0 & 0 & 0\\
+    1 & 0 & 1   & 1 & 1 & 0 & 0 & 0 & 0\\
+    1 & 1 & 0   & 0 & 1 & 0 & 1 & 1 & 1\\
+    1 & 1 & 1   & 0 & 1 & 0 & 1 & 1 & 1\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}
+    $ $\\
+    $f(x, xy, x \vee y) = ((xy \oplus (x \vee y)) \vee x)((x \oplus (x \vee y)) \vee xy) = *$\\\\
+    $(xy \oplus (x \vee y)) \vee x = (\overline{xy}(x \vee y) \vee xy\overline{(x \vee y)}) \vee x = ((\overline{x} \vee \overline{y})(x \vee y) \vee xy\bar{x}\bar{y})\vee x = (\bar{y}x \vee \bar{x}y) \vee x = x \vee \bar{x}y $\\\\
+    $(\bar{x}(x \vee y) \vee x\overline{(x \vee y)}) \vee xy = \bar{x}y \vee xy = y$\\\\
+    $* = (x \vee \bar{x}y)y = xy \vee \bar{x}y = y(x \vee \bar{x}) = y$
+\end{proof}
+
+\begin{problem}
+Построить СДНФ для $f(x, y, z)$ с помощью ТИ и АП.
+\end{problem}
+\begin{proof} $ $\\
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    x & y & z & f \\
+    \hline
+    0 & 0 & 0   & 0\\
+    0 & 0 & 1   & 1\\
+    0 & 1 & 0   & 0\\
+    0 & 1 & 1   & 0\\
+    1 & 0 & 0   & 1\\
+    1 & 0 & 1   & 0\\
+    1 & 1 & 0   & 1\\
+    1 & 1 & 1   & 1\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}
+    $ $\\
+    Из ТИ выбираем строки, где f = 1, т.е. 2, 5, 7 и 8 строки.\\\\
+    $f(x, y, z) = \bar{x}\bar{y}z \vee x\bar{y}\bar{z} \vee xy\bar{z} \vee xyz$\\\\
+    С помощью АП:\\\\
+    $f(x, y, z) = ((y \oplus z) \vee x)((x \oplus z) \vee xy) = (\bar{y}z \vee y\bar{z} \vee x)(\bar{x}z \vee x\bar{z} \vee xy) = \bar{x}\bar{y}z \vee xy\bar{z} \vee x\bar{z} \vee xy = \bar{x}\bar{y}z \vee xy\bar{z} \vee x\bar{y}\bar{z} \vee xyz$
+\end{proof}
+
+\begin{problem}
+Построить минимальную ДНФ для $f(x, y, z)$ двумя способами, один из которых это метод минимизирующих карт.
+\end{problem}
+\begin{proof} $ $\\
+    Метод минимизирующих карт:\\\\
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    $\bar{x}$ & $\bar{y}$ & $\bar{z}$ & $\bar{x}\bar{y}$ & $\bar{x}\bar{z}$ & $\bar{y}\bar{z}$ & $\bar{x}\bar{y}\bar{z}$\\
+    \hline
+    $\bar{x}$ & $\bar{y}$ & $z$ & $\bar{x}\bar{y}$ & $\bar{x}z$ & $\bar{y}z$ & $\bar{x}\bar{y}z$\\
+    \hline
+    $\bar{x}$ & $y$ & $\bar{z}$ & $\bar{x}y$ & $\bar{x}\bar{z}$ & $y\bar{z}$ & $\bar{x}y\bar{z}$\\
+    \hline
+    $\bar{x}$ & $y$ & $z$ & $\bar{x}y$ & $\bar{x}z$ & $yz$ & $\bar{x}yz$\\
+    \hline
+    $x$ & $\bar{y}$ & $\bar{z}$ & $x\bar{y}$ & $x\bar{z}$ & $\bar{y}\bar{z}$ & $x\bar{y}\bar{z}$\\
+    \hline
+    $x$ & $\bar{y}$ & $z$ & $x\bar{y}$ & $xz$ & $\bar{y}z$ & $x\bar{y}z$\\
+    \hline
+    $x$ & $y$ & $\bar{z}$ & $xy$ & $x\bar{z}$ & $y\bar{z}$ & $xy\bar{z}$\\
+    \hline
+    $x$ & $y$ & $z$ & $xy$ & $xz$ & $yz$ & $xyz$\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}
+    $ $\\
+    Вычеркнем строки, в которых f = 0\\\\
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \cancel{$\bar{x}$} & \cancel{$\bar{y}$} & \cancel{$\bar{z}$} & \cancel{$\bar{x}\bar{y}$} & \cancel{$\bar{x}\bar{z}$} & \cancel{$\bar{y}\bar{z}$} & \cancel{$\bar{x}\bar{y}\bar{z}$}\\
+    \hline
+    $\bar{x}$ & $\bar{y}$ & $z$ & $\bar{x}\bar{y}$ & $\bar{x}z$ & $\bar{y}z$ & $\bar{x}\bar{y}z$\\
+    \hline
+    \cancel{$\bar{x}$} & \cancel{$y$} & \cancel{$\bar{z}$} & \cancel{$\bar{x}y$} & \cancel{$\bar{x}\bar{z}$} & \cancel{$y\bar{z}$} & \cancel{$\bar{x}y\bar{z}$}\\
+    \hline
+    \cancel{$\bar{x}$} & \cancel{$y$} & \cancel{$z$} & \cancel{$\bar{x}y$} & \cancel{$\bar{x}z$} & \cancel{$yz$} & \cancel{$\bar{x}yz$}\\
+    \hline
+    $x$ & $\bar{y}$ & $\bar{z}$ & $x\bar{y}$ & $x\bar{z}$ & $\bar{y}\bar{z}$ & $x\bar{y}\bar{z}$\\
+    \hline
+    \cancel{$x$} & \cancel{$\bar{y}$} & \cancel{$z$} & \cancel{$x\bar{y}$} & \cancel{$xz$} & \cancel{$\bar{y}z$} & \cancel{$x\bar{y}z$}\\
+    \hline
+    $x$ & $y$ & $\bar{z}$ & $xy$ & $x\bar{z}$ & $y\bar{z}$ & $xy\bar{z}$\\
+    \hline
+    $x$ & $y$ & $z$ & $xy$ & $xz$ & $yz$ & $xyz$\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}
+
+    $ $\\
+    Вычеркнем значения, которые уже были вычеркнуты ранее и из оставшихся, в каждой строке, выберем минимальное.\\\\
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    
+    \hline
+    \cancel{$\bar{x}$} & \cancel{$\bar{y}$} & \cancel{$\bar{z}$} & \cancel{$\bar{x}\bar{y}$} & \cancel{$\bar{x}\bar{z}$} & \cancel{$\bar{y}\bar{z}$} & \cancel{$\bar{x}\bar{y}\bar{z}$}\\
+    
+    \hline
+    \cancel{$\bar{x}$} & \cancel{$\bar{y}$} & \cancel{$z$} & \cancel{$\bar{x}\bar{y}$} & \cancel{$\bar{x}z$} & \cancel{$\bar{y}z$} & $\mathbf{\bar{x}\bar{y}z}$\\
+    
+    \hline
+    \cancel{$\bar{x}$} & \cancel{$y$} & \cancel{$\bar{z}$} & \cancel{$\bar{x}y$} & \cancel{$\bar{x}\bar{z}$} & \cancel{$y\bar{z}$} & \cancel{$\bar{x}y\bar{z}$}\\
+    
+    \hline
+    \cancel{$\bar{x}$} & \cancel{$y$} & \cancel{$z$} & \cancel{$\bar{x}y$} & \cancel{$\bar{x}z$} & \cancel{$yz$} & \cancel{$\bar{x}yz$}\\
+    
+    \hline
+    \cancel{$x$} & \cancel{$\bar{y}$} & \cancel{$\bar{z}$} & \cancel{$x\bar{y}$} & $x\bar{z}$ & \cancel{$\bar{y}\bar{z}$} & $x\bar{y}\bar{z}$\\
+    
+    \hline
+    \cancel{$x$} & \cancel{$\bar{y}$} & \cancel{$z$} & \cancel{$x\bar{y}$} & \cancel{$xz$} & \cancel{$\bar{y}z$} & \cancel{$x\bar{y}z$}\\
+    
+    \hline
+    \cancel{$x$} & \cancel{$y$} & \cancel{$\bar{z}$} & $xy$ & $\mathbf{x\bar{z}}$ & \cancel{$y\bar{z}$} & $xy\bar{z}$\\
+    
+    \hline
+    \cancel{$x$} & \cancel{$y$} & \cancel{$z$} & $\mathbf{xy}$ & \cancel{$xz$} & \cancel{$yz$} & $xyz$\\
+    
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}$ $\\
+    Мин. ДНФ: $f(x, y, z) = xy \vee x\bar{z} \vee \bar{x}\bar{y}z$
+
+    $ $\\
+    Метод карт Карно:\\
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+         \backslashbox{x}{yz} & 00 & 01 & 11 & 10 \\
+    \hline
+         0 & 0 & 1 & 0 & 0\\
+    \hline
+        1 & 1 & 0 & \cellcolor{red} 1 & \cellcolor{red} 1\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}
+    Конъюнкция: $xy$\\
+    
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+         \backslashbox{x}{yz} & 00 & 01 & 11 & 10 \\
+    \hline
+         0 & 0 & 1 & 0 & 0\\
+    \hline
+        1 & \cellcolor{red} 1 & 0 & 1 & \cellcolor{red} 1\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}
+    Конъюнкция: $x\bar{z}$\\
+
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+         \backslashbox{x}{yz} & 00 & 01 & 11 & 10 \\
+    \hline
+         0 & 0 & \cellcolor{red} 1 & 0 & 0\\
+    \hline
+        1 & 1 & 0 & 1 & 1\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}
+    Конъюнкция: $\bar{x}\bar{y}z$\\\\
+    Мин. ДНФ: $f(x, y, z) = xy \vee x\bar{z} \vee \bar{x}\bar{y}z$
+\end{proof}
+
+\begin{problem}
+Построить СКНФ для $f(x, y, z)$ при помощи ТИ и АП исходной фуормулы.
+\end{problem}
+\begin{proof} $ $\\
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    x & y & z & f \\
+    \hline
+    0 & 0 & 0   & 0\\
+    0 & 0 & 1   & 1\\
+    0 & 1 & 0   & 0\\
+    0 & 1 & 1   & 0\\
+    1 & 0 & 0   & 1\\
+    1 & 0 & 1   & 0\\
+    1 & 1 & 0   & 1\\
+    1 & 1 & 1   & 1\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}
+    $ $\\
+    Из ТИ выбираем строки, где f = 0, т.е. 1, 3, 4 и 6 строки.\\\\
+    $f(x, y, z) = (x \vee y \vee z)(x \vee \bar{y} \vee z)(x \vee \bar{y} \vee \bar{z})(\bar{x} \vee y \vee \bar{z})$\\\\
+    С помощью АП:\\\\
+    $f(x, y, z) = ((y \oplus z) \vee x)((x \oplus z) \vee xy) = (\bar{y}z \vee y\bar{z} \vee x)(\bar{x}z \vee x\bar{z} \vee xy) = (x \vee y \vee z)(x \vee \bar{y} \vee \bar{z})(\bar{x} \vee y \vee \bar{z})(x \vee z) = (x \vee y \vee z)(x \vee \bar{y} \vee \bar{z})(\bar{x} \vee y \vee \bar{z})(x \vee \bar{y} \vee z)$
+\end{proof}
+
+\begin{problem}
+Построить полином Жегалкина для $f(x, y, z)$ методом неопеределенных коэффициентов и при помощи АП исходной форумулы.
+\end{problem}
+\begin{proof} $ $\\
+    Методом неопределённых коэффициентов:
+    $P_f = a_0 \oplus a_1x \oplus a_2y \oplus a_3z \oplus a_{12}xy \oplus a_{13}xz \oplus a_{23}yz \oplus a_{123}xyz$\\
+    $a_0 = 0$\\
+    $a_1 = 0 \oplus 1 = 1$\\
+    $a_2 = 0 \oplus 0 = 0$\\
+    $a_3 = 0 \oplus 1 = 1$\\
+    $a_{12} = 0 \oplus 1 \oplus 0 \oplus 1 = 0$\\
+    $a_{13} = 0 \oplus 1 \oplus 1 \oplus 0 = 0$\\
+    $a_{23} = 0 \oplus 0 \oplus 1 \oplus 0 = 1$\\
+    $a_{123} = 0 \oplus 1 \oplus 0 \oplus 1 \oplus 0 \oplus 0 \oplus 1 \oplus 1 = 0$\\
+    $P_f = x \oplus z \oplus yz$
+    $ $\\\\
+    При помощи АП:\\
+    $f(x, y, z) = ((y \oplus z) \vee x)((x \oplus z) \vee xy) = 
+    ((y \oplus z)x \oplus x \oplus (y \oplus z))((x \oplus z)xy \oplus (x \oplus z) \oplus xy) =$\\ 
+    $= (yx \oplus zx \oplus x \oplus y \oplus z)(xy \oplus xyz \oplus x \oplus z \oplus xy) =$\\
+    $= xy \oplus xyz \oplus xy \oplus xyz \oplus xy \oplus xyz \oplus xyz \oplus xz \oplus xz \oplus xyz \oplus xy \oplus xyz \oplus x \oplus xz \oplus xy \oplus xy \oplus xyz \oplus xy \oplus yz \oplus xy \oplus xyz \oplus xyz \oplus xz \oplus z \oplus xyz = x \oplus z \oplus yz$
+\end{proof}
+
+\begin{problem}
+Построить таблицу истинности для  $f^*(x, y, z)$.
+\end{problem}
+\begin{proof} $ $\\
+    $f(x, y, z) = ((y \oplus z) \vee x)((x \oplus z) \vee xy)$\\
+    $f^*(x, y, z) = (y \Leftrightarrow z)x \vee (x \Leftrightarrow z) \wedge (x \vee y)$\\
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    x & y & z & f & $f^*$\\
+    \hline
+    0 & 0 & 0   & 0 & 0\\
+    0 & 0 & 1   & 1 & 0\\
+    0 & 1 & 0   & 0 & 1\\
+    0 & 1 & 1   & 0 & 0\\
+    1 & 0 & 0   & 1 & 1\\
+    1 & 0 & 1   & 0 & 1\\
+    1 & 1 & 0   & 1 & 0\\
+    1 & 1 & 1   & 1 & 1\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}
+\end{proof}
+
+\begin{problem}
+Построить полином Жегалкина для $f^*(x, y, z)$.
+\end{problem}
+\begin{proof} $ $\\
+    $f^*(x, y, z) = (y \Leftrightarrow z)x \vee (x \Leftrightarrow z) \wedge (x \vee y)$\\
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    x & y & z & $f^*$\\
+    \hline
+    0 & 0 & 0    & 0\\
+    0 & 0 & 1    & 0\\
+    0 & 1 & 0    & 1\\
+    0 & 1 & 1    & 0\\
+    1 & 0 & 0    & 1\\
+    1 & 0 & 1    & 1\\
+    1 & 1 & 0    & 0\\
+    1 & 1 & 1    & 1\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table} $ $\\
+    $a_0 = 0$\\
+    $a_1 = 0 \oplus 1 = 1$\\
+    $a_2 = 0 \oplus 1 = 1$\\
+    $a_3 = 0 \oplus 0 = 0$\\
+    $a_{12} = 0 \oplus 1 \oplus 1 \oplus 0 = 0$\\
+    $a_{13} = 0 \oplus 1 \oplus 0 \oplus 1 = 0$\\
+    $a_{23} = 0 \oplus 1 \oplus 0 \oplus 0 = 1$\\
+    $a_{123} = 0 \oplus 1 \oplus 1 \oplus 0 \oplus 0 \oplus 0 \oplus 1 \oplus 1 = 0$\\
+    $P_{f^*} = x \oplus y \oplus yz$
+\end{proof}
+
+\begin{problem}
+Проверить полноту системы булевых функций  $f(x, y, z) и \bar{f}(x, y, z)$.
+\end{problem}
+\begin{proof} $ $\\
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    x & y & z & $f$ & $\overline{f}$\\
+    \hline
+    0 & 0 & 0   & 0 & 1\\
+    0 & 0 & 1   & 1 & 0\\
+    0 & 1 & 0   & 0 & 1\\
+    0 & 1 & 1   & 0 & 1\\
+    1 & 0 & 0   & 1 & 0\\
+    1 & 0 & 1   & 0 & 1\\
+    1 & 1 & 0   & 1 & 0\\
+    1 & 1 & 1   & 1 & 0\\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}
+
+    \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    & $f$ & $\overline{f}$\\
+    \hline
+    $T_0$ & + & -\\
+    $T_1$ & + & -\\
+    L & - & -   \\
+    S & - & -   \\
+    M & - & -   \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{table}
+    
+    \begin{itemize}
+    \item $f$ и $\overline{f}$ не линейны, т.к. $deg(P_f) > 1$ и $deg(P_{\overline{f}}) > 1$
+    \item $f$ и $\overline{f}$ не самодвойственны, т.к. столбцы их значений не кососимметричны
+    \item $f$ не монотонна, т.к. $f(0, 1, 1) = 0 < f(0, 0, 1) = 1$
+    \item $\overline{f}$ не монотонна, т.к. $f(1, 1, 1) = 0 < f(0, 0, 0) = 1$
+    \end{itemize}
+    $ $\\
+    Система является полной
+\end{proof}
+
+\begin{problem}
+Выразить при помощи композиции функций из предыдущего пункта: 1, 0, $\overline{x}, xy$.
+\end{problem}
+\begin{proof} $ $\\
+    \begin{itemize}
+        \item $f \notin S \Leftrightarrow \exists \alpha, \overline{\alpha} \in \mathbb{B}^3: f(\alpha) = f(\overline{\alpha})$\\
+        $f(0, 0, 1) = f(1, 0, 0) = 1 \Rightarrow f(x, x, \overline{x}) = 1;$ $\overline{f}(x, x, \overline{x}) = 0$
+        \item $\overline{x} = \overline{f}(x, x, x)$, т.к. $\overline{f}(0,0,0) = 1$ и $\overline{f}(1, 1, 1) = 0 $
+        \item $f(x, y, z) = x \oplus z \oplus yz \Rightarrow f(0, y, x) = x \oplus yx = x\overline{y} \Rightarrow f(0, \overline{y}, x) = xy \Rightarrow f(\overline{f}(x, x, \overline{x}), \overline{y}, x) = xy$
+    \end{itemize}
+\end{proof}
