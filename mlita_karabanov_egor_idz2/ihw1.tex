@@ -20,8 +20,8 @@
     $\alpha_3 :=  B \vee C \vee \overline{E}$\\
     $\alpha_4 := B \vee \overline{D}$\\
     $Res(\alpha_1, \alpha_2) = \overline{A} \vee C \vee D \vee E$\\
-    $Res(\alpha_1, \alpha_3) = \overline{A} \vee D \vee C$\\
-    $Res(\alpha_1, \alpha_4) = \overline{A} \vee E$\\
+    $Res(\alpha_1, \alpha_3) = 1$\\
+    $Res(\alpha_1, \alpha_4) = 1$\\
     $Res(\alpha_2, \alpha_3) = \overline{A} \vee B \vee C \vee D \vee \overline{E}$\\
     $Res(\alpha_2, \alpha_4) = \overline{A} \vee B \vee C$\\
     $Res(\alpha_3, \alpha_4) = B \vee C \vee \overline{D} \vee \overline{E}$\\
@@ -260,12 +260,12 @@ $3) q_0* \to q_1oL$\\
 $4) q_0o \to q_0*L$
 \end{problem}
 \begin{proof} $ $\\
-$**\hat{o}tttt* \xrightarrow{5}$
-$*\hat{*}tttt* \xrightarrow{3}$
-$\hat{*}otttt* \xrightarrow{1}$
-$o\hat{o}tttt* \xrightarrow{2}$
-$o\hat{*}tttt*$\\
-Результатом работы машины Тьюринга будет o*tttt
+$**\hat{o}tttt \xrightarrow{4}$
+$*\hat{*}*tttt \xrightarrow{3}$
+$\hat{*}o*tttt \xrightarrow{1}$
+$o\hat{o}*tttt \xrightarrow{2}$
+$\hat{o}**tttt$\\
+Результатом работы машины Тьюринга будет o**tttt
 \end{proof}
 
 
