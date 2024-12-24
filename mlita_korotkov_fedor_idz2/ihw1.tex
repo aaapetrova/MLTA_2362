@@ -1,0 +1,328 @@
+\problemset{Математическая логика и теория алгоритмов}
+\problemset{Индивидуальное домашнее задание №2}	% поменяйте номер ИДЗ
+
+\renewcommand*{\proofname}{Решение}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand*\ccircled[1]{\tikz[baseline=(char.base)]
+{\node[shape=circle,draw=black, fill=gray, opacity=0.8,inner sep=2pt] (char) {#1};}}
+\newcommand*\bicircled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+\shorthandoff{"}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №1 %%%%%%%%%%%%%%
+%% Условие задания №1
+\begin{problem} 
+Найдите резольвенты первого порядка следующего набора дизъюнктов: \\$B \lor \bar C \lor \bar D \lor \bar E, A \lor B \lor \bar C \lor \bar D \lor \bar E, \bar A \lor \bar D, \bar A \lor B \lor E$
+\end{problem}
+
+%% Решение задания №1
+\begin{proof} $ $\\
+    $R_1 = B \lor \bar C \lor \bar D \lor \bar E$\\
+    $R_2 = A \lor B \lor \bar C \lor \bar D \lor \bar E$\\
+    $R_3 = \bar A \lor \bar D$\\
+    $R_4 = \bar A \lor B \lor E$\\
+
+    \begin{enumerate}
+      \item $R_1,R_4:$ $\bar A \lor B \lor \bar C \lor \bar D$
+      \item $R_2,R_3:$ $B \lor \bar C \lor \bar D \lor \bar E$
+      \item $R_2,R_4:$ $1$
+    \end{enumerate}
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №2 %%%%%%%%%%%%%%
+%% Условие задания №2
+\begin{problem}
+    Приведите данную формулу к ПНФ: \\$\lnot (\exists y R(b, y) \oplus \lnot \forall x P(x, c, x))$
+\end{problem}
+
+%% Решение задания №2
+\begin{proof} $ $\\
+    $\lnot (\exists y R(b, y) \oplus \lnot \forall x P(x, c, x)) = \lnot ((\exists y R(b,y) \land \forall x P(x, c, x)) \lor (\lnot \exists y R(b,y) \land \lnot \forall x P(x, c, x))) = (\lnot \exists y R(b,y) \lor \lnot x P(x, c, x)) \land (\exists y R(b, y) \lor \forall x P(x,c,x)) = \forall y \exists x (\lnot R(b,y) \lor \lnot P(x,c,x)) \land \exists y \forall x (R(b,y) \lor P(x,c,x)) = \forall x \exists y \forall z \exists w (R(b,y) \lor P(x,c,x))(\lnot R(b,z) \lor \lnot P(w,c,w))$
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №3 %%%%%%%%%%%%%%
+%% Условие задания №3
+\begin{problem}
+    Приведите данную формулу к СНФ: \\$\forall x \exists y \forall z \exists t \forall u ((R(t) \land Q(x, y, z)) \land P(u))$
+\end{problem}
+
+%% Решение задания №3
+\begin{proof} $ $\\
+    $\forall x \exists y \forall z \exists t \forall u ((R(t) \land Q(x, y, z)) \land P(u)) = \forall x \forall z \exists t \forall u ((R(t) \land Q(x, f(x), z)) \land P(u)) = \forall x \forall z \forall u ((R(g(x,z)) \land Q(x, f(x), z)) \land P(u))$\\
+    $y = f(x)$\\
+    $t = g(x,z)$
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №4 %%%%%%%%%%%%%%
+%% Условие задания №4
+\begin{problem}
+    Унифицируйте данные формулы:\\
+    $ S(q(h(q(r(x)), \varphi(a))), q(h(r(x), q(p(b)))), h(x, p(b)), f(q(\varphi(a)), u), s(r(x))) \\  S(q(h(q(z), y)), q(h(z, q(t))), h(c, t), f(q(y), g(t)), s(z))$
+\end{problem}
+
+%% Решение задания №4
+\begin{proof} $ $\\
+   $c=x$\\
+   $z=r(x)$\\
+   $y=\varphi(a)$\\
+   $t=p(b)$\\
+   $u=g(t)$\\\\
+   $ S(q(h(q(r(x)), \varphi(a))), q(h(r(x), q(p(b)))), h(x, p(b)), f(q(\varphi(a)), g(t)), s(r(x)))$
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №5 %%%%%%%%%%%%%%
+%% Условие задания №5
+\begin{problem}
+     Придумайте интерпретацию, для которой данная формула а) верна; б) неверна; или докажите, что это невозможно. $\neg((\forall x P(a, x) \wedge S(c, c, c)) \Rightarrow \forall y Q(y))$
+\end{problem}
+
+%% Решение задания №5
+\begin{proof} $ $\\
+    $ \forall x P(a, x) \wedge S(c, c, c) \land \exists y \neg Q(y)$\\
+    $\sqsupse M = [0; 1]$ \\
+    а) Верна:\\
+    S(c, c, c) - "$c = c = c$" \\
+    P(a, x) - "$x + a \geq 0$" \\
+    Q(y) - "$y < 0$" \\\\
+    б) Неверна:\\
+    S(c, c, c) - "$c = c = c$" \\
+    P(a, x) - "$x + a \geq 0$" \\
+    Q(y) - "$y \geq 0$" \\
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №6 %%%%%%%%%%%%%%
+%% Условие задания №6
+\begin{problem}
+    а) Опишите язык, заданный данной грамматикой. б) Удовлетворяет ли он условию однозначности ветвления?\\
+    $A::=z \mid d A d$
+\end{problem}
+
+%% Решение задания №6
+\begin{proof} $ $\\\\
+    а) $d^n z d^n, n \geq 0$ \\
+    б) Удовлетворяет: \\
+    \begin{enumerate}
+        \item Правило A::=z позволяет сразу закончить построение, так как z — конечный символ.
+        \item Правило A::=dAd однозначно показывает, что к базовой строке A добавляются символы d с двух сторон.
+    \end{enumerate}
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №7 %%%%%%%%%%%%%%
+%% Условие задания №7
+\begin{problem}
+     Дана грамматика некоторого языка:\\
+    $\begin{aligned} & S::=C \\ & B::=S \\ & C::=a C \mid a D \\ & D::=a S|b D| b B \mid \Lambda\end{aligned}$\\
+    Постройте (любой) конечный автомат, распознающий этот язык.
+\end{problem}
+
+%% Решение задания №7
+\begin{proof} $ $\\
+    \begin{center}
+        \begin{tikzcd}[row sep=4em, column sep=4em]
+        \ccircled{S} \arrow[d, "\Lambda" description] &
+        \circled{B} \arrow[l, "\Lambda" description]
+        \\
+        \circled{C} \arrow[r, "a" description] 
+        \arrow[loop, in= 180, out = 270, looseness = 4,  "a" description] &
+        \bicircled{\circled{D}} \arrow[lu, "a" description] 
+        \arrow[loop, in= 360, out = 270, looseness = 4,  "b" description]
+        \arrow[u, "b" description] 
+        \end{tikzcd}
+    \end{center}
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №8 %%%%%%%%%%%%%%
+%% Условие задания №8
+\begin{problem}
+     Постройте детерминированный конечный автомат, эквивалентный данному:\\
+     \begin{center}
+\begin{tikzcd}[row sep=4em, column sep=4em]
+\ccircled{q0} \ar[r, bend left = 10, rightarrow, "\epsilon" description] \ar[loop, in = 120, out = 180, looseness = 4, "a" description] \ar[dr, bend left = 10, rightarrow, "c" description] \ar[d, bend left = 10, rightarrow, "a" description] &
+\circled{q2} \ar[l, bend left = 10, rightarrow, "c" description] \ar[ld, bend left = 10, rightarrow, "c" description]
+\ar[l, bend left = 27, rightarrow, "\epsilon" description]
+\\
+\circled{q1} \ar[u, bend left = 10, rightarrow, "c" description] \ar[loop, out = 270, in = 180, looseness = 4, "b" description] &
+\bicircled{\circled{q3}} \ar[loop, out = 0, in = 300, looseness = 4, "b" description] \ar[ul, bend left = 10, rightarrow, "a" description]
+\end{tikzcd}
+\end{center}
+\end{problem}
+
+%% Решение задания №8
+\begin{proof} $ $ \\\\
+Пустые переходы:\\
+\begin{tikzcd}[row sep=4em, column sep=4em]
+\circled{q0} \ar[r, bend left = 10, rightarrow, "\epsilon" description] & 
+\circled{q2} \ar[l, bend left = 10, rightarrow, "\epsilon" description]
+\end{tikzcd}\\
+
+Итоговый детерминированный конечный автомат:\\
+\begin{center}
+\begin{tikzcd}[row sep=4em, column sep=4em]
+\circled{q0q2} \ar[r, bend left = 10, rightarrow, "c" description]
+            \ar[dr, bend left = -10, rightarrow, "a" description]&
+\bicircled{\circled{q3}} \ar[loop, out = 15, in = 90, looseness = 4, "b" description]
+            \ar[l, bend left = 10, rightarrow, "a" description] \\
+\circled{q1} \ar[loop, out = 195, in = 270, looseness = 4, "b" description] 
+            \ar[u, bend left = 10, rightarrow, "c" description] &
+\circled{q0q1} \ar[loop, out = 220, in = 300, looseness = 4, "a" description]
+            \ar[l, bend left = 10, rightarrow, "b" description]
+            \ar[r, bend left = 10, rightarrow, "c" description] &
+\bicircled{\circled{q0q3}} \ar[l, bend left = 10, rightarrow, "a" description]
+            \ar[ul, bend left = 10, rightarrow, "c" description]
+            \ar[ul, bend left = -10, rightarrow, "b" description]
+\end{tikzcd}
+\end{center}
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №9 %%%%%%%%%%%%%%
+%% Условие задания №9
+\begin{problem}
+    Постройте регулярное выражение, задающее язык, распознаваемый этим автоматом.
+    \begin{center}
+    \begin{tikzcd}[row sep=4em, column sep=4em]
+    \ccircled{q0} \ar[loop, out = 165, in = 100, looseness = 4, "c" description]
+                \ar[r, bend left = 10, rightarrow, "a" description]
+                \ar[d, bend left = 10, rightarrow, "a" description] &
+    \bicircled{\circled{q2}} \ar[loop, out = 90, in = 15, looseness = 4, "b" description]
+                \ar[ld, bend left = 10, rightarrow, "a" description] \\
+    \circled{q1} \ar[loop, out = 270, in = 195, looseness = 4, "b" description] 
+                \ar[ur, bend left = 10, rightarrow, "b" description] &
+    \end{tikzcd}
+    \end{center}
+\end{problem}
+
+%% Решение задания №9
+\begin{proof} $ $\\\\
+     \begin{cases} 
+     q_0 = cq_0 + aq_2 + aq_1 \\
+     q_1 = bq_1 + bq_2 \\
+     q_2 = bq_2 + aq_1
+     \end{cases} \\\\
+     \begin{cases} 
+     q_0 = c^* a (q_2 + q_1) \\
+     q_1 = b^* b q_2 = (b^*bb^*a)^* \\
+     q_2 = b^* a q_1 = (b^*ab^*b)^* 
+     \end{cases} \\\\
+     $q0 = c^* a ((b^*bb^*a)^* + (b^*ab^*b)^*)$
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №10 %%%%%%%%%%%%%%
+%% Условие задания №10
+\begin{problem}
+    Постройте автомат, распознающий язык, задаваемый
+этим регулярным выражением: $(a(b + (cd)^*)e)^*$
+\end{problem}
+
+%% Решение задания №10
+\begin{proof} $ $\\
+    \begin{center}
+    \begin{tikzcd}[row sep=4em, column sep=4em]
+    \bicircled{\circled{S}}  \ar[r, bend left = 10, rightarrow, "a" description] \ar[rd, bend left = 10, rightarrow, "a" description] &
+    \circled{q1} \ar[loop, out = 90, in = 20, looseness = 4, "cd" description] \ar[dl, bend left = 10, rightarrow, "\epsilon" description] \\
+    \circled{q2} \ar[u, bend left = 10, rightarrow, "e" description] & 
+    \circled{q3} \ar[l, bend left = 10, rightarrow, "b" description]
+    \end{tikzcd}
+    \end{center}
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №11 %%%%%%%%%%%%%%
+%% Условие задания №11
+\begin{problem}
+    Постройте детерминированный конечный автомат, распознающий слова в алфавите {i, l, z}, которые не оканчиваются на zzi.
+\end{problem}
+
+%% Решение задания №11
+\begin{proof} $ $\\
+    \begin{center}
+    \begin{tikzcd}[row sep=4em, column sep=4em]
+    \bicircled{\circled{S}} \ar[loop, out = 90, in = 130, looseness = 3, "i" description]
+                            \ar[loop, out = 150, in = 190, looseness = 3, "l" description] 
+                            \ar[r, bend left = 10, rightarrow, "z" description] &
+    \bicircled{\circled{q1}} \ar[l, bend left = 5, rightarrow, "i" description]
+                             \ar[l, bend left = 20, rightarrow, "l" description]
+                             \ar[ld, bend left = 10, rightarrow, "z" description] \\
+    \bicircled{\circled{q2}} \ar[u, bend left = 20, rightarrow, "l" description]
+                             \ar[loop, out = 270, in = 210, looseness = 3, "z" description] 
+                             \ar[r, bend left = -10, rightarrow, "i" description] & 
+    \circled{q3} \ar[u, bend left = -10, rightarrow, "z" description]
+                 \ar[lu, bend left = -10, rightarrow, "i" description]
+                 \ar[lu, bend left = 10, rightarrow, "l" description]
+    \end{tikzcd}
+    \end{center}
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №12 %%%%%%%%%%%%%%
+%% Условие задания №12
+\begin{problem}
+    Дана машина Тьюринга с начальным состоянием q0 и конечным состоянием $q_2$. Какой результат даст эта машина Тьюринга для ленты kdddk? Считывающая головка находится на крайнем левом символе. Пустой символ — *. \\
+    $q_1$*$ \rightarrow q_0 dR \\
+     q_1 d \rightarrow q_1 kL \\
+     q_1 k \rightarrow q_0 kL \\
+     q_0 d \rightarrow q_2 kL \\ 
+     q_0 k \rightarrow q_1 dR$
+\end{problem}
+
+%% Решение задания №12
+\begin{proof} $ $\\
+    \begin{enumerate}
+        \item $\overset{q_0}{k}dddk$ 
+        \item $d\overset{q_1}{d}ddk$
+        \item $\overset{q_1}{d}kddk$
+        \item $\overset{q_1}{*}kkddk$
+        \item $d\overset{q_0}{k}kddk$
+        \item $dd\overset{q_1}{k}ddk$
+        \item $d\overset{q_0}{d}kddk$
+        \item $\overset{q_2}{d}kkddk$
+    \end{enumerate}
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №13 %%%%%%%%%%%%%%
+%% Условие задания №13
+\begin{problem}
+    а) Что следующий алгоритм Маркова делает со словом zxyxyx? \\
+    б) Из некоторого слова после применения 1 шага данного алгоритма Маркова получилось yzxxyzy. Каким могло быть исходное слово? \\
+    $zzz \rightarrow zx \\
+     yzx \rightarrow zx \\
+     xxx \rightarrow zy \\
+     yxx \rightarrow zy \\ 
+     xy \rightarrow zxx$
+\end{problem}
+
+%% Решение задания №13
+\begin{proof} $ $\\
+    а) \begin{enumerate}
+        \item z\textbf{xy}xyx
+        \item zz\textbf{xxx}yx
+        \item\textbf{zzz}yyx 
+        \item z\textbf{xy}yx
+        \item zzx\textbf{xy}x
+        \item zzxz\textbf{xxx}
+        \item zzxzzy
+    \end{enumerate} \\
+    б) y\textbf{zx}xyzy \leftarrow y\textbf{zzz}xyzy
+\end{proof}
+
+%%%%%%%%%%%%%% ЗАДАНИЕ №14 %%%%%%%%%%%%%%
+%% Условие задания №14
+\begin{problem}
+    Дан автомат с магазинной памятью. Входной алфавит {a, x}; алфавит стека {p}; q0 — начальное состояние, q1 — конечное.\\
+    Правила\\
+    1) $q_0 \epsilon a \rightarrow q_1 p$  2) $q_0 \epsilon x \rightarrow q_0 p$  3) $q_0 pa \rightarrow q_0 p$\\
+    4) $q_0 px \rightarrow q_0 \epsilon$  5) $q_1 \epsilon a \rightarrow q_0 \epsilon$  6) $q_1 \epsilon x \rightarrow q_0 \epsilon$\\
+    7) $q_1 pa \rightarrow q_1 p$  8) $q_1 px \rightarrow q_0 p$\\
+    Придумайте пример шестибуквенного слова в алфавите {a, x}, которое этот автомат а) распознаёт; б) не распознаёт. в) Есть ли у этого автомата бесполезные правила, которые не будут выполняться ни при каком поданном на вход автомата слове?
+
+\end{problem}
+
+%% Решение задания №14
+\begin{proof} $ $\\
+    \begin{center}
+    \begin{tikzcd}[row sep=4em, column sep=4em]
+    & \circled{$q_0 \epsilon$}  \ar[ld, bend left = -10, rightarrow, "a" description] \ar[rd, bend left = 15, rightarrow, "x" description] & \\
+    \circled{$q_1 p$} \ar[loop, out = 220, in = 160, looseness = 4, "a" description] \ar[rr, bend left = -10, rightarrow, "x" description] & &
+    \circled{$q_0 p$} \ar[loop, out = 300, in = 10, looseness = 4, "a" description] \ar[ul, bend left = 10, rightarrow, "x" description]
+    \end{tikzcd}
+    \end{center}\\
+    а) не существует \\
+    б) $axaxax$ \\
+    в) 5) и 6)
+\end{proof}
