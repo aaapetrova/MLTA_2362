@@ -1,0 +1,369 @@
+\problemset{Математическая логика и теория алгоритмов}
+\problemset{Индивидуальное домашнее задание №2}
+
+\renewcommand*{\proofname}{Решение}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand*\ccircled[1]{\tikz[baseline=(char.base)]
+{\node[shape=circle,draw=black, fill=gray, opacity=0.8,inner sep=2pt] (char) {#1};}}
+\newcommand*\bicircled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+\shorthandoff{"}
+
+
+
+
+\begin{problem}
+Найдите резольвенты первого порядка следующего набора дизъюнктов $\overline{A} \vee \overline{B} \vee D \vee E, \overline{A} \vee B \vee C \vee D, B \vee C \vee \overline{E}, B \vee \overline{D}$
+\end{problem}
+\begin{proof} $ $\\
+    $\alpha_1 := \overline{A} \vee \overline{B} \vee D \vee E$\\
+    $\alpha_2 := \overline{A} \vee B \vee C \vee D$\\
+    $\alpha_3 :=  B \vee C \vee \overline{E}$\\
+    $\alpha_4 := B \vee \overline{D}$\\
+    $Res(\alpha_1, \alpha_2) = \overline{A} \vee C \vee D \vee E$\\
+    $Res(\alpha_1, \alpha_3) = 1$\\
+    $Res(\alpha_1, \alpha_4) = 1$\\
+    $Res(\alpha_2, \alpha_3) = \overline{A} \vee B \vee C \vee D \vee \overline{E}$\\
+    $Res(\alpha_2, \alpha_4) = \overline{A} \vee B \vee C$\\
+    $Res(\alpha_3, \alpha_4) = B \vee C \vee \overline{D} \vee \overline{E}$\\
+\end{proof}
+
+
+\begin{problem}
+Приведите данную формулу к ПНФ:
+$\overline{\overline{\forall xQ(x, x, x)} \equiv \forall y Q(y, y, c)}$
+\end{problem}
+\begin{proof} $ $\\
+$\overline{\overline{\forall xQ(x, x, x)} \equiv \forall y Q(y, y, c)} = 
+(\overline{\overline{\forall xQ(x, x, x)} \rightarrow \forall y Q(y, y, c)) \cdot (\forall y Q(y, y, c) \rightarrow \overline{\forall xQ(x, x, x)})} =$\\
+$= (\overline{\forall xQ(x, x, x) \vee \forall y Q(y, y, c)) \cdot (\overline{\forall y Q(y, y, c)} \vee \overline{\forall xQ(x, x, x)})} =$\\
+$= (\exists x \overline{Q(x, x, x)} \cdot \exists y\overline{Q(y ,y, c)}) \vee (\forall yQ(y ,y, c) \cdot \forall xQ(x, x, x)) =$\\
+$= \exists x \exists y( \overline{Q(x, x, x)} \cdot \overline{Q(y ,y, c)}) \vee \forall y  \forall x(Q(y ,y, c) \cdot Q(x, x, x)) =$\\
+$= \exists x \exists y \forall a \forall b [( \overline{Q(x, x, x)} \cdot \overline{Q(y ,y, c)}) \vee (Q(a, a, c) \cdot Q(b, b, b))] =$
+\end{proof}
+
+
+\begin{problem}
+Приведите данную формулу к СНФ:\\
+$\exists x \forall y \exists z \forall t \exists u ((R(t, u, x) \wedge Q(z)) \vee P(y))$
+\end{problem}
+\begin{proof} $ $\\
+$\exists x \forall y \exists z \forall t \exists u ((R(t, u, x) \wedge Q(z)) \vee P(y)) = \exists x \forall y \exists z \forall t \exists u ((R(t, u, x) \vee P(y)) \wedge (Q(z) \vee P(y))) =$\\
+$= \{x := c; z := f(y); u := g(y, t)\} = \forall y \forall t ((R(t, g(y, t), c) \vee P(y)) \wedge (Q(f(y)) \vee P(y)))$
+\end{proof}
+
+
+\begin{problem}
+Унифицируйте данные формулы:\\
+$Q(f(h(y)), h(r(g(y))), h(h(r(u))), q(q(c, a, b), t, g(y)), h(p(c)))$\\
+$Q(f(h(b)), h(r(z)), h(h(r(\psi(a)))), q(q(c, a, b), s(x), z), h(x))$
+\end{problem}
+\begin{proof} $ $\\
+$b = y$\\
+$z = g(y)$\\
+$u = \psi(a)$\\
+$x = p(c) => s(x) = s(p(c))$\\
+$t = s(p(c))$\\
+Унификатор для данных предикатов:\\
+$Q( f(h(y)), h(r(g(y))), h(h(r(\psi(a)))), q(q(c, a, b), s(p(c)), g(y)), h(p(c)) )$
+\end{proof}
+
+
+\begin{problem}
+Придумайте интерпретацию, для которой данная формула а) верна; б) неверна; или докажите, что это невозможно:\\
+$(Q(a, b, b) \oplus \exists y P(a, y, c)) \vee \forall x \overline{(R(x) \wedge S(c))}$
+\end{problem}
+\begin{proof} $ $\\
+
+\end{proof}
+
+
+\begin{problem}
+а) Опишите язык, заданный данной грамматикой. б) Удовлетворяет ли он условию однозначности ветвления?\\
+$A ::= s|sAA$
+\end{problem}
+\begin{proof} $ $\\
+Язык, который задает такая грамматика представляет из себя $s_i...s_k; 1 \leq i \leq k; k$ - нечетное число\\
+Язык не удовлетворяет условию однозначности по первому символу. Пусть $\alpha := s; \beta := sAA$.\\
+Множества терминальных символов: $l(\alpha) = \{s\}; l(\beta) = \{s\}$\\
+$l(\alpha) \cap l(\beta) \neq \emptyset \Rightarrow $ условие однозначности не выполняется
+\end{proof}
+
+
+\begin{problem}
+Дана грамматика некоторого языка:\\
+$S ::= C$\\
+$B ::= aD$\\
+$C ::= B$\\
+$D ::= bC|bB|aD|aS|\wedge$\\
+Постройте (любой) конечный автомат, распознающий этот
+язык.
+\end{problem}
+\begin{proof} $ $\\
+\begin{center}
+\begin{tikzcd}[row sep=4em, column sep=4em]
+\ccircled{S} \arrow[r, rightarrow, "\epsilon" description] &
+\circled{C} \arrow[d, rightarrow, "\epsilon" description] \\
+\bicircled{\circled{D}} \arrow[loop, in= 250, out = 320, looseness = 4,  "a" description] \arrow[ur, rightarrow, "b" description] \arrow[r, rightarrow, bend left=20, "b" description] \arrow[u, rightarrow, "a" description]  &
+\circled{B} \arrow[l, rightarrow, "a" description]
+\end{tikzcd}
+\end{center}
+\end{proof}
+
+
+\begin{problem}
+Постройте детерминированный конечный автомат, эквивалентный данному:\\
+\begin{center}
+\begin{tikzcd}[row sep=4em, column sep=4em]
+\ccircled{q0} \ar[r, bend left = 10, rightarrow, "c" description] \ar[loop, in = 120, out = 180, looseness = 4, "a" description] \ar[dr, bend left = 10, rightarrow, "b" description] \ar[d, bend left = 10, rightarrow, "b" description]&
+\circled{q2} \ar[loop, in = 15, out = 75, looseness = 4, "b" description] \ar[l, bend left = 10, rightarrow, "c" description]
+\\
+\circled{q1} \ar[u, bend left = 10, rightarrow, "c" description] \ar[ur, bend left = 10, rightarrow, "c" description] &
+\bicircled{\circled{q3}} \ar[loop, out = 0, in = 300, looseness = 4, "b" description] \ar[l, bend left = 10, rightarrow, "\epsilon" description] \ar[ul, bend left = 10, rightarrow, "\epsilon" description] \ar[u, bend left = 10, rightarrow, "a" description]
+\end{tikzcd}
+\end{center}
+\end{problem}
+\begin{proof} $ $\\
+Пустые переходы:\\
+\begin{tikzcd}[row sep=4em, column sep=4em]
+\circled{q1} & 
+\bicircled{\circled{q3}} \ar[l, bend right = 10, rightarrow, "\epsilon" description] \ar[r, bend left = 10, rightarrow, "\epsilon" description] &
+\circled{q0}
+\end{tikzcd}\\
+Итоговые состояния после исключения пустых переходов:\\
+\begin{tikzcd}[row sep=4em, column sep=4em]
+\circled{q1} &
+\bicircled{\circled{q1q3}} &
+\bicircled{\circled{q3q0}} &
+\circled{q0}
+\end{tikzcd}\\
+
+Итоговый детерминированный конечный автомат:\\
+\begin{center}
+\begin{tikzcd}[row sep=4em, column sep=4em]
+\circled{q0} \ar[loop, out = 180, in = 120, looseness = 4, "a" description] \ar[r, bend left = 10, rightarrow, "c" description] \ar[d, bend left = 10, rightarrow, "b" description] &
+\circled{q2} \ar[loop, out = 90, in = 30, looseness = 4, "b" description] \ar[l, bend left = 10, rightarrow, "c" description]\\
+\bicircled{\circled{q1q3}} \ar[loop, out = 270, in = 210, looseness = 4, "b" description] \ar[ur, bend left = 10, rightarrow, "a" description] \ar[r, bend left = 10, rightarrow, "c" description] &
+\circled{q0q2} \ar[ul, bend left = 10, rightarrow, "a" description] \ar[ul, bend right = 10, rightarrow, "c" description] \ar[r, bend left = 10, rightarrow, "b" description]&
+\bicircled{\circled{q1q2q3}} \ar[loop, out = 270, in = 210, looseness = 4, "b" description] \ar[ul, bend left = 10, rightarrow, "a" description] \ar[l, bend left = 10, rightarrow, "c" description]
+\end{tikzcd}
+\end{center}
+\end{proof}
+
+
+\begin{problem}
+Постройте регулярное выражение, задающее язык, распознаваемый этим автоматом.\\
+\begin{center}
+\begin{tikzcd}[row sep=4em, column sep=4em]
+\ccircled{q0} \ar[loop, out = 180, in = 120, looseness = 4, "c" description] \ar[d, bend left = 10, rightarrow, "b" description] &
+\bicircled{\circled{q2}} \ar[loop, in = 30, out = 90, looseness = 4, "b" description] \ar[l, bend left = 10, rightarrow, "b" description]
+\\
+\circled{q1} \ar[loop, out = 270, in = 210, looseness = 4, "c" description] \ar[u, bend left = 10, rightarrow, "a" description] \ar[ur, bend left = 10, rightarrow, "c" description]
+\end{tikzcd}
+\end{center}
+\end{problem}
+\begin{proof} $ $\\
+% Построим систему уравнений:\\
+\begin{center}
+\begin{equation*}
+ \begin{cases}
+   q_0 = cq_0 + bq_1
+   \\
+   q1 = cq_1 + aq_0 + cq_2
+   \\
+   q2 = bq_2 + bq_0 + \epsilon
+ \end{cases}
+\end{equation*}
+$\Downarrow$
+\begin{equation*}
+ \begin{cases}
+   q_0 = cq_0 + bq_1
+   \\
+   q1 = cq_1 + aq_0 + cb^*(bq_0+\epsilon) = cq_1 + (a+cb^*b)q_0 + cb^*)
+   \\
+   q2 = b^*(bq_0+\epsilon)
+ \end{cases}
+\end{equation*}
+$\Downarrow$
+\begin{equation*}
+ \begin{cases}
+   q_0 = cq_0+bc^*((a+cb^*b)q_0+cb^*)
+   \\
+   q1 = c^*((a+cb^*b)q_0+cb^*)
+   \\
+   q2 = b^*(bq_0+\epsilon)
+ \end{cases}
+\end{equation*}
+$\Downarrow$
+\begin{equation*}
+ \begin{cases}
+   q_0 = cq_0+bc^*aq_0 + bc^*cb^*bq_0+bc^*cb^*
+   \\
+   q1 = c^*((a+cb^*b)q_0+cb^*)
+   \\
+   q2 = b^*(bq_0+\epsilon)
+ \end{cases}
+\end{equation*}
+\end{center}
+Регулярное выражение, распознающее язык, задаваемый данным автоматом: $(c+bc^*a+bc^*cb^*b)^*bc^*cb^*$
+\end{proof}
+
+
+\begin{problem}
+Постройте автомат, распознающий язык, задаваемый
+этим регулярным выражением:\\
+$ ((ab)^*((c+d)^*+e))^*$
+\begin{center}
+\end{center}
+\end{problem}
+\begin{proof} $ $\\
+\begin{center}
+\begin{tikzcd}[row sep=4em, column sep=4em]
+\ccircled{S} \ar[r, bend left = 10, rightarrow, "a" description] &
+\circled{q1} \ar[r, bend left = 10, rightarrow, "b" description] &
+\circled{q2} \ar[ll, bend left = 20, rightarrow, "\epsilon" description] \ar[r, bend left = 10, rightarrow, "c" description] \ar[r, bend right = 10, rightarrow, "d" description] \ar[d, bend left = 10, rightarrow, "e" description]&
+\bicircled{\circled{q3}} \ar[l, bend right = 30, rightarrow, "\epsilon" description] \ar[lll, bend left = 40, rightarrow, "\epsilon" description]
+\\
+&
+&
+\bicircled{\circled{q4}} \ar[ull, bend left = 20, rightarrow, "\epsilon" description]
+\end{tikzcd}
+\end{center}
+\end{proof}
+
+
+\begin{problem}
+Постройте детерминированный конечный автомат, распознающий слова в алфавите \{c, p, z\} , которые оканчиваются на ppc.
+\end{problem}
+\begin{proof} $ $\\
+\begin{center}
+\begin{tikzcd}[row sep=4em, column sep=4em]
+\ccircled{S} \ar[r, bend left = 30, rightarrow, "c" description] \ar[r, bend left = 10, rightarrow, "p" description] \ar[r, bend right = 10, rightarrow, "z" description] \ar[r, bend left = 50, rightarrow, "\epsilon" description] &
+\circled{q1} \ar[l, bend left = 30, rightarrow, "\epsilon" description] \ar[r, bend left = 10, rightarrow, "p" description] &
+\circled{q2} \ar[r, bend left = 10, rightarrow, "p" description] &
+\circled{q3} \ar[r, bend left = 10, rightarrow, "c" description] &
+\bicircled{\circled{q4}}
+\end{tikzcd}
+\end{center}
+\end{proof}
+
+
+\begin{problem}
+Дана машина Тьюринга с начальным состоянием q0 и
+конечным состоянием q2 . Какой результат даст эта машина Тьюринга для ленты otttt? Считывающая головка находится на крайнем левом символе. Пустой символ — *.\\
+$1) q_1* \to q_1oR$\\
+$2) q_1o \to q_2 * L$\\
+$3) q_0* \to q_1oL$\\
+$4) q_0o \to q_0*L$
+\end{problem}
+\begin{proof} $ $\\
+$**\hat{o}tttt \xrightarrow{4}$
+$*\hat{*}*tttt \xrightarrow{3}$
+$\hat{*}o*tttt \xrightarrow{1}$
+$o\hat{o}*tttt \xrightarrow{2}$
+$\hat{o}**tttt$\\
+Результатом работы машины Тьюринга будет o**tttt
+\end{proof}
+
+
+\begin{problem}
+а) Что следующий алгоритм Маркова делает со словом
+xzyxy?
+б) Из некоторого слова после применения 1 шага данного алгоритма Маркова получилось yzyyzzy. Каким могло быть исходное слово?\\
+$1) yx \to zyy$\\
+$2) zz \to zy$\\
+$3) xxx \to zy$\\
+$4) zyz \to xx$\\
+$5) yyy \to zzy$
+\end{problem}
+\begin{proof} $ $\\
+a) $xzyxy \xrightarrow{1} xzzyyy \xrightarrow{2} xzyyyy \xrightarrow{5} xzzzyy \xrightarrow{2} xzyzyy \xrightarrow{4} xxxyy \xrightarrow{3} zyyy \xrightarrow{5} zzzy \xrightarrow{2} zyzy \xrightarrow{4} xxy$\\
+б) $yyxzzy \xrightarrow{1} yzyyzzy; \quad yzzyzzy \xrightarrow{2} yzyyzzy; \quad yzyyzxxx \xrightarrow{3} yzyyzzy$
+\end{proof}
+
+\begin{problem}
+Дан автомат с магазинной памятью. Входной алфавит
+\{o, z\}; алфавит стека \{y\}; q0 — начальное состояние, q1 — конечное.
+Правила\\
+1) $q_0\epsilon o \to q_0y$\\
+2) $q_0\epsilon z \to q_0\epsilon$\\
+3) $q_0 yo \to q_1 \epsilon$\\
+4) $q_0yz \to q_0 y$\\
+5) $q_1\epsilon o \to q_0\epsilon$\\
+6) $q_1\epsilon z \to q_0\epsilon$\\
+7) $q_1 yo \to q_1y$\\
+8) $q_1 yz \to q_0 y$\\
+Придумайте пример шестибуквенного слова в алфавите
+\{o, z\}, которое этот автомат а) распознаёт; б) не распознаёт.
+в) Есть ли у этого автомата бесполезные правила, которые
+не будут выполняться ни при каком поданном на вход автомата слове?
+\end{problem}
+\begin{proof} $ $\\
+а) 
+$
+\hat{o}ozzoo
+\begin{bmatrix}
+    \quad
+\end{bmatrix}
+\xrightarrow{1}
+o\hat{o}zzoo
+\begin{bmatrix}
+    y
+\end{bmatrix}
+\xrightarrow{3}
+oo\hat{z}zoo
+\begin{bmatrix}
+    \quad
+\end{bmatrix}
+\xrightarrow{6}
+ooz\hat{z}oo
+\begin{bmatrix}
+    \quad
+\end{bmatrix}
+\xrightarrow{2}
+oozz\hat{o}o
+\begin{bmatrix}
+    \quad
+\end{bmatrix}
+\xrightarrow{1}
+oozzo\hat{o}
+\begin{bmatrix}
+    y
+\end{bmatrix}
+\xrightarrow{3}
+$
+finish\\
+б) 
+$
+\hat{o}ozzzz
+\begin{bmatrix}
+    \quad
+\end{bmatrix}
+\xrightarrow{1}
+o\hat{o}zzzz
+\begin{bmatrix}
+    y
+\end{bmatrix}
+\xrightarrow{3}
+oo\hat{z}zzz
+\begin{bmatrix}
+    \quad
+\end{bmatrix}
+\xrightarrow{6}
+ooz\hat{z}zz
+\begin{bmatrix}
+    \quad
+\end{bmatrix}
+\xrightarrow{2}
+oozz\hat{z}z
+\begin{bmatrix}
+    \quad
+\end{bmatrix}
+\xrightarrow{2}
+oozzz\hat{z}
+\begin{bmatrix}
+    \quad
+\end{bmatrix}
+\xrightarrow{2}
+q_0$ ($q_0$ не конечное состояние)\\
+в) Никогда не будут выполнены правила 7 и 8, т.к. не существует правил, которые перевили бы автомат из состояния в состояние q1, чтобы при этом на верхушке стека оказался y.
+\end{proof}
