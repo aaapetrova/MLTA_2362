@@ -99,18 +99,14 @@ $D ::= bC|bB|aD|aS|\wedge$\\
 язык.
 \end{problem}
 \begin{proof} $ $\\
-Упростим грамматику:\\
-$S ::= aD$\\
-$D ::= baD|aD|\wedge$\\
-Все слова этого языка можно описать регулярным выражением $(a^+(ba)^*a^*)^+$\\
-Конечный автомат, распознающий этот язык:\\
 \begin{center}
 \begin{tikzcd}[row sep=4em, column sep=4em]
-\ccircled{S} \arrow[r, rightarrow, "a" description] & 
-\bicircled{\circled{D}} \arrow[loop, in= 15, out = 75, looseness = 4,  "ba" description] \arrow[loop, in= 270, out = 350, looseness = 4,  "a" description]
+\ccircled{S} \arrow[r, rightarrow, "\epsilon" description] &
+\circled{C} \arrow[d, rightarrow, "\epsilon" description] \\
+\bicircled{\circled{D}} \arrow[loop, in= 250, out = 320, looseness = 4,  "a" description] \arrow[ur, rightarrow, "b" description] \arrow[r, rightarrow, bend left=20, "b" description] \arrow[u, rightarrow, "a" description]  &
+\circled{B} \arrow[l, rightarrow, "a" description]
 \end{tikzcd}
 \end{center}
-
 \end{proof}
 
 
@@ -241,7 +237,7 @@ $ ((ab)^*((c+d)^*+e))^*$
 \begin{proof} $ $\\
 \begin{center}
 \begin{tikzcd}[row sep=4em, column sep=4em]
-\ccircled{S} \ar[r, bend left = 30, rightarrow, "c" description] \ar[r, bend left = 10, rightarrow, "p" description] \ar[r, bend right = 10, rightarrow, "z" description] &
+\ccircled{S} \ar[r, bend left = 30, rightarrow, "c" description] \ar[r, bend left = 10, rightarrow, "p" description] \ar[r, bend right = 10, rightarrow, "z" description] \ar[r, bend left = 50, rightarrow, "\epsilon" description] &
 \circled{q1} \ar[l, bend left = 30, rightarrow, "\epsilon" description] \ar[r, bend left = 10, rightarrow, "p" description] &
 \circled{q2} \ar[r, bend left = 10, rightarrow, "p" description] &
 \circled{q3} \ar[r, bend left = 10, rightarrow, "c" description] &
