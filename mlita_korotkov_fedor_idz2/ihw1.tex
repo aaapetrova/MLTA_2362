@@ -195,14 +195,16 @@
      \begin{cases} 
      q_0 = cq_0 + aq_2 + aq_1 \\
      q_1 = bq_1 + bq_2 \\
-     q_2 = bq_2 + aq_1
+     q_2 = bq_2 + aq_1 + \varepsilon
      \end{cases} \\\\
      \begin{cases} 
      q_0 = c^* a (q_2 + q_1) \\
-     q_1 = b^* b q_2 = (b^*bb^*a)^* \\
-     q_2 = b^* a q_1 = (b^*ab^*b)^* 
+     q_1 = b^* b q_2 \\
+     q_2 = b^* (a q_1 + \varepsilon) = b^*aq_1 + b^*
      \end{cases} \\\\
-     $q0 = c^* a ((b^*bb^*a)^* + (b^*ab^*b)^*)$
+     $q_1=b^*b(b^*aq_1+b^*)=b^*bb^*aq_1+b^*bb^*=(b^*bb^*a)^*b^*bb^*$\\
+     $q_2=b^*ab^*bq_2+b^*=(b^*ab^*b)^*b^*$\\
+     $q_0=c^*a((b^*bb^*a)^*b^*bb^*+(b^*ab^*b)^*b^*)$
 \end{proof}
 
 %%%%%%%%%%%%%% ЗАДАНИЕ №10 %%%%%%%%%%%%%%
@@ -298,7 +300,11 @@
         \item zzxz\textbf{xxx}
         \item zzxzzy
     \end{enumerate} \\
-    б) y\textbf{zx}xyzy \leftarrow y\textbf{zzz}xyzy
+    б) \\
+    y\textbf{zx}xyzy \leftarrow y\textbf{zzz}xyzy \\
+    y\textbf{zx}xyzy \leftarrow y\textbf{yzx}xyzy \\
+    y\textbf{zxx}yzy \leftarrow y\textbf{xy}yzy \\
+    
 \end{proof}
 
 %%%%%%%%%%%%%% ЗАДАНИЕ №14 %%%%%%%%%%%%%%
